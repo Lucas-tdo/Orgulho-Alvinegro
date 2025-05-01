@@ -96,6 +96,7 @@ nav a {
     margin-right: 5px;
 }
 
+/* Parte do texto */
 .main{
     display: flex;
     flex-direction: column;
