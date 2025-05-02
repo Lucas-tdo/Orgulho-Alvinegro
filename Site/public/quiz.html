@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style/stylequiz.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <img src="image/icon/logo.png" alt="">
+            </div>
+            <div class="button"> 
+                <a href="index.html">Home</a>
+                <a href="historia.html">História</a>
+                <a href="decadas.html">Décadas</a>
+                <a href="camisas.html" >Camisas</a>
+                <a href=""id="buttonatual">Quiz</a>
+            </div>
+            <div class="entrar">
+                <a class="login" href="login.html">Login</a>
+                <span>
+                    <a class="cadastro" href="cadastro.html">Cadastro</a>
+                </span>      
+            </div>
+            <div class="vazio">
+                <a href=""><img src="image/icon/perfil.png" alt=""></a>
+            </div>
+        </nav>
+        <div class="main">
+            <div class="titulo">
+                <h1>QUIZ</h1>
+                <h2>Orgulho Alvinegro</h2>
+            </div>
+            <div class="iniciar">
+                <button>Iniciar</button>
+            </div>
+            <div class="kpi">
+                <div class="card">
+                    <div class="titulo_card">
+                        <h1>Ultima pontuação:</h1>
+                        <h2>65</h2>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="titulo_card">
+                        <h1>Ultima pontuação:</h1>
+                        <h2>65</h2>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="titulo_card">
+                        <h1>Ultima pontuação:</h1>
+                        <h2>65</h2>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="graficos">
+                <div class="grafico">
+                    <div class="titulo_grafico">
+                        <h1>Sua média em comparação aos usuários:</h1>
+                    </div>
+                    <div>
+                        <canvas id="myChart2" style="position: relative; height:40vh; width:40vw"></canvas>
+                    </div>
+                </div>
+                <div class="grafico">
+                    <div class="titulo_grafico">
+                        <h1>Últimas tentativas:</h1>
+                        <div>
+                            <canvas id="myChart" style="position: relative; height:40vh; width:40vw"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+    const ctx = document.getElementById('myChart');
+    const ctx2 = document.getElementById('myChart2');
+
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: ['Média'],
+        datasets: [{
+          label: 'Usuário',
+          backgroundColor:'rgb(128, 128, 128)',
+          borderColor:'rgb(0,0,0)',
+          data: [22],
+          borderWidth: 1
+        },
+        {
+          label: 'Comunidade',
+          backgroundColor:'rgb(43, 41, 41)',
+            borderColor:'rgb(0, 0, 0)',
+          data: [90],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+        suggestedMin: 0,
+        suggestedMax: 100,
+          }
+        }
+        
+      }
+    });
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['7', '8', '9', '10'],
+        
+        datasets: [{
+          label: 'Pontuação',
+          backgroundColor:'rgb(212, 175, 55)',
+          borderColor:' rgb(0,0,0)',
+          data: [30, 29, 28, 25, 22, 23],
+          borderWidth: 2
+        },
+    ]
+      },
+      options: {
+        scales: {
+          y: {
+            suggestedMin: 0,
+            suggestedMax: 100,
+          },
+        }
+      }
+    });
+
+    
+</script>
