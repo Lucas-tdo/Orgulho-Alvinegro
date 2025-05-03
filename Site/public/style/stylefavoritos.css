@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Bebas+Neue&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+.vazio{
+    display: none;
+}
+.container{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction: row;
+    font-family: "Poppins", sans-serif;
+}
+
+nav{
+    display: flex;
+    height: 100%;
+    width: 15%;
+    background-color: black;
+    
+}
+nav img{
+    width: 40px;
+    height: 40px;
+}
+.menu{
+    display: flex;
+    width: 100%;
+    height: 50%;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.secao{
+    display: flex;
+    width: 80%;
+    height: 17%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+}
+
+.secao h2{
+    font-weight: 400;
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.atual{
+    background-color: #262323;
+    border-radius: 10px;
+}
+
+.secao a{
+    display: flex;
+    text-decoration: none;
+    color: white;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+}
+
+/* main */
+.dash{
+    display: flex;
+    height: 100%;
+    width: 85%;
+    background-color: #333333;
+    flex-direction: column;
+    align-items: center;
+}
+/* kpi */
+.kpi{
+    display: flex;
+    width: 90%;
+    height: 25%;
+    justify-content: space-between;
+    align-items: center;
+}
+.card_kpi{
+    display: flex;
+    height: 90%;
+    width: 40%;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.card_kpi h1{
+    font-size: 60px;
+    font-weight: 500;
+}
+.card_kpi h2{
+    font-size: 25px;
+    font-weight: 400;
+}
+.card_kpi .imagem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+}
+
+
+.card_kpi .titulo{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    text-align: center;
+}
+.card_kpi img{
+    width: 140px;
+    height: 140px;
+}
+.card_kpi h3{
+    font-size: 20px;
+    font-weight: 500;
+}
+.card_kpi h4{
+    font-size: 15px;
+    font-weight: 500;
+}
+
+
+/* grafico */
+.graficos{
+    display: flex;
+    width: 90%;
+    height: 50%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grafico{
+    display: flex;
+    height: 90%;
+    width: 45%;
+    background-color:#D9D9D9;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.grafico h1{
+    font-size: 25px;
+    font-weight: 500;
+}
+
+/* lista */
+.lista{
+    display: flex;
+    width: 100%;
+    height: 25%;
+    flex-direction: column;
+    align-items: center;
+
+}
+.listagem{
+    display: flex;
+    height: 98%;
+    width: 91%;
+    background-color: #00000077;
+    border-radius: 10px;
+    flex-direction: column;
+}
+.titulo_lista{
+    display: flex;
+    width: 100%;
+    height: 23%;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+}
+
+.titulo_lista h1{
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+.titulo_lista h3{
+    font-size: 13px;
+    margin-right: 30px;
+}
+
+.camisas{
+    display: flex;
+    width: 100%;
+    height: 75%;
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-color: white #00000077;
+    
+}
+
+.card{
+    display: flex;
+    background-color: #D9D9D9;
+    height: 90%;
+    width: 10%;
+    border-radius: 10px;
+    flex-shrink: 0;
+    margin-left: 25px;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.card img{
+    width: 80px;
+    height: 80px;
+}
+
+.card h5{
+    font-size: 8px;
+    text-align: center;
+}

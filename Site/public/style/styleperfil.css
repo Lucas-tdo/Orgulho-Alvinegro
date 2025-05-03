@@ -33,15 +33,17 @@ nav img{
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
+    text-decoration: none;
 }
+
 .secao{
     display: flex;
     width: 80%;
     height: 17%;
     flex-direction: row;
-    color: white;
     align-items: center;
     justify-content: space-evenly;
+    color: white;
 }
 
 .secao h2{
@@ -55,6 +57,17 @@ nav img{
     border-radius: 10px;
 }
 
+.secao a{
+    display: flex;
+    text-decoration: none;
+    color: white;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+}
+/* main */
 .conta{
     display: flex;
     height: 100%;
@@ -105,3 +118,4 @@ nav img{
     width: 50px;
     height: 50px;
 }
+

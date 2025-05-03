@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoritos</title>
+    <link rel="stylesheet" href="style/stylefavoritos.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="menu">     
+                    <div href="" class="secao">
+                        <a href="perfil.html">
+
+                            <img src="image/icon/perfil_conta.png" alt="">
+                            <h2>Perfil</h2>
+                        </a>
+                    </div>
+
+                    <div class="secao atual">
+                        <a href="favoritos.html">
+                            <img src="image/icon/favoritos_conta.png" alt="">
+                            <h2>Favoritos</h2>
+                        </a>
+                    </div>
+                
+                    <div class="secao">
+                        <a href="index.html">
+                            <img src="image/icon/voltar.png" alt="">
+                        </a>
+                    </div>      
+            </div>
+        </nav>
+        <div class="dash">
+            <div class="kpi">
+                <div class="card_kpi">
+                    <h1>35</h1>
+                    <h2>Camisas Favoritadas</h3>
+                </div>
+                <div class="card_kpi">
+                    <div class="imagem">
+                        <img src="image/camisas/camisa2024-2.png" alt="">
+                    </div>
+                    <div class="titulo">
+                        <h3>Ultima Favoritada</h3>
+                        <h4>2º Camisa Reebook 2024</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="graficos">
+                <div class="grafico">
+                    <h1>Ano mais favoritado do Usuário:</h1>
+                    <canvas id="myChart2" style="position: relative; height:40vh; width:40vw"></canvas>
+                </div>
+                <div class="grafico">
+                    <h1>Marca mais favoritada do Usuário:</h1>
+                    <canvas id="myChart" style="position: relative; height:40vh; width:40vw"></canvas>
+                    
+                </div>
+            </div>
+            <div class="lista">
+                <div class="listagem">
+                    <div class="titulo_lista">
+                        <h1>Listagem:</h1>
+                        <h3>Valor Total: <br>R$400,00</h3>
+                    </div>
+                    <div class="camisas">
+                        <div class="card">
+                            <img src="image/camisas/camisa2024-1.png" alt="">
+                            
+                            <h5>2º Camisa Reebook 2024 R$219,90</h5>
+                        </div>
+                        <div class="card">
+                            <img src="image/camisas/camisa2024-1.png" alt="">
+                            
+                            <h5>2º Camisa Reebook 2024 R$219,90</h5>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+<script>
+     const ctx2 = document.getElementById('myChart2');
+     const ctx = document.getElementById('myChart');
+new Chart(ctx2, {
+  type: 'bar',
+  data: {
+    labels: ['Anos'],
+    datasets: [{
+      label: '2023',
+      backgroundColor:'rgb(128, 128, 128)',
+      borderColor:'rgb(0,0,0)',
+      data: [5],
+      borderWidth: 1
+    },
+    {
+      label: '2022',
+      backgroundColor:'rgb(43, 41, 41)',
+        borderColor:'rgb(0, 0, 0)',
+      data: [7],
+      borderWidth: 1
+    },
+    {
+      label: '2019',
+      backgroundColor:'rgb(43, 41, 41)',
+        borderColor:'rgb(0, 0, 0)',
+      data: [2],
+      borderWidth: 1
+    },
+    {
+      label: '2018',
+      backgroundColor:'rgb(43, 41, 41)',
+        borderColor:'rgb(0, 0, 0)',
+      data: [1],
+      borderWidth: 1
+    },
+    {
+      label: '2013',
+      backgroundColor:'rgb(43, 41, 41)',
+        borderColor:'rgb(0, 0, 0)',
+      data: [0],
+      borderWidth: 1
+    }
+]
+  },
+  options: {
+    scales: {
+      y: {
+    suggestedMin: 0,
+    suggestedMax: 20,
+      }
+    }
+    
+  }
+});
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Marcas'],
+    datasets: [{
+      label: 'Puma',
+      backgroundColor:'rgb(128, 128, 128)',
+      borderColor:'rgb(0,0,0)',
+      data: [5],
+      borderWidth: 1
+    },
+    {
+      label: 'Kappa',
+      backgroundColor:'rgb(43, 41, 41)',
+        borderColor:'rgb(0, 0, 0)',
+      data: [7],
+      borderWidth: 1
+    },
+    {
+      label: 'Adidas',
+      backgroundColor:'rgb(43, 41, 41)',
+        borderColor:'rgb(0, 0, 0)',
+      data: [2],
+      borderWidth: 1
+    }
+]
+  },
+  options: {
+    scales: {
+      y: {
+    suggestedMin: 0,
+    suggestedMax: 20,
+      }
+    }
+    
+  }
+});
+</script>
