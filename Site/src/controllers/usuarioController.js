@@ -1,4 +1,4 @@
-var carroModel = require("../models/usuarioModel");
+var usuarioModel = require("../models/usuarioModel");
 
 function cadastrar(req,res){
     var nome = req.body.nomeServer;
@@ -15,6 +15,7 @@ function cadastrar(req,res){
     } else if (telefone == undefined) {
         res.status(400).send("Sua empresa a vincular está undefined!");
     }else{
+        console.log('pt2 foi')
         usuarioModel.cadastrar(nome,email,senha,telefone)
         .then(
             function(resultado){
@@ -33,9 +34,50 @@ function cadastrar(req,res){
     }
 }
 
+function autenticar(req,res){
+    var email = req.body.emailServer
+    var senha = req.body.senhaServer
+
+    if(email==undefined){
+        res.status(400).send('Seu email está undefined!')
+    }
+    else if(senha==undefined){
+        res.status(400).send('Sua senha está undefined!')
+    }
+    else{
+        usuarioModel.autenticar(email,senha)
+            .then(
+                function(resultadoAutenticar){
+                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
+                    if(resultadoAutenticar.length==1){
+                        res.json({
+                            id: resultadoAutenticar[0].id,
+                            email: resultadoAutenticar[0].email,
+                            nome: resultadoAutenticar[0].nome,
+                            senha: resultadoAutenticar[0].senha,
+                            telefone: resultadoAutenticar[0].telefone
+                        })
+                    }
+                    else if(resultadoAutenticar.length==0){
+                        res.status(403).send("Email e/ou senha inválido(s)");
+                    }
+                    else{
+                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                    }
+                }
+            ).catch(
+                function (erro){
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                })
+    }
+}
+
 
 
 
 module.exports = {
+    autenticar,
     cadastrar
 }

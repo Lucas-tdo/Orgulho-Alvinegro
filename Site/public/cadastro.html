@@ -25,7 +25,7 @@
                     <img src="image/icon/email.png" alt="">
                 </div>
                 <div class="input">
-                    <input type="password" id="input_senha" placeholder="Senha:" required>
+                    <input type="text" id="input_senha" placeholder="Senha:" required>
                     <img src="image/icon/estrela.png" alt="">
     
                 </div>
@@ -42,7 +42,7 @@
 <script>
     function Validar(){
         var nome = input_nome.value
-        var telefone = Number(input_telefone)
+        var telefone = Number(input_telefone.value)
         var email = input_email.value
         var senha = input_senha.value
 
@@ -60,6 +60,7 @@
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
+        window.location.href = '/login.html'
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);

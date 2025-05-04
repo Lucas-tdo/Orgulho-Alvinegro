@@ -33,6 +33,32 @@
 </html>
 <script>
     function Validar(){
+        var email = input_email.value
+        var senha = input_senha.value
 
+        fetch("/usuario/autenticar",{
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+            emailServer:email,
+            senhaServer: senha       
+            })
+        }).then(function(resposta){
+            if(resposta.ok){
+                resposta.json().then(json=>{
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.TELEFONE = json.telefone;
+                    window.location.href="index.html"
+                })
+                
+            }
+            
+        }).catch(function (erro){
+            console.log(erro)
+        })
     }
 </script>

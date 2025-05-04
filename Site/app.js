@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 app.use("/", indexRouter);
-app.use("usuario",usuarioRouter)
+app.use("/usuario",usuarioRouter)
 
 
 app.listen(PORTA_APP, function () {

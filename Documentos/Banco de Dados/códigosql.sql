@@ -28,3 +28,5 @@ ano datetime,
 fkusuario int,
 primary key(idfavoritas,fkusuario)
 );
+
+select * from usuario;
