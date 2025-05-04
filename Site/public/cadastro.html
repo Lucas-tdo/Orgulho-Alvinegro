@@ -41,6 +41,29 @@
 </html>
 <script>
     function Validar(){
+        var nome = input_nome.value
+        var telefone = Number(input_telefone)
+        var email = input_email.value
+        var senha = input_senha.value
 
+        fetch("/usuario/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: nome,
+        emailServer: email,
+        senhaServer: senha,
+        telefoneServer: telefone
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        
+      });
     }
 </script>
