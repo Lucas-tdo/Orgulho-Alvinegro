@@ -9,27 +9,69 @@
 <body>
     <div class="container">
         <div class="numero">
-            <h1>2/9</h1>
+            <h1 id="final"></h1>
         </div>
-        <div class="pergunta">
-            <h1>Qual título o botafogo ganhou em 1995</h1>
-            <hr>
+        <div id="perguntas" class="pergunta">
+            <h1 id="titulo"></h1> <hr>
+            
         </div>
-        <div class="questoes">
-            <div class="questao">
-                <h2>Campeonato Carioca</h2>
+        <div id="questoes" class="questoes">
+            <div onclick="resposta(1)" id="q1" class="questao" >
+                
             </div>
-            <div class="questao">
-                <h2>Campeonato Carioca</h2>
+            <div  onclick="resposta(2)" id="q2" class="questao">
+                <h2 id="resposta2"></h2>
             </div>
-            <div class="questao">
-                <h2>Campeonato Carioca</h2>
+            <div onclick="resposta(3)" id="q3" class="questao">
+                <h2 id="resposta3"></h2>
             </div>
-            <div class="questao">
-                <h2>Campeonato Carioca</h2>
+            <div onclick="resposta(4)" id="q4" class="questao">
+                <h2 id="resposta4"></h2>
             </div>
         </div>
     </div>
     
 </body>
 </html>
+<script>
+    var posicao = -1
+    var resp 
+    const quiz = [
+        {pergunta:'Qual título o botafogo ganhou em 1995',resp1:'Campeonato Carioca',resp2:'CONMEBOL Libertadores',resp3:'Campeonato Brasileiro',resp4:'CONMEBOL Sudamericana'},
+        {pergunta:'Qual título o botafogo ganhou em 2024',resp1:'opa',resp2:'opa',resp3:'lucas',resp4:'rita'},
+    ]
+    passarpergunta()
+
+
+    function resposta(numero){
+        var resp = document.querySelector(`#q${numero}`)
+        if(resp.innerText==quiz[posicao].resp3){
+            resp.className+=` Acertou`
+        }
+        else{
+            resp.className+=` Errou`
+        }
+        setTimeout(passarpergunta,1500)
+    }
+
+    function passarpergunta(){
+        posicao++
+        q1.className=`questao`
+        q2.className=`questao`
+        q3.className=`questao`
+        q4.className=`questao`
+        if(posicao<quiz.length){
+            final.innerHTML=`${posicao+1}/${quiz.length}`
+            titulo.innerHTML=`${quiz[posicao].pergunta}`
+            q1.innerHTML=`<h2>`+quiz[posicao].resp1+`</h2>`
+            q2.innerHTML=`<h2>`+quiz[posicao].resp2+`</h2>`
+            q3.innerHTML=`<h2>`+quiz[posicao].resp3+`</h2>`
+            q4.innerHTML=`<h2>`+quiz[posicao].resp4+`</h2>`   
+        }
+        else{
+            titulo.innerHTML=`Acabou`
+        }
+        
+    }
+
+</script>
