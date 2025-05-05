@@ -10,7 +10,7 @@
     <div class="container">
         <nav>
             <div class="logo">
-                <img src="image/icon/logo.png" alt="">
+                <img src="image/logo/Símbolo Branco.png" alt="">
             </div>
             <div class="button"> 
                 <a href="index.html">Home</a>
@@ -19,13 +19,13 @@
                 <a href="camisas.html">Camisas</a>
                 <a href="quiz.html">Quiz</a>
             </div>
-            <div class="entrar">
+            <div class="vazio" id="entrar">
                 <a class="login" href="login.html">Login</a>
                 <span>
                     <a class="cadastro" href="cadastro.html">Cadastro</a>
                 </span>      
             </div>
-            <div class="vazio">
+            <div class="logado" id="logado">
                 <a href=""><img src="image/icon/perfil.png" alt=""></a>
             </div>
         </nav>
@@ -48,3 +48,20 @@
     
 </body>
 </html>
+
+<script>
+    checarlogado()
+
+    function checarlogado(){
+        var checar = sessionStorage.getItem("ID_USUARIO")
+        
+        if(checar==null){
+            entrar.className=`entrar`
+            logado.className=`vazio`
+        }
+        else{
+            entrar.className=`vazio`
+            logado.className=`logado`
+        }
+    }
+</script>

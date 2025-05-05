@@ -11,7 +11,7 @@
     <div class="container">
         <nav>
             <div class="logo">
-                <img src="image/icon/logo.png" alt="">
+                <img src="image/logo/Símbolo Branco.png" alt="">
             </div>
             <div class="button"> 
                 <a href="index.html">Home</a>
@@ -20,14 +20,14 @@
                 <a href="camisas.html" >Camisas</a>
                 <a href=""id="buttonatual">Quiz</a>
             </div>
-            <div class="entrar">
+            <div class="vazio" id="entrar">
                 <a class="login" href="login.html">Login</a>
                 <span>
                     <a class="cadastro" href="cadastro.html">Cadastro</a>
                 </span>      
             </div>
-            <div class="vazio">
-                <a href=""><img src="image/icon/perfil.png" alt=""></a>
+            <div class="logado" id="logado">
+                <a href="perfil.html"><img src="image/icon/perfil.png" alt=""></a>
             </div>
         </nav>
         <div class="main">
@@ -47,13 +47,13 @@
                 </div>
                 <div class="card">
                     <div class="titulo_card">
-                        <h1>Ultima pontuação:</h1>
+                        <h1>Média de acertos:</h1>
                         <h2>65</h2>
                     </div>
                 </div>
                 <div class="card">
                     <div class="titulo_card">
-                        <h1>Ultima pontuação:</h1>
+                        <h1>Maior pontuação:</h1>
                         <h2>65</h2>
                     </div>
                 </div>
@@ -83,6 +83,7 @@
 </body>
 </html>
 <script>
+    checarlogado()
     const ctx = document.getElementById('myChart');
     const ctx2 = document.getElementById('myChart2');
 
@@ -140,5 +141,16 @@
       }
     });
 
-    
+    function checarlogado(){
+        var checar = sessionStorage.getItem("ID_USUARIO")
+        
+        if(checar==null){
+            entrar.className=`entrar`
+            logado.className=`vazio`
+        }
+        else{
+            entrar.className=`vazio`
+            logado.className=`logado`
+        }
+    }
 </script>

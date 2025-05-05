@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style/quiztentativa.css">
 </head>
 <body>
-    <div class="container">
+    <div id="container" class="container">
         <div class="numero">
             <h1 id="final"></h1>
         </div>
@@ -20,14 +20,27 @@
                 
             </div>
             <div  onclick="resposta(2)" id="q2" class="questao">
-                <h2 id="resposta2"></h2>
+
             </div>
             <div onclick="resposta(3)" id="q3" class="questao">
-                <h2 id="resposta3"></h2>
+
             </div>
             <div onclick="resposta(4)" id="q4" class="questao">
-                <h2 id="resposta4"></h2>
+                
             </div>
+        </div>
+    </div>
+    <div id="resultado" class="resultado">
+        <div class="card">
+            <img src="image/logo/LogoBrancavertical.png" alt="">
+            <h3 id="score">Score:</h3>
+            <h3 id="acertos">Acertos:</h3>
+            
+                <div class="voltar">
+                    <a href="quiz.html">
+                        <img src="image/icon/setapreta.png" alt="">
+                    </a>
+                </div>
         </div>
     </div>
     
@@ -35,18 +48,21 @@
 </html>
 <script>
     var posicao = -1
-    var resp 
+    var pontuacao = 0 
+    var qtdacertos = 0
     const quiz = [
-        {pergunta:'Qual título o botafogo ganhou em 1995',resp1:'Campeonato Carioca',resp2:'CONMEBOL Libertadores',resp3:'Campeonato Brasileiro',resp4:'CONMEBOL Sudamericana'},
-        {pergunta:'Qual título o botafogo ganhou em 2024',resp1:'opa',resp2:'opa',resp3:'lucas',resp4:'rita'},
+        {pergunta:'Qual título o botafogo ganhou em 1995',resp1:'Campeonato Carioca',resp2:'CONMEBOL Libertadores',resp3:'Campeonato Brasileiro',resp4:'CONMEBOL Sudamericana',certa:'Campeonato Brasileiro',pontos:20},
+        {pergunta:'Qual título o botafogo ganhou em 2024',resp1:'opa',resp2:'opa',resp3:'lucas',resp4:'rita',certa:'rita',pontos:20},
     ]
     passarpergunta()
 
 
     function resposta(numero){
         var resp = document.querySelector(`#q${numero}`)
-        if(resp.innerText==quiz[posicao].resp3){
+        if(resp.innerText==quiz[posicao].certa){
             resp.className+=` Acertou`
+            pontuacao+=quiz[posicao].pontos
+            qtdacertos++
         }
         else{
             resp.className+=` Errou`
@@ -69,7 +85,10 @@
             q4.innerHTML=`<h2>`+quiz[posicao].resp4+`</h2>`   
         }
         else{
-            titulo.innerHTML=`Acabou`
+            resultado.className=`resultado`
+            container.className=`vazio`
+            score.innerHTML+=pontuacao
+            acertos.innerHTML+=`${qtdacertos}/${quiz.length}`
         }
         
     }

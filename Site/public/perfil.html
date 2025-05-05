@@ -26,20 +26,20 @@
                     </div>
                 
                     <div class="secao">
-                        <a href="">
+                        <a href="index.html">
                             <img src="image/icon/voltar.png" alt="">
                         </a>
-                    </div>      
+                    </div>        
             </div>
         </nav>
         <div class="conta">
             <div class="card">
                 <img src="image/icon/imagem.png" alt="">
-                <h1>Olá Lucas</h1>
+                <h1 id="nome_perfil"></h1>
                 <div class="acoes">
                     <div class="email">
                         <img src="image/icon/email.png" alt="">
-                        <p>Lucassousajjk@gmail.com</p>
+                        <p id="email_perfil"></p>
                     </div>
                 </div>
             </div>
@@ -47,3 +47,13 @@
     </div>
 </body>
 </html>
+<script>
+    adicionardados()
+
+    function adicionardados(){
+        var nome = sessionStorage.getItem("NOME_USUARIO")
+        var email = sessionStorage.getItem("EMAIL_USUARIO")
+        nome_perfil.innerHTML=`Olá ${nome}`
+        email_perfil.innerHTML=`${email}`
+    }
+</script>
