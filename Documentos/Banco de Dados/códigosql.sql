@@ -29,4 +29,4 @@ fkusuario int,
 primary key(idfavoritas,fkusuario)
 );
 
-select * from usuario;
+select*from usuario;

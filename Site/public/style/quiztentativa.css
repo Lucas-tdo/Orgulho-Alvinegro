@@ -60,12 +60,12 @@
 }
 
 .Acertou{
-    transition: 2s;
+    transition: 1.5s;
     background-color:green;
 }
 
 .Errou{
-    transition: 2s;
+    transition: 1.5s;
     background-color: red;
 }
 

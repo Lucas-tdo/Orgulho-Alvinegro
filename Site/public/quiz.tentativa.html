@@ -50,10 +50,103 @@
     var posicao = -1
     var pontuacao = 0 
     var qtdacertos = 0
+    var idusuario = sessionStorage.getItem("ID_USUARIO")
     const quiz = [
-        {pergunta:'Qual título o botafogo ganhou em 1995',resp1:'Campeonato Carioca',resp2:'CONMEBOL Libertadores',resp3:'Campeonato Brasileiro',resp4:'CONMEBOL Sudamericana',certa:'Campeonato Brasileiro',pontos:20},
-        {pergunta:'Qual título o botafogo ganhou em 2024',resp1:'opa',resp2:'opa',resp3:'lucas',resp4:'rita',certa:'rita',pontos:20},
+        {
+            pergunta:'Qual título o botafogo ganhou em 1995?',
+            resp1:'Campeonato Carioca',
+            resp2:'CONMEBOL Libertadores',
+            resp3:'Campeonato Brasileiro',
+            resp4:'CONMEBOL Sudamericana',
+            certa:'Campeonato Brasileiro',
+            pontos:50
+        },
+        {
+            pergunta:'Que jogador marcou o primeiro gol pelo Botafogo?',
+            resp1:'Gilbert Hime',
+            resp2:'Dinorah',
+            resp3:'Flávio Ramos',
+            resp4:'Edgar Pullen',
+            certa:'Flávio Ramos',
+            pontos:120
+        },
+        {
+            pergunta:'Em que ano foi disputado o primeiro jogo entre Botafogo e Fluminense, conhecido como clássico vovô?',
+            resp1: '1899',
+            resp2: '1905',
+            resp3: '1908',
+            resp4: '1909',
+            certa: '1905',
+            pontos: 120
+        },
+        
+        {
+            pergunta:'Contra qual time do Rio é realizado o clássico da amizade?',
+            resp1: 'Flamengo',
+            resp2: 'Volta Redonda',
+            resp3: 'Fluminense',
+            resp4: 'Vasco',
+            certa: 'Vasco',
+            pontos: 100
+        },
+        {
+            pergunta:'Qual o nome do Estádio do Botafogo?',
+            resp1: 'Maracanã',
+            resp2: 'Morumbi',
+            resp3: 'São Januario',
+            resp4: 'Nilton Santos',
+            certa: 'Nilton Santos',
+            pontos: 50
+        },
+        {
+            pergunta:'Botafogo se sagrou por três vezes campeão brasileiro, em quais anos foram esses títulos?',
+            resp1: '1965,1995 e 2014',
+            resp2: '2000 , 2007 e 2024',
+            resp3: '1989 , 1995 e 2024',
+            resp4: '1968 , 1995 e 2024', 
+            certa: '1968 , 1995 e 2024', 
+            pontos: 100 
+        },
+        {
+            pergunta:'Quantos gols Quarentinha, maior artilheiro do Botafogo, marcou com a camisa do alvinegro?',
+            resp1: '309',
+            resp2: '310',
+            resp3: '311',
+            resp4: '313',
+            certa: '311',
+            pontos: 120 
+        },
+
+        {
+            pergunta:'Qual o maior ídolo da história do Botafogo?',
+            resp1: 'Garrincha',
+            resp2: 'Nilton Santos',
+            resp3: 'Quarentinha',
+            resp4: 'Zagallo',
+            certa: 'Nilton Santos',
+            pontos: 100 
+        },
+
+        {
+            pergunta:'Qual foi a maior goleada já aplicada pelo Botafogo, em toda a sua história? ',
+            resp1: 'Botafogo 6 X 1 Fluminense',
+            resp2: 'Botafogo 16 X 0 Portuguesa-RJ',
+            resp3: 'Botafogo 10 X 0 Vasco',
+            resp4: 'Botafogo 24 X 0 Mangueira',
+            certa: 'Botafogo 24 X 0 Mangueira',
+            pontos: 120 
+        },
+        {
+            pergunta:'Quem fez o ultimo gol do jogo Botafogo 3 X 1 Atlético Mineiro na final da libertadores? ',
+            resp1: 'Junior Santos',
+            resp2: 'Luiz Henrique',
+            resp3:'Alex Telles',
+            resp4: 'Thiago Almada',
+            certa: 'Junior Santos',
+            pontos: 120 
+        }        
     ]
+
     passarpergunta()
 
 
@@ -67,7 +160,7 @@
         else{
             resp.className+=` Errou`
         }
-        setTimeout(passarpergunta,1500)
+        setTimeout(passarpergunta,1000)
     }
 
     function passarpergunta(){
@@ -89,6 +182,21 @@
             container.className=`vazio`
             score.innerHTML+=pontuacao
             acertos.innerHTML+=`${qtdacertos}/${quiz.length}`
+            fetch("/quiz/addpontuacao",{
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                PontuacaoServer : pontuacao,
+                AcertosServer : qtdacertos,
+                idServer : idusuario
+            })
+        }).then(function(resposta){
+            console.log('Inserção Realizada')
+        }).catch(function(erro){
+            console.log(erro)
+        })
         }
         
     }

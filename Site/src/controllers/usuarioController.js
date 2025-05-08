@@ -5,7 +5,6 @@ function cadastrar(req,res){
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var telefone = req.body.telefoneServer;
-    console.log('pinto')
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (email == undefined) {
@@ -15,7 +14,6 @@ function cadastrar(req,res){
     } else if (telefone == undefined) {
         res.status(400).send("Sua empresa a vincular está undefined!");
     }else{
-        console.log('pt2 foi')
         usuarioModel.cadastrar(nome,email,senha,telefone)
         .then(
             function(resultado){

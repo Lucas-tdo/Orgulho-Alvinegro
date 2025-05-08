@@ -5,7 +5,6 @@ var usuarioController = require("../controllers/usuarioController")
 
 router.post("/cadastrar",function (req,res){
     usuarioController.cadastrar(req, res);
-    console.log('pt1 foi')
 })
 
 router.post("/autenticar",function(req,res){
