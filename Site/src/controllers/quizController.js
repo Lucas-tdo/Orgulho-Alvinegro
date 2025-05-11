@@ -16,13 +16,13 @@ function addpontuacao(req,res){
     else{
         quizModel.addpontuacao(pontuacao,acertos,id)
         .then(
-            function(resultado){
+            resultado=>{
                 res.json(resultado)
             }
         ).catch(
             function (erro){
                 console.log(erro)
-                console.log('\nHoyve ao inserir dados do quiz!Erro: ',
+                console.log('\nHouve ao inserir dados do quiz!Erro: ',
                 erro.sqlMessage
                 )
                 res.status(500).json(erro.sqlMessage)

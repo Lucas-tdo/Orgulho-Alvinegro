@@ -62,20 +62,6 @@
                     </div>
                 </div>
                 <div class="camisas" id="camisas">
-                    <div class="card">
-                        <div class="cabecario_camisa">
-                            <div class="titulo_camisa">
-                                <h2>1º Camisa Reebook <br>2024  </h2>
-                            </div>
-                            <img src="image/icon/estrela.png" alt="">
-                        </div>
-                        <img src="image/camisas/camisa2024-1.png" alt="">
-                        <p>Média de preço:R$219,90</p>
-                    </div>
-                    
-                    
-                    
-                    
                     
                 </div>
                     
@@ -89,22 +75,11 @@
 
 <script>
     
+    var idusuario = sessionStorage.getItem("ID_USUARIO")
     
+    adicionarimagens()
     checarlogado()
-    teste()
-    function teste(){
-        var imagem = `image/camisas/camisa2024-2.png`
-    camisas.innerHTML+=`<div class="card">
-                        <div class="cabecario_camisa">
-                            <div class="titulo_camisa">
-                                <h2>2º Camisa Reebook <br>2024  </h2>
-                            </div>
-                            <img src="image/icon/estrela.png" alt="">
-                        </div>
-                        <img src="${imagem}" alt="">
-                        <p>Média de preço:R$219,90</p>
-                    </div>`
-    }
+    
     function checarlogado(){
         var checar = sessionStorage.getItem("ID_USUARIO")
         
@@ -119,6 +94,60 @@
     }
 
     function adicionarimagens(){
+        fetch(`camisa/adicionarimagens`,{
+            method:'get',
+        })
+        .then(resposta=>{
+            resposta.json().then(resposta=>{
+                console.log(resposta) 
+                var texto = ''  
+                for (resp of resposta) {
+                    if(idusuario!=resp.idusuario){
+                        texto+=`
+                        <div class="card">
+                            <div class="cabecario_camisa">
+                                <div class="titulo_camisa">
+                                    <h2>${resp.nome} ${resp.marca} <br>${resp.ano}  </h2>
+                                </div>
+                                    <img id="camisa${resp.idcamisa}" src="image/icon/estrela.png" onclick="favoritar(${resp.idcamisa})" alt="">
+                            </div>
+                            <img src="${resp.imagem}" alt="">
+                            <p>Média de preço:R$${resp.preco}</p>
+                        </div>`
+                    }
+                    else{     
+                        texto+=`
+                            <div class="card">
+                                <div class="cabecario_camisa">
+                                    <div class="titulo_camisa">
+                                        <h2>${resp.nome} ${resp.marca} <br>${resp.ano}  </h2>
+                                    </div>
+                                        <img id="camisa${resp.idcamisa}"  src="image/icon/estrelafavoritada.png" onclick="favoritar(${resp.idcamisa})" alt="">     
+                                </div>
+                                <img src="${resp.imagem}" alt="">
+                                <p>Média de preço:R$${resp.preco}</p>
+                            </div>`
+                    }
+                    }
+                    
+                camisas.innerHTML+=texto
+            });
+                
+            })
+            .catch(erro=>{
+                console.log(erro)
+            })
+        }
 
-    }
+        function favoritar(id){
+            
+            var camisa = document.querySelector(`#camisa${id}`)
+            if(camisa.src.includes(`image/icon/estrelafavoritada.png`)){
+                camisa.src=`image/icon/estrela.png`
+            }
+            else{
+                camisa.src=`image/icon/estrelafavoritada.png`
+            }
+        }
+    
 </script>
