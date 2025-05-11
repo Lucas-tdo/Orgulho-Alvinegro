@@ -18,6 +18,10 @@ primary key(idquiz,fkusuario),
 foreign key (fkusuario) references usuario (idusuario)
 );
 
+truncate quiz;
+select * from quiz;
+select idquiz,acertos,pontos from quiz where fkusuario=2 order by idquiz desc limit 5; 
+
 create table camisa(
 idcamisa int primary key auto_increment,
 nome varchar(45),

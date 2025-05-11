@@ -42,19 +42,19 @@
                 <div class="card">
                     <div class="titulo_card">
                         <h1>Ultima pontuação:</h1>
-                        <h2>65</h2>
+                        <h2 id="ultimapts"></h2>
                     </div>
                 </div>
                 <div class="card">
                     <div class="titulo_card">
                         <h1>Média de acertos:</h1>
-                        <h2>65</h2>
+                        <h2 id="mediauser"></h2>
                     </div>
                 </div>
                 <div class="card">
                     <div class="titulo_card">
                         <h1>Maior pontuação:</h1>
-                        <h2>65</h2>
+                        <h2 id="maiorpts"></h2>
                     </div>
                 </div>
                 
@@ -83,11 +83,14 @@
 </body>
 </html>
 <script>
+    const id = sessionStorage.getItem("ID_USUARIO")
     checarlogado()
+    Ultimaspontuacao()
+    dadosquiz()
     const ctx = document.getElementById('myChart');
     const ctx2 = document.getElementById('myChart2');
-
-    new Chart(ctx2, {
+    
+    const media = new Chart(ctx2, {
       type: 'bar',
       data: {
         labels: ['Média'],
@@ -95,14 +98,14 @@
           label: 'Usuário',
           backgroundColor:'rgb(128, 128, 128)',
           borderColor:'rgb(0,0,0)',
-          data: [22],
+          data: [],
           borderWidth: 1
         },
         {
           label: 'Comunidade',
           backgroundColor:'rgb(43, 41, 41)',
             borderColor:'rgb(0, 0, 0)',
-          data: [90],
+          data: [],
           borderWidth: 1
         }]
       },
@@ -117,16 +120,16 @@
       }
     });
 
-    new Chart(ctx, {
+    const graficotentativas = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ['7', '8', '9', '10'],
+        labels: [],
         
         datasets: [{
           label: 'Pontuação',
           backgroundColor:'rgb(212, 175, 55)',
           borderColor:' rgb(0,0,0)',
-          data: [30, 29, 28, 25, 22, 23],
+          data: [],
           borderWidth: 2
         },
     ]
@@ -135,22 +138,68 @@
         scales: {
           y: {
             suggestedMin: 0,
-            suggestedMax: 100,
+            suggestedMax: 500,
           },
         }
       }
     });
+    
+    
 
     function checarlogado(){
-        var checar = sessionStorage.getItem("ID_USUARIO")
-        
-        if(checar==null){
+        if(id==null){
             entrar.className=`entrar`
             logado.className=`vazio`
         }
         else{
             entrar.className=`vazio`
             logado.className=`logado`
+            
         }
     }
+
+    function Ultimaspontuacao(){
+        
+        fetch(`/quiz/ultimaspont/${id}`,{
+            method:"get",
+        })
+        .then(resposta=>{
+            resposta.json().then(resposta=>{
+                var retirar=0   
+                for(resp of resposta){
+                    graficotentativas.data.labels.unshift((resp.qtdjogadas-retirar)+'ª tentativa')//parte de baixo
+                    graficotentativas.data.datasets[0].data.unshift(resp.acertos)
+                    graficotentativas.update()
+                    retirar++
+                }
+                ultimapts.innerHTML=`${resposta[0].acertos}`
+            })
+            
+        })
+        .catch(function(erro){
+            console.log(erro)
+        })
+        
+    }
+
+    function dadosquiz(){
+        fetch(`/quiz/dadosquiz/${id}`,{
+            method:"get",
+        })
+        .then(resposta=>{
+                resposta.json().then(resposta=>{
+                    console.log(resposta)
+                    mediauser.innerHTML=`${resposta[0].media}`
+                    maiorpts.innerHTML=`${resposta[0].maximo}`
+                    media.data.datasets[0].data=[resposta[0].media]
+                    media.data.datasets[1].data=[resposta[0].mediageral]
+                    media.update()
+                })       
+            })
+        .catch(erro=>{
+            console.log(erro)
+        })
+    }
+
+    
 </script>

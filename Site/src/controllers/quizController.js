@@ -32,6 +32,47 @@ function addpontuacao(req,res){
     }
 }
 
+function ultimaspont(req,res){
+    var id = req.params.idUsuario
+    if(id== undefined ){
+        res.status(400).send('Seu id está undefined!')
+    }
+    else{
+        quizModel.ultimaspont(id)
+        .then(
+            resposta=>{
+                console.log('\nUltimas pontuações adicionadas')
+                res.json(resposta)
+            })
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).json(erro.sqlMessage)
+        })
+    }
+}
+
+function dadosquiz(req,res){
+    var id = req.params.idUsuario
+    if(id== undefined ){
+        res.status(400).send('Seu id está undefined!')
+    }
+    else{
+        quizModel.dadosquiz(id)
+        .then(
+            resposta=>{
+                console.log('\nDados do quiz adicionados')
+                res.json(resposta)
+            }
+        )
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).json(erro.sqlMessage)
+        })
+    }
+}
+
 module.exports = {
-    addpontuacao
+    addpontuacao,
+    ultimaspont,
+    dadosquiz
 }
