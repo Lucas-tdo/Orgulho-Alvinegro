@@ -58,11 +58,11 @@
                     </div>
                     <div class="coluna2">
                         <div class="linha"></div>
-                        <button onclick="analinda()"><img src="image/icon/lupa.png" alt=""></button>
+                        <button onclick="pesquisar()"><img src="image/icon/lupa.png" alt=""></button>
                     </div>
                 </div>
                 <div class="camisas" id="camisas">
-                    
+
                 </div>
                     
                 
@@ -143,11 +143,48 @@
             
             var camisa = document.querySelector(`#camisa${id}`)
             if(camisa.src.includes(`image/icon/estrelafavoritada.png`)){
-                camisa.src=`image/icon/estrela.png`
+                camisa.src=`image/gif/carregando.gif`
+                fetch(`camisa/desfavoritar`,{
+                    method : "DELETE",
+                    headers :{
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        idcamisa : id,
+                        iduser : idusuario
+                    })
+                })
+                .then(resposta=>{
+                    if(resposta.ok){
+                        console.log("funfou")
+                        camisa.src=`image/icon/estrela.png`
+                    }
+                })
+                .catch(erro=>{
+                    console.log(erro)
+                })
+                
             }
             else{
-                camisa.src=`image/icon/estrelafavoritada.png`
+                camisa.src=`image/gif/carregando.gif`
+                fetch("camisa/favoritar",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        idcamisa : id,
+                        iduser : idusuario
+                    })
+                })
+                .then(resposta=>{
+                        if(resposta.ok){
+                            camisa.src=`image/icon/estrelafavoritada.png`
+                        }
+                })
+                .catch(erro=>{
+                    console.log(erro)
+                })
             }
         }
-    
 </script>

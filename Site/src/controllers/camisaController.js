@@ -12,6 +12,52 @@ function adicionarimagens(req,res){
     })
 }
 
+function favoritar(req,res){
+    var camisa = req.body.idcamisa
+    var usuario = req.body.iduser
+    if(camisa==undefined){
+        res.status(400).send("O id da camisa é undefined")
+    }
+    else if(usuario==undefined){
+        res.status(400).send("Usuário não logado")
+    }
+    else{
+        camisaModel.favoritar(usuario,camisa)
+        .then(resposta=>{
+            console.log(`Camisa com id ${camisa} favoritada por ${usuario}`)
+            res.json(resposta)
+        })
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).json(erro.sqlMessage)
+        })
+    }
+}
+
+function desfavoritar (req,res){
+    var camisa = req.body.idcamisa
+    var usuario = req.body.iduser
+    if(camisa==undefined){
+        res.status(400).send("O id da camisa é undefined")
+    }
+    else if(usuario==undefined){
+        res.status(400).send("Usuário não logado")
+    }
+    else{
+        camisaModel.desfavoritar(usuario,camisa)
+        .then(resposta=>{
+            console.log(`Camisa com id ${camisa} desfavoritada por ${usuario}`)
+            res.json(resposta)
+        })
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).json(erro.sqlMessage)
+        })
+    }
+}
+
 module.exports = {
-    adicionarimagens
+    adicionarimagens,
+    favoritar,
+    desfavoritar
 }

@@ -9,6 +9,21 @@ function adicionarimagens(){
     return database.executar(instrucaoSql);
 }
 
+function favoritar(usuario,camisa){
+    var instrucaoSql = `
+    insert into favoritas values(${usuario},${camisa});
+    `
+    return database.executar(instrucaoSql);
+}
+
+function desfavoritar(usuario,camisa){
+    var instrucaoSql = `
+    delete from favoritas where idusuario=${usuario} and idcamisa=${camisa};;
+    `
+    return database.executar(instrucaoSql);
+}
 module.exports = {
-    adicionarimagens
+    adicionarimagens,
+    favoritar,
+    desfavoritar
 }

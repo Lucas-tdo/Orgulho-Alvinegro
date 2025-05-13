@@ -37,6 +37,7 @@ nav a {
     width: 65%;
     align-items: center;
     justify-content: space-around;
+    
 }
 
 .button a{
@@ -211,11 +212,13 @@ nav a {
     height: 100%;
     border: 0;
     outline: none;
+    
 }
 .input input::placeholder{
     color: black;
     font-size: 15px;
     font-weight: 700;
+    
 }
 
 .input img{
@@ -238,6 +241,7 @@ nav a {
 .coluna2 button{
     border: none;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .linha{
