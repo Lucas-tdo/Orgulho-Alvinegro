@@ -1,7 +1,7 @@
 var camisaModel = require("../models/camisaModel")
 
 function adicionarimagens(req,res){
-    camisaModel.adicionarimagens()
+        camisaModel.adicionarimagens()
     .then(resultado=>{
         res.json(resultado)
     })
@@ -56,8 +56,27 @@ function desfavoritar (req,res){
     }
 }
 
+
+function checarfavoritos(req,res){
+    var id = req.params.idUsuario
+    if(id==undefined){
+        res.status(400).send("Seu id está undefined")
+    }
+    else{
+        camisaModel.checarfavoritos(id)
+        .then(resposta=>{
+            console.log(resposta)
+            res.json(resposta)
+        })
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).json(erro.sqlMessage)
+        })
+    }
+}
 module.exports = {
     adicionarimagens,
     favoritar,
-    desfavoritar
+    desfavoritar,
+    checarfavoritos
 }

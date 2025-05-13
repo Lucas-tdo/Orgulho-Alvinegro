@@ -152,6 +152,14 @@
 
     function resposta(numero){
         var resp = document.querySelector(`#q${numero}`)
+        var q1 = document.querySelector("#q1")
+        var q2 = document.querySelector("#q2")
+        var q3 = document.querySelector("#q3")
+        var q4 = document.querySelector("#q4")
+        q1.onclick=null
+        q2.onclick=null
+        q3.onclick=null
+        q4.onclick=null
         if(resp.innerText==quiz[posicao].certa){
             resp.className+=` Acertou`
             pontuacao+=quiz[posicao].pontos
@@ -172,10 +180,18 @@
         if(posicao<quiz.length){
             final.innerHTML=`${posicao+1}/${quiz.length}`
             titulo.innerHTML=`${quiz[posicao].pergunta}`
-            q1.innerHTML=`<h2>`+quiz[posicao].resp1+`</h2>`
-            q2.innerHTML=`<h2>`+quiz[posicao].resp2+`</h2>`
-            q3.innerHTML=`<h2>`+quiz[posicao].resp3+`</h2>`
-            q4.innerHTML=`<h2>`+quiz[posicao].resp4+`</h2>`   
+            questoes.innerHTML=`<div onclick="resposta(1)" id="q1" class="questao" >
+                <h2>${quiz[posicao].resp1}</h2>
+            </div>
+            <div  onclick="resposta(2)" id="q2" class="questao">
+                <h2>${quiz[posicao].resp2}</h2>
+            </div>
+            <div onclick="resposta(3)" id="q3" class="questao">
+                <h2>${quiz[posicao].resp3}</h2>
+            </div>
+            <div onclick="resposta(4)" id="q4" class="questao">
+                <h2>${quiz[posicao].resp4}</h2>
+            </div>`
         }
         else{
             resultado.className=`resultado`

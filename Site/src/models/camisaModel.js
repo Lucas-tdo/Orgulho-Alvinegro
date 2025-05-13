@@ -2,9 +2,14 @@ var database = require("../database/config")
 
 function adicionarimagens(){
     var instrucaoSql = `
-    select idusuario as idusuario,c.idcamisa,nome,imagem,preco,marca,ano from favoritas f 
-    right join camisa c on
-    f.idcamisa = c.idcamisa;
+    select * from camisa;
+    `
+    return database.executar(instrucaoSql);
+}
+
+function checarfavoritos(id){
+    var instrucaoSql = `
+    select idcamisa from favoritas where idusuario=${id};
     `
     return database.executar(instrucaoSql);
 }
@@ -25,5 +30,6 @@ function desfavoritar(usuario,camisa){
 module.exports = {
     adicionarimagens,
     favoritar,
-    desfavoritar
+    desfavoritar,
+    checarfavoritos
 }

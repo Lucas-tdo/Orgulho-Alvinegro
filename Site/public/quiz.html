@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style/stylequiz.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body onload="checarlogado()">
     <div class="container">
         <nav>
             <div class="logo">
@@ -84,7 +84,7 @@
 </html>
 <script>
     const id = sessionStorage.getItem("ID_USUARIO")
-    checarlogado()
+    
     Ultimaspontuacao()
     dadosquiz()
     const ctx = document.getElementById('myChart');
@@ -183,7 +183,8 @@
     }
 
     function dadosquiz(){
-        fetch(`/quiz/dadosquiz/${id}`,{
+        if(id!=null){
+            fetch(`/quiz/dadosquiz/${id}`,{
             method:"get",
         })
         .then(resposta=>{
@@ -199,6 +200,8 @@
         .catch(erro=>{
             console.log(erro)
         })
+        }
+        
     }
 
     

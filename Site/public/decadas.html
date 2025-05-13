@@ -6,7 +6,7 @@
     <title>Decadas</title>
     <link rel="stylesheet" href="style/styledecadas.css">
 </head>
-<body>
+<body onload="checarlogado()">
     <div class="container">
         <nav>
             <div class="logo">
@@ -89,8 +89,6 @@
 </html>
 
 <script>
-    checarlogado()
-
     function checarlogado(){
         var checar = sessionStorage.getItem("ID_USUARIO")
         

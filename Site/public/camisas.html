@@ -6,7 +6,7 @@
     <title>Camisas</title>
     <link rel="stylesheet" href="style/stylecamisas.css">
 </head>
-<body>
+<body onload="checarlogado()">
     <div class="container">
         <nav>
             <div class="logo">
@@ -77,8 +77,6 @@
     
     var idusuario = sessionStorage.getItem("ID_USUARIO")
     
-    adicionarimagens()
-    checarlogado()
     
     function checarlogado(){
         var checar = sessionStorage.getItem("ID_USUARIO")
@@ -91,6 +89,7 @@
             entrar.className=`vazio`
             logado.className=`logado`
         }
+        adicionarimagens()
     }
 
     function adicionarimagens(){
@@ -99,10 +98,8 @@
         })
         .then(resposta=>{
             resposta.json().then(resposta=>{
-                console.log(resposta) 
                 var texto = ''  
                 for (resp of resposta) {
-                    if(idusuario!=resp.idusuario){
                         texto+=`
                         <div class="card">
                             <div class="cabecario_camisa">
@@ -115,22 +112,10 @@
                             <p>Média de preço:R$${resp.preco}</p>
                         </div>`
                     }
-                    else{     
-                        texto+=`
-                            <div class="card">
-                                <div class="cabecario_camisa">
-                                    <div class="titulo_camisa">
-                                        <h2>${resp.nome} ${resp.marca} <br>${resp.ano}  </h2>
-                                    </div>
-                                        <img id="camisa${resp.idcamisa}"  src="image/icon/estrelafavoritada.png" onclick="favoritar(${resp.idcamisa})" alt="">     
-                                </div>
-                                <img src="${resp.imagem}" alt="">
-                                <p>Média de preço:R$${resp.preco}</p>
-                            </div>`
-                    }
-                    }
-                    
                 camisas.innerHTML+=texto
+                    if(idusuario!=null){
+                        checarfavoritos()
+                    }
             });
                 
             })
@@ -139,8 +124,23 @@
             })
         }
 
+        function checarfavoritos(){
+            fetch(`camisa/checarfavoritos/${idusuario}`,{
+                method:"get",
+            })
+            .then(resposta=>{resposta.json().then(resposta=>{
+                    for(resp of resposta){
+                        var camisa = document.querySelector(`#camisa${resp.idcamisa}`)
+                        camisa.src=`image/icon/estrelafavoritada.png`
+                    }
+                })
+            })  
+            .catch(erro=>{
+                console.log(erro)
+            })
+        }
+
         function favoritar(id){
-            
             var camisa = document.querySelector(`#camisa${id}`)
             if(camisa.src.includes(`image/icon/estrelafavoritada.png`)){
                 camisa.src=`image/gif/carregando.gif`
