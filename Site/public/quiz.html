@@ -90,6 +90,33 @@
     const ctx = document.getElementById('myChart');
     const ctx2 = document.getElementById('myChart2');
     
+
+    function dadosquiz(){
+        if(id!=null){
+            fetch(`/quiz/dadosquiz/${id}`,{
+            method:"get",
+        })
+        .then(resposta=>{
+                resposta.json().then(resposta=>{
+                    console.log(resposta)
+
+                    if(!(resposta[0].media==null && resposta[0].maximo==null)){
+                        mediauser.innerHTML=`${resposta[0].media}`
+                        maiorpts.innerHTML=`${resposta[0].maximo}`
+                        media.data.datasets[0].data=[resposta[0].media]
+                        media.data.datasets[1].data=[resposta[0].mediageral]
+                        media.update()
+                    }
+                    
+                })       
+            })
+        .catch(erro=>{
+            console.log(erro)
+        })
+        }
+        
+    }
+    
     const media = new Chart(ctx2, {
       type: 'bar',
       data: {
@@ -182,27 +209,7 @@
         
     }
 
-    function dadosquiz(){
-        if(id!=null){
-            fetch(`/quiz/dadosquiz/${id}`,{
-            method:"get",
-        })
-        .then(resposta=>{
-                resposta.json().then(resposta=>{
-                    console.log(resposta)
-                    mediauser.innerHTML=`${resposta[0].media}`
-                    maiorpts.innerHTML=`${resposta[0].maximo}`
-                    media.data.datasets[0].data=[resposta[0].media]
-                    media.data.datasets[1].data=[resposta[0].mediageral]
-                    media.update()
-                })       
-            })
-        .catch(erro=>{
-            console.log(erro)
-        })
-        }
-        
-    }
+    
 
     
 </script>
