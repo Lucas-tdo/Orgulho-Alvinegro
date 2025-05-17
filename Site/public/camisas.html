@@ -48,17 +48,17 @@
                 <div class="pesquisa">
                     <div class="coluna1">
                         <div class="input">
-                            <input type="text" placeholder="Ano:">
+                            <input type="text" id="ano_input" placeholder="Ano:">
                             <img src="image/icon/calendario.png" alt="">
                         </div>
                         <div class="input">
-                            <input type="text" placeholder="Até:">
+                            <input type="text" id="ate_input" placeholder="Até:">
                             <img src="image/icon/calendario.png" alt="">
                         </div>
                     </div>
                     <div class="coluna2">
                         <div class="linha"></div>
-                        <button onclick="pesquisar()"><img src="image/icon/lupa.png" alt=""></button>
+                        <button onclick="filtrar()"><img src="image/icon/lupa.png" alt=""></button>
                     </div>
                 </div>
                 <div class="camisas" id="camisas">
@@ -76,7 +76,7 @@
 <script>
     
     var idusuario = sessionStorage.getItem("ID_USUARIO")
-    
+    var camisa=  []
     
     function checarlogado(){
         var checar = sessionStorage.getItem("ID_USUARIO")
@@ -98,7 +98,23 @@
         })
         .then(resposta=>{
             resposta.json().then(resposta=>{
-                var texto = ''  
+                camisa=resposta
+
+                listando(resposta)
+                    if(idusuario!=null){
+                        checarfavoritos()
+                    }
+            });
+                
+            })
+            .catch(erro=>{
+                console.log(erro)
+            })
+        }
+
+        function listando(resposta){
+            camisas.innerHTML=``
+            var texto = ''  
                 for (resp of resposta) {
                         texto+=`
                         <div class="card">
@@ -113,31 +129,6 @@
                         </div>`
                     }
                 camisas.innerHTML+=texto
-                    if(idusuario!=null){
-                        checarfavoritos()
-                    }
-            });
-                
-            })
-            .catch(erro=>{
-                console.log(erro)
-            })
-        }
-
-        function checarfavoritos(){
-            fetch(`camisa/checarfavoritos/${idusuario}`,{
-                method:"get",
-            })
-            .then(resposta=>{resposta.json().then(resposta=>{
-                    for(resp of resposta){
-                        var camisa = document.querySelector(`#camisa${resp.idcamisa}`)
-                        camisa.src=`image/icon/estrelafavoritada.png`
-                    }
-                })
-            })  
-            .catch(erro=>{
-                console.log(erro)
-            })
         }
 
         function favoritar(id){
@@ -187,4 +178,42 @@
                 })
             }
         }
+
+        function checarfavoritos(){
+            fetch(`camisa/checarfavoritos/${idusuario}`,{
+                method:"get",
+            })
+            .then(resposta=>{resposta.json().then(resposta=>{
+                    for(resp of resposta){
+                        var camisa = document.querySelector(`#camisa${resp.idcamisa}`)
+                        camisa.src=`image/icon/estrelafavoritada.png`
+                    }
+                })
+            })  
+            .catch(erro=>{
+                console.log(erro)
+            })
+        }
+
+        function filtrar(){
+            var ano = Number(ano_input.value)
+            var ate = Number(ate_input.value)
+            if(ano==0){
+                var filtrado = camisa.filter(cam=>cam.ano<=ate)
+                listando(filtrado)
+            }
+            else if(ate==0){
+                var filtrado = camisa.filter(cam=>cam.ano>=ano)
+                listando(filtrado)
+            }
+            else if(!(ate==0 && ano==0)){
+                var filtrado = camisa.filter(cam=>cam.ano>=ano && cam.ano<=ate)
+                listando(filtrado)
+            }
+            checarfavoritos()
+    }
+
+    
+
+        
 </script>

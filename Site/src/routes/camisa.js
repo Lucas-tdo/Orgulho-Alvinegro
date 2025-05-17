@@ -18,4 +18,6 @@ router.delete("/desfavoritar",function(req,res){
 router.get("/checarfavoritos/:idUsuario",function(req,res){
     camisaController.checarfavoritos(req,res)
 })
+
+
 module.exports = router ;
