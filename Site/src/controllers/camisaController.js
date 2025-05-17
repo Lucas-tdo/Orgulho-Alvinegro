@@ -74,9 +74,23 @@ function checarfavoritos(req,res){
         })
     }
 }
+
+function top_favoritas(req,res){
+    camisaModel.top_favoritas()
+    .then(resposta=>{
+        console.log(resposta)
+        res.json(resposta)
+    })
+    .catch(erro=>{
+        console.log(erro)
+        res.status(500).json(erro.sqlMessage)
+    })
+}
+
 module.exports = {
     adicionarimagens,
     favoritar,
     desfavoritar,
-    checarfavoritos
+    checarfavoritos,
+    top_favoritas
 }

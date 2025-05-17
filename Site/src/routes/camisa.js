@@ -19,5 +19,7 @@ router.get("/checarfavoritos/:idUsuario",function(req,res){
     camisaController.checarfavoritos(req,res)
 })
 
-
+router.get("/top_favoritas",function(req,res){
+    camisaController.top_favoritas(req,res)
+})
 module.exports = router ;

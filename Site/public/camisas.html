@@ -35,14 +35,15 @@
                 <div class="titulo">
                     <h1>Top 10 camisas</h1>
                 </div>
-                <div class="topcamisa">
-                    <h2>1º</h2>
-                    <img src="image/camisas/camisa2024-1.png" alt="">
+                <div id="top_lista">
+                    
+                    <div class="topcamisa">
+                        <h2>2º</h2>
+                        <img src="image/camisas/camisa2024-2.png" alt="">
+                    </div>
+                    
                 </div>
-                <div class="topcamisa">
-                    <h2>2º</h2>
-                    <img src="image/camisas/camisa2024-2.png" alt="">
-                </div>
+               
             </div>
             <div class="cardpai">
                 <div class="pesquisa">
@@ -90,6 +91,7 @@
             logado.className=`logado`
         }
         adicionarimagens()
+        top_favoritas()
     }
 
     function adicionarimagens(){
@@ -147,8 +149,8 @@
                 })
                 .then(resposta=>{
                     if(resposta.ok){
-                        console.log("funfou")
                         camisa.src=`image/icon/estrela.png`
+                        top_favoritas()
                     }
                 })
                 .catch(erro=>{
@@ -171,6 +173,7 @@
                 .then(resposta=>{
                         if(resposta.ok){
                             camisa.src=`image/icon/estrelafavoritada.png`
+                            top_favoritas()
                         }
                 })
                 .catch(erro=>{
@@ -178,6 +181,38 @@
                 })
             }
         }
+
+        function top_favoritas(){
+        fetch(`camisa/top_favoritas`,{
+            method:"get",
+        })
+        .then(resposta=>{resposta.json().then(resposta=>{
+            console.log(resposta)
+                var texto = ""
+                var incremento = 0
+                top_lista.innerHTML=``
+
+                for(resp of resposta){
+                    incremento++
+                    texto+=`
+                    <div class="topcamisa">
+                        <h2>${incremento}º</h2>
+                        <img src="${resp.imagem}" alt="">
+                    </div>
+                    `
+                }
+                top_lista.innerHTML+=texto
+            
+            })
+        })
+        .catch(erro=>{
+            console.log(erro)
+        })
+    }
+
+
+    
+
 
         function checarfavoritos(){
             fetch(`camisa/checarfavoritos/${idusuario}`,{
