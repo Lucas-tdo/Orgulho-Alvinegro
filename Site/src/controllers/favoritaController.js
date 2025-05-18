@@ -35,7 +35,44 @@ function listar(req,res){
         })
     }
 }
+
+function anofavoritado(req,res){
+    var id = req.params.idUsuario
+    if(id==undefined){
+        res.status(400).send("Seu id está undefined")
+    }
+    else{
+        favoritaModel.anofavoritado(id)
+        .then(resposta=>{
+            console.log(`Anos mais favoritados do usuário ${id}`)
+            res.json(resposta)
+        })
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).send(erro.sqlMessage)
+        })
+    }
+}
+function marcafavoritada(req,res){
+    var id = req.params.idUsuario
+    if(id==undefined){
+        res.status(400).send("Seu id está undefined")
+    }
+    else{
+        favoritaModel.marcafavoritada(id)
+        .then(resposta=>{
+            console.log(`Marcas mais favoritados do usuário ${id}`)
+            res.json(resposta)
+        })
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).send(erro.sqlMessage)
+        })
+    }
+}
 module.exports = {
     qtd_camisas,
-    listar
+    listar,
+    anofavoritado,
+    marcafavoritada
 }

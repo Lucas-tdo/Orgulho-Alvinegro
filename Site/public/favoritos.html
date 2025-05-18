@@ -85,92 +85,39 @@
     var idusuario = sessionStorage.getItem("ID_USUARIO")
     qtd_camisas()
     listar()
+    anofavoritado()
+    marcafavoritada()
      const ctx2 = document.getElementById('myChart2');
      const ctx = document.getElementById('myChart');
-new Chart(ctx2, {
+
+const ano = new Chart(ctx2, {
   type: 'bar',
   data: {
     labels: ['Anos'],
-    datasets: [{
-      label: '2023',
-      backgroundColor:'rgb(128, 128, 128)',
-      borderColor:'rgb(0,0,0)',
-      data: [5],
-      borderWidth: 1
-    },
-    {
-      label: '2022',
-      backgroundColor:'rgb(43, 41, 41)',
-        borderColor:'rgb(0, 0, 0)',
-      data: [7],
-      borderWidth: 1
-    },
-    {
-      label: '2019',
-      backgroundColor:'rgb(43, 41, 41)',
-        borderColor:'rgb(0, 0, 0)',
-      data: [2],
-      borderWidth: 1
-    },
-    {
-      label: '2018',
-      backgroundColor:'rgb(43, 41, 41)',
-        borderColor:'rgb(0, 0, 0)',
-      data: [1],
-      borderWidth: 1
-    },
-    {
-      label: '2013',
-      backgroundColor:'rgb(43, 41, 41)',
-        borderColor:'rgb(0, 0, 0)',
-      data: [0],
-      borderWidth: 1
-    }
-]
+    datasets: []
   },
   options: {
     scales: {
       y: {
     suggestedMin: 0,
-    suggestedMax: 20,
+    suggestedMax: 10,
       }
     }
     
   }
 });
 
-new Chart(ctx, {
+const marca = new Chart(ctx, {
   type: 'bar',
   data: {
     labels: ['Marcas'],
-    datasets: [{
-      label: 'Puma',
-      backgroundColor:'rgb(128, 128, 128)',
-      borderColor:'rgb(0,0,0)',
-      data: [5],
-      borderWidth: 1
-    },
-    {
-      label: 'Kappa',
-      backgroundColor:'rgb(43, 41, 41)',
-        borderColor:'rgb(0, 0, 0)',
-      data: [7],
-      borderWidth: 1
-    },
-    {
-      label: 'Adidas',
-      backgroundColor:'rgb(43, 41, 41)',
-        borderColor:'rgb(0, 0, 0)',
-      data: [2],
-      borderWidth: 1
-    }
-]
+    datasets: []
   },
   options: {
     scales: {
       y: {
     suggestedMin: 0,
-    suggestedMax: 20,
+    suggestedMax: 10,
       }
     }
     
@@ -217,6 +164,59 @@ function listar(){
       camisas.innerHTML=texto
     })
     
+  })
+  .catch(erro=>{
+    console.log(erro)
+  })
+}
+
+function anofavoritado(){
+  fetch(`favorita/anofavoritado/${idusuario}`,{
+    method:"GET",
+    headers:{
+      "Content-Type": "application/json",
+    }
+  })
+  .then(resposta=>{resposta.json().then(resposta=>{
+      var contandor = 0
+      for(resp of resposta){
+        var novo = {
+        label: `${resp.ano}`,
+        backgroundColor:'rgb(43, 41, 41)',
+        borderColor:'rgb(0, 0, 0)',
+        data: [`${resp.quantidade}`],
+        borderWidth: 1
+      }
+        ano.data.datasets.push(novo)
+      }
+      ano.update()
+    })
+  })
+  .catch(erro=>{
+    console.log(erro)
+  })
+}
+
+function marcafavoritada(){
+  fetch(`favorita/marcafavoritada/${idusuario}`,{
+    method:"GET",
+    headers:{
+      "Content-Type": "application/json",
+    }
+  })
+  .then(resposta=>{resposta.json().then(resposta=>{
+      for(resp of resposta){
+        var novo = {
+           label: `${resp.marca}`,
+            backgroundColor:'rgb(128, 128, 128)',
+            borderColor:'rgb(0,0,0)',
+            data: [`${resp.quantidade}`],
+            borderWidth: 1
+        }
+        marca.data.datasets.push(novo)
+      }
+      marca.update()
+    })
   })
   .catch(erro=>{
     console.log(erro)

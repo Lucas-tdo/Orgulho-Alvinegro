@@ -11,4 +11,11 @@ router.get("/listar/:idUsuario",function(req,res){
     favoritaController.listar(req,res)
 })
 
+router.get("/anofavoritado/:idUsuario",function(req,res){
+    favoritaController.anofavoritado(req,res)
+})
+
+router.get("/marcafavoritada/:idUsuario",function(req,res){
+    favoritaController.marcafavoritada(req,res)
+})
 module.exports = router ;
