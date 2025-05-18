@@ -36,7 +36,7 @@
         <div class="dash">
             <div class="kpi">
                 <div class="card_kpi">
-                    <h1>35</h1>
+                    <h1 id="quantidade"></h1>
                     <h2>Camisas Favoritadas</h3>
                 </div>
                 <div class="card_kpi">
@@ -64,19 +64,11 @@
                 <div class="listagem">
                     <div class="titulo_lista">
                         <h1>Listagem:</h1>
-                        <h3>Valor Total: <br>R$400,00</h3>
+                        <h3 id="valortotal">Valor Total: <br>R$</h3>
                     </div>
-                    <div class="camisas">
-                        <div class="card">
-                            <img src="image/camisas/camisa2024-1.png" alt="">
-                            
-                            <h5>2º Camisa Reebook 2024 R$219,90</h5>
-                        </div>
-                        <div class="card">
-                            <img src="image/camisas/camisa2024-1.png" alt="">
-                            
-                            <h5>2º Camisa Reebook 2024 R$219,90</h5>
-                        </div>
+                    <div class="camisas" id="camisas">
+                        
+                        
                         
                     </div>
                     
@@ -89,6 +81,10 @@
 </body>
 </html>
 <script>
+  
+    var idusuario = sessionStorage.getItem("ID_USUARIO")
+    qtd_camisas()
+    listar()
      const ctx2 = document.getElementById('myChart2');
      const ctx = document.getElementById('myChart');
 new Chart(ctx2, {
@@ -180,4 +176,50 @@ new Chart(ctx, {
     
   }
 });
+
+function qtd_camisas(){
+  fetch(`favorita/qtd_camisas/${idusuario}`,{
+    method:"GET",
+    headers :{
+      "Content-Type": "application/json",
+    },
+  })
+  .then(resposta=>{resposta.json().then(resposta=>{
+        quantidade.innerHTML=`${resposta[0].quantidade}`
+      })
+    })
+  .catch(erro=>{
+      console.log(erro)
+  })
+}
+
+function listar(){
+  fetch(`favorita/listar/${idusuario}`,{
+    method:"GET",
+    headers:{
+      "Content-Type": "application/json",
+    }
+  })
+  .then(resposta=>{resposta.json().then(resposta=>{
+      camisas.innerHTML=``
+      var precot=0
+      var texto=''
+      for(resp of resposta){
+        texto+=`<div class="card">
+                            <img src="${resp.imagem}" alt="">
+                            
+                            <h5>${resp.nome} ${resp.marca} ${resp.ano} </h5>
+                            <h5>R$${resp.preco}</h5>
+                        </div>`
+                        precot+=Number(resp.preco)
+      }
+      valortotal.innerHTML+=precot.toFixed(2)  
+      camisas.innerHTML=texto
+    })
+    
+  })
+  .catch(erro=>{
+    console.log(erro)
+  })
+}
 </script>

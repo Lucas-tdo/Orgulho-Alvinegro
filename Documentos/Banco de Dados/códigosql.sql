@@ -19,8 +19,6 @@ primary key(idquiz,fkusuario),
 foreign key (fkusuario) references usuario (idusuario)
 );
 
-select acertos from quiz order by acertos desc limit 10; -- como fazer camisas
-
 create table camisa(
 idcamisa int primary key auto_increment,
 nome varchar(45),
@@ -73,7 +71,7 @@ insert into camisa values
 (default,'2° Camisa','image/camisas/camisa1962-2.png','169.90','','1962'),-- não sei preço
 (default,'3° Camisa','image/camisas/camisa1962-3.png','169.90','','1962');-- não sei preço
 
-select nome,imagem,preco,marca,ano from camisa;
+
 
 
 

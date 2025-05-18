@@ -17,6 +17,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require  ("./src/routes/usuario")
 var quizRouter = require ("./src/routes/quiz")
 var camisaRouter = require("./src/routes/camisa")
+var favoritaRouter = require("./src/routes/favorita")
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -27,6 +28,7 @@ app.use("/", indexRouter);
 app.use("/usuario",usuarioRouter)
 app.use("/quiz",quizRouter)
 app.use("/camisa",camisaRouter)
+app.use("/favorita",favoritaRouter)
 
 app.listen(PORTA_APP, function () {
     console.log(`
