@@ -41,21 +41,22 @@
                 </div>
                 <div class="card_kpi">
                     <div class="imagem">
-                        <img src="image/camisas/camisa2024-2.png" alt="">
+                        <img id="img_marca" src="" alt="">
                     </div>
                     <div class="titulo">
-                        <h3>Ultima Favoritada</h3>
-                        <h4>2º Camisa Reebook 2024</h4>
+                        <h3>Marca mais favoritada:</h3>
+                        <h2 id="nome_marca"></h2>
+                        <h4 id="quantidade_marca"></h4>
                     </div>
                 </div>
             </div>
             <div class="graficos">
                 <div class="grafico">
-                    <h1>Ano mais favoritado do Usuário:</h1>
+                    <h1>Anos mais favoritados pelo Usuário:</h1>
                     <canvas id="myChart2" style="position: relative; height:40vh; width:40vw"></canvas>
                 </div>
                 <div class="grafico">
-                    <h1>Marca mais favoritada do Usuário:</h1>
+                    <h1>Marcas mais favoritadas pelo Usuário:</h1>
                     <canvas id="myChart" style="position: relative; height:40vh; width:40vw"></canvas>
                     
                 </div>
@@ -216,6 +217,9 @@ function marcafavoritada(){
         marca.data.datasets.push(novo)
       }
       marca.update()
+      img_marca.src=`./image/marcas/${resposta[0].marca}.png`
+      nome_marca.innerHTML=`${resposta[0].marca}`
+      quantidade_marca.innerHTML=`${resposta[0].quantidade} camisas`
     })
   })
   .catch(erro=>{

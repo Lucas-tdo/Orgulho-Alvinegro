@@ -122,8 +122,11 @@ nav img{
     text-align: center;
 }
 .card_kpi img{
-    width: 140px;
+    width: 180px;
     height: 140px;
+}
+.card_kpi h2{
+    font-weight: 600;
 }
 .card_kpi h3{
     font-size: 20px;
