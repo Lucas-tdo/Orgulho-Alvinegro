@@ -17,6 +17,7 @@ function addpontuacao(req,res){
         quizModel.addpontuacao(pontuacao,acertos,id)
         .then(
             resultado=>{
+                console.log("Adicionando pontuação do quiz")
                 res.json(resultado)
             }
         ).catch(

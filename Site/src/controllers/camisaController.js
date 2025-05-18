@@ -3,6 +3,7 @@ var camisaModel = require("../models/camisaModel")
 function adicionarimagens(req,res){
         camisaModel.adicionarimagens()
     .then(resultado=>{
+        console.log("Adicionando imagens do site")
         res.json(resultado)
     })
     .catch(erro=>{
@@ -65,7 +66,7 @@ function checarfavoritos(req,res){
     else{
         camisaModel.checarfavoritos(id)
         .then(resposta=>{
-            console.log(resposta)
+            console.log("Listando camisas favoritadas pelo Usuário")
             res.json(resposta)
         })
         .catch(erro=>{
@@ -78,7 +79,7 @@ function checarfavoritos(req,res){
 function top_favoritas(req,res){
     camisaModel.top_favoritas()
     .then(resposta=>{
-        console.log(resposta)
+        console.log("Listando top 10 camisas mais favoritadas do site")
         res.json(resposta)
     })
     .catch(erro=>{
