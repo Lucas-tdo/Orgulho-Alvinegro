@@ -27,7 +27,7 @@ preco decimal(5,2),
 marca varchar(25),
 ano year
 );
-
+-- Reebook,Kappa,Topper,Puma,Finta
 insert into camisa values
 (default,'1° Camisa','image/camisas/camisa2024-1.png','219.90','Reebook','2024'),
 (default,'2° Camisa','image/camisas/camisa2024-2.png','219.90','Reebook','2024'),
@@ -84,21 +84,76 @@ foreign key(idcamisa) references camisa(idcamisa)
 );
 
 
-create table idolo(
-ididolo int primary key auto_increment,
-nome varchar(45),
-imagem varchar(255),
-descricao varchar(255),
-chegada datetime
-);
+
+drop table idolo;
 
 create table titulo(
 idtitulo int primary key auto_increment,
 nome varchar(45),
 imagem varchar(255),
 descricao varchar(255),
-ano datetime
+ano year
 );
+
+
+insert into titulo values
+(default, "Campeonato Brasileiro", "image/jogadores/campeonatobrasileiro24.png", "desc", "2024"),
+(default, "Libertadores", "image/jogadores/libertadores.png", "desc", "2024"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "2018"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "2013"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "2010"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "2006"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1997"),
+(default, "Campeonato Brasileiro", "image/jogadores/campeonatobrasileiro95.png", "desc", "1995"),
+(default, "Copa Conmebol", "image/jogadores/copaconmebol.png", "desc", "1993"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1990"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1989"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1968"),
+(default, "Campeonato Brasileiro", "image/jogadores/campeonatobrasileiro68.png", "desc", "1968"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1967"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1962"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1961"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1957"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1948"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1935"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1934"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1933"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1932"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1930"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1912"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1910"),
+(default, "Campeonato Carioca", "image/jogadores/campeonatocarioca.png", "desc", "1907");
+
+create table idolo(
+ididolo int primary key auto_increment,
+nome varchar(45),
+imagem varchar(255),
+descricao varchar(255),
+chegada year,
+saida year
+);
+
+select i.nome,t.nome,t.ano from titulo_dos_idolos ti
+join idolo i on
+i.ididolo=ti.ididolo
+join titulo t on
+t.idtitulo=ti.idtitulo;
+
+insert into idolo values
+(default, 'Marlon Freitas', 'image/jogadores/marlonfreitas.png', 'desc', '2023', '2025'),
+(default, 'Luiz Henrique', 'image/jogadores/luizhenrique.png', 'desc', '2024', '2024'),
+(default, 'Jefferson', 'image/jogadores/jefferson.png', 'desc', '2009', '2018'),
+(default, 'Wagner', 'image/jogadores/wagner.png', 'desc', '1993', '2002'),
+(default, 'Túlio Maravilha', 'image/jogadores/tulio.png', 'desc', '1994', '1996'),
+(default, 'Maurício', 'image/jogadores/mauricio.png', 'desc', '1986', '1988'),
+(default, 'Paulo Cezar Caju', 'image/jogadores/paulocezarcaju.png', 'desc', '1967', '1972'),
+(default, 'Gerson', 'image/jogadores/gerson.png', 'desc', '1963', '1969'),
+(default, 'Jairzinho', 'image/jogadores/jairzinho.png', 'desc', '1963', '1974'),
+(default, 'Amarildo', 'image/jogadores/amarildo.png', 'desc', '1958', '1963'),
+(default, 'Didi', 'image/jogadores/didi.png', 'desc', '1956', '1959'),
+(default, 'Quarentinha', 'image/jogadores/quarentinha.png', 'desc', '1954', '1964'),
+(default, 'Garrincha', 'image/jogadores/garrincha.png', 'desc', '1953', '1965'),
+(default, 'Nilton Santos', 'image/jogadores/niltonsantos.png', 'desc', '1948', '1964');
 
 create table titulo_dos_idolos(
 ididolo int,
@@ -108,6 +163,44 @@ foreign key (ididolo) references idolo(ididolo),
 foreign key (idtitulo) references titulo(idtitulo)
 );
 
+select * from idolo;
+select * from titulo;
+insert into titulo_dos_idolos values
+(1, 1),  
+(1, 2),  
+(2, 1), 
+(2, 2),  
+(3, 3),
+(3, 4),  
+(3, 5), 
+(4, 7), 
+(4, 8), 
+(4, 9),  
+(5, 8),  
+(7, 12),
+(7, 13), 
+(7, 14),
+(8, 12), 
+(8, 13), 
+(8, 14),
+(9, 12), 
+(9, 13), 
+(9, 14), 
+(10, 15),
+(10, 16),
+(11,15),
+(11,16),
+(11, 17),
+(12, 15),
+(12, 16),
+(12, 17),
+(13, 15),
+(13, 16),
+(13, 17),
+(14, 15),
+(14, 16),
+(14, 17),
+(14, 18);
 
-select * from usuario;
+select * from idolo;
 

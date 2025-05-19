@@ -77,11 +77,10 @@
                         
     
                     </div>
+                    
                 </div>
-        
 
-            </div>
-
+                
 
         </div>
     </div>
@@ -89,6 +88,9 @@
 </html>
 
 <script>
+    var idusuario = sessionStorage.getItem("ID_USUARIO")
+    var idolos = []
+    var titulos = []
     function checarlogado(){
         var checar = sessionStorage.getItem("ID_USUARIO")
         
@@ -100,5 +102,44 @@
             entrar.className=`vazio`
             logado.className=`logado`
         }
+    }
+
+
+//     if(decada2.innerHTML==""){
+//     card2.style.display="none"
+// }
+    buscardadosidolo()
+
+    function buscardadosidolo(){
+        fetch(`decada/dadosidolo`,{
+            method:"GET",
+            headers :{
+                "Content-Type": "application/json",
+            }
+        })
+        .then(resposta=>{resposta.json().then(resposta=>{
+            console.log(resposta)
+            buscardadostitulo()
+            })
+        })
+        .catch(erro=>{
+            console.log(erro)
+        })
+    }
+
+    function buscardadostitulo(){
+         fetch(`decada/dadostitulo`,{
+                method:"GET",
+                headers:{
+                    "Content-Type": "application/json",
+                }
+            })
+            .then(resposta=>{resposta.json().then(resposta=>{
+                console.log(resposta)
+                })
+            })
+            .catch(erro=>{
+                console.log(erro)
+            })
     }
 </script>

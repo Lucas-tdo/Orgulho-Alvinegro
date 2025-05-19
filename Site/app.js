@@ -18,6 +18,7 @@ var usuarioRouter = require  ("./src/routes/usuario")
 var quizRouter = require ("./src/routes/quiz")
 var camisaRouter = require("./src/routes/camisa")
 var favoritaRouter = require("./src/routes/favorita")
+var decadaRouter= require("./src/routes/decada")
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -29,6 +30,7 @@ app.use("/usuario",usuarioRouter)
 app.use("/quiz",quizRouter)
 app.use("/camisa",camisaRouter)
 app.use("/favorita",favoritaRouter)
+app.use("/decada",decadaRouter)
 
 app.listen(PORTA_APP, function () {
     console.log(`
