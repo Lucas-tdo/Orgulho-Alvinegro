@@ -56,32 +56,104 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" id="card2020">
                     <div class="titulo">
                         <hr>
                         <h1>Atualmente(2020-2025)</h1>
                     </div>
-                    <div class="decada">
-                        <div class="idolo_jogador">
-                            <img src="image/titulos/libertadores.png" alt="">
-                            <p>Libertadores-2024</p>
-                        </div>
-                        <div class="idolo_jogador">
-                            <img src="image/titulos/brasileirao.png" alt="">
-                            <p>Brasileirão-2024</p>
-                        </div>
-                        <div class="idolo_jogador">
-                            <img src="image/jogadores/luizhenrique.png" alt="">
-                            <p>Luiz Henrique<br>(2024-2024)</p>
-                        </div>
-                        
-    
+                    <div class="decada" id="decada2020"></div>
+                </div>
+                <div class="card" id="card2010">
+                    <div class="titulo">
+                        <hr>
+                        <h1>Atualmente(2010-2020)</h1>
                     </div>
-                    
+                    <div class="decada" id="decada2010"></div>
                 </div>
 
-                
+                <div class="card" id="card2000">
+                    <div class="titulo">
+                        <hr>
+                        <h1>Atualmente(2000-2010)</h1>
+                    </div>
+                    <div class="decada" id="decada2000"></div>
+                </div>
 
+                <div class="card" id="card1990">
+                    <div class="titulo">
+                        <hr>
+                        <h1>Atualmente(1990-2000)</h1>
+                    </div>
+                    <div class="decada" id="decada1990"></div>
+                </div>
+                <div class="card" id="card1980">
+                    <div class="titulo">
+                        <hr>
+                        <h1>Atualmente(1980-1990)</h1>
+                    </div>
+                    <div class="decada" id="decada1980"></div>
+                </div>
+                <div class="card" id="card1970">
+                    <div class="titulo">
+                        <hr>
+                        <h1>Atualmente(1970-1980)</h1>
+                    </div>
+                    <div class="decada" id="decada1970"></div>
+                </div>
+                <div class="card" id="card1960">
+                    <div class="titulo">
+                        <hr>
+                        <h1>Atualmente(1960-1970)</h1>
+                    </div>
+                    <div class="decada" id="decada1960"></div>
+                </div>
+                <div class="card" id="card1950">
+                    <div class="titulo">
+                        <hr>
+                        <h1>Atualmente(1950-1960)</h1>
+                    </div>
+                    <div class="decada" id="decada1950"></div>
+                </div>
+
+                <div class="card" id="card1940">
+                    <div class="titulo">
+                        <hr>
+                        <h1>Atualmente(1940-1950)</h1>
+                    </div>
+                    <div class="decada" id="decada1940"></div>
+                </div>
+
+                <div class="card" id="card1930">
+                    <div class="titulo">
+                        <hr>
+                        <h1>Atualmente(1930-1940)</h1>
+                    </div>
+                    <div class="decada" id="decada1930"></div>
+                </div>
+
+                <div class="card" id="card1920">
+                    <div class="titulo">
+                        <hr>
+                        <h1>Atualmente(1920-1930)</h1>
+                    </div>
+                    <div class="decada" id="decada1920"></div>
+                </div>
+
+                <div class="card" id="card1910">
+                    <div class="titulo">
+                        <hr>
+                        <h1>Atualmente(1910-1920)</h1>
+                    </div>
+                    <div class="decada" id="decada1910"></div>
+                </div>
+
+                <div class="card" id="card1900">
+                    <div class="titulo">
+                        <hr>
+                        <h1>Atualmente(1900-1910)</h1>
+                    </div>
+                    <div class="decada" id="decada1900"></div>
+                </div>
         </div>
     </div>
 </body>
@@ -118,7 +190,7 @@
             }
         })
         .then(resposta=>{resposta.json().then(resposta=>{
-            console.log(resposta)
+            idolos=resposta
             buscardadostitulo()
             })
         })
@@ -135,11 +207,99 @@
                 }
             })
             .then(resposta=>{resposta.json().then(resposta=>{
-                console.log(resposta)
+                titulos=resposta
+                listartitulos(titulos)
+                listaridolos(idolos)
                 })
             })
             .catch(erro=>{
                 console.log(erro)
             })
     }
+
+    function listartitulos(resposta){
+        //titulos
+        var ano=2020;
+        var ate = 2030
+        for(resp of resposta){
+            if(resp.ano>=ano && resp.ano<=ate){
+                var decada = document.querySelector(`#decada${ano}`)
+                decada.innerHTML+=`<div class="idolo_jogador">
+                            <img src="${resp.imagem}" alt="">
+                            <p>${resp.nome}-${resp.ano}</p>
+                        </div>`
+            }
+            else{
+                var achou= false
+                while(achou==false){
+                    ano-=10
+                    ate-=10
+                    if(ano==1900){
+                        break
+                    }
+                    else{
+                        if(resp.ano>=ano && resp.ano<=ate){
+                            var decada = document.querySelector(`#decada${ano}`)
+                            decada.innerHTML+=`<div class="idolo_jogador">
+                                <img src="${resp.imagem}" alt="">
+                                <p>${resp.nome}-${resp.ano}</p>
+                            </div>`
+                            achou=true
+                        }  
+                    }
+                }  
+            }
+        }
+        //testando se o card está vazio
+        for(i=2020;i>=1900;i-=10){
+            var card = document.querySelector(`#card${i}`)
+            var decada = document.querySelector(`#decada${i}`)
+            if(decada.innerHTML==   ``){
+                card.style.display='none'
+            }
+        }
+    }
+
+    function listaridolos(resposta){
+        //titulos
+        var ano=2020;
+        var ate = 2030
+        for(resp of resposta){
+            if(resp.chegada>=ano && resp.chegada<=ate){
+                var decada = document.querySelector(`#decada${ano}`)
+                decada.innerHTML+=`<div class="idolo_jogador">
+                            <img src="${resp.imagem}" alt="">
+                            <p>${resp.nome}<br>(${resp.chegada}-${resp.saida})</p>
+                        </div>`
+            }
+            else{
+                var achou= false
+                while(achou==false){
+                    ano-=10
+                    ate-=10
+                    if(ano==1900){
+                        break
+                    }
+                    else{
+                        if(resp.chegada>=ano && resp.chegada<=ate){
+                            var decada = document.querySelector(`#decada${ano}`)
+                            decada.innerHTML+=`<div class="idolo_jogador">
+                            <img src="${resp.imagem}" alt="">
+                            <p>${resp.nome}<br>(${resp.chegada}-${resp.saida})</p>
+                            </div>`
+                            achou=true
+                        }  
+                    }
+                }  
+            }
+        }
+        //testando se o card está vazio
+        for(i=2020;i>=1900;i-=10){
+            var card = document.querySelector(`#card${i}`)
+            var decada = document.querySelector(`#decada${i}`)
+            if(decada.innerHTML==   ``){
+                card.style.display='none'
+            }
+        }
+        }
 </script>
