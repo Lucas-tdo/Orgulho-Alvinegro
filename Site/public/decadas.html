@@ -35,24 +35,26 @@
                 <div class="pesquisa">
                     <div class="coluna1">
                         <div class="tipo">
-                            <button>Título</button>
+                            <button id="bttitulo" onclick="titulofiltro()">Título⭐</button>
                             <div class="linha"></div>
-                            <button>Ídolos</button>
+                            <button id="btidolo" onclick="idolosfiltro()">Ídolos⭐</button>
                         </div>
                     </div>
                     <div class="coluna2">
                         <div class="input">
-                            <input type="text" placeholder="Ano:">
+                            
+
+                            <input type="text" id="ano_input" placeholder="Ano:">
                             <img src="image/icon/calendario.png" alt="">
                         </div>
                         <div class="input">
-                            <input type="text" placeholder="Até:">
+                            <input type="text" id="ate_input" placeholder="Até:">
                             <img src="image/icon/calendario.png" alt="">
                         </div>
                     </div>
                     <div class="coluna3">
                         <div class="linha"></div>
-                        <button onclick="analinda()"><img src="image/icon/lupa.png" alt=""></button>
+                        <button onclick="filtrar()"><img src="image/icon/lupa.png" alt=""></button>
                     </div>
                 </div>
 
@@ -66,7 +68,7 @@
                 <div class="card" id="card2010">
                     <div class="titulo">
                         <hr>
-                        <h1>Atualmente(2010-2020)</h1>
+                        <h1>2010-2020</h1>
                     </div>
                     <div class="decada" id="decada2010"></div>
                 </div>
@@ -74,7 +76,7 @@
                 <div class="card" id="card2000">
                     <div class="titulo">
                         <hr>
-                        <h1>Atualmente(2000-2010)</h1>
+                        <h1>2000-2010</h1>
                     </div>
                     <div class="decada" id="decada2000"></div>
                 </div>
@@ -82,35 +84,35 @@
                 <div class="card" id="card1990">
                     <div class="titulo">
                         <hr>
-                        <h1>Atualmente(1990-2000)</h1>
+                        <h1>1990-2000</h1>
                     </div>
                     <div class="decada" id="decada1990"></div>
                 </div>
                 <div class="card" id="card1980">
                     <div class="titulo">
                         <hr>
-                        <h1>Atualmente(1980-1990)</h1>
+                        <h1>1980-1990</h1>
                     </div>
                     <div class="decada" id="decada1980"></div>
                 </div>
                 <div class="card" id="card1970">
                     <div class="titulo">
                         <hr>
-                        <h1>Atualmente(1970-1980)</h1>
+                        <h1>1970-1980</h1>
                     </div>
                     <div class="decada" id="decada1970"></div>
                 </div>
                 <div class="card" id="card1960">
                     <div class="titulo">
                         <hr>
-                        <h1>Atualmente(1960-1970)</h1>
+                        <h1>1960-1970</h1>
                     </div>
                     <div class="decada" id="decada1960"></div>
                 </div>
                 <div class="card" id="card1950">
                     <div class="titulo">
                         <hr>
-                        <h1>Atualmente(1950-1960)</h1>
+                        <h1>1950-1960</h1>
                     </div>
                     <div class="decada" id="decada1950"></div>
                 </div>
@@ -118,7 +120,7 @@
                 <div class="card" id="card1940">
                     <div class="titulo">
                         <hr>
-                        <h1>Atualmente(1940-1950)</h1>
+                        <h1>1940-1950</h1>
                     </div>
                     <div class="decada" id="decada1940"></div>
                 </div>
@@ -126,7 +128,7 @@
                 <div class="card" id="card1930">
                     <div class="titulo">
                         <hr>
-                        <h1>Atualmente(1930-1940)</h1>
+                        <h1>1930-1940</h1>
                     </div>
                     <div class="decada" id="decada1930"></div>
                 </div>
@@ -134,7 +136,7 @@
                 <div class="card" id="card1920">
                     <div class="titulo">
                         <hr>
-                        <h1>Atualmente(1920-1930)</h1>
+                        <h1>1920-1930</h1>
                     </div>
                     <div class="decada" id="decada1920"></div>
                 </div>
@@ -142,7 +144,7 @@
                 <div class="card" id="card1910">
                     <div class="titulo">
                         <hr>
-                        <h1>Atualmente(1910-1920)</h1>
+                        <h1>1910-1920</h1>
                     </div>
                     <div class="decada" id="decada1910"></div>
                 </div>
@@ -150,7 +152,7 @@
                 <div class="card" id="card1900">
                     <div class="titulo">
                         <hr>
-                        <h1>Atualmente(1900-1910)</h1>
+                        <h1>1900-1910</h1>
                     </div>
                     <div class="decada" id="decada1900"></div>
                 </div>
@@ -234,7 +236,7 @@
                 while(achou==false){
                     ano-=10
                     ate-=10
-                    if(ano==1900){
+                    if(ano<1900){
                         break
                     }
                     else{
@@ -257,6 +259,9 @@
             if(decada.innerHTML==   ``){
                 card.style.display='none'
             }
+            else{
+                card.style.display='flex'
+            }
         }
     }
 
@@ -277,7 +282,7 @@
                 while(achou==false){
                     ano-=10
                     ate-=10
-                    if(ano==1900){
+                    if(ano<1900){
                         break
                     }
                     else{
@@ -300,6 +305,80 @@
             if(decada.innerHTML==   ``){
                 card.style.display='none'
             }
+            else{
+                card.style.display='flex'
+            }
         }
+        }
+        
+        
+        var fidolos=true
+        var ftitulo=true
+        function titulofiltro(){
+            if(ftitulo==true){
+                ftitulo=false
+                bttitulo.innerHTML=`Título`
+            }
+            else{
+                ftitulo=true
+                bttitulo.innerHTML=`Título⭐`
+            }
+        }
+        function idolosfiltro(){
+            if(fidolos==true){
+                fidolos=false
+                btidolo.innerHTML=`Ídolos`
+            }
+            else{
+                fidolos=true
+                btidolo.innerHTML=`Ídolos⭐`
+            }
+        }
+
+        function filtrar(){
+            var ano = Number(ano_input.value)
+            var ate = Number(ate_input.value)
+            // deixando vazio
+            for(i=2020;i>=1900;i-=10){
+                var decada = document.querySelector(`#decada${i}`)
+                decada.innerHTML=``
+            }
+            var filtradoi=[]
+            var filtradot=[]
+            if(ate==0 && ano==0){
+                filtradoi=idolos
+                filtradot=titulos
+            }
+            else if(ano==0){
+                filtradoi = idolos.filter(ido=>ido.chegada<=ate)
+                filtradot = titulos.filter(tit=>tit.ano<=ate)
+            }
+            else if(ate==0){
+                filtradoi = idolos.filter(ido=>ido.chegada>=ano)
+                filtradot = titulos.filter(tit=>tit.ano>=ano)
+            }
+            else if(!(ate==0 && ano==0)){
+                filtradoi = idolos.filter(ido=>ido.chegada>=ano && ido.chegada<=ate)
+                filtradot = titulos.filter(tit=>tit.ano>=ano && tit.ano<=ate)
+            }
+            
+            
+            if(ftitulo==true && fidolos==false){
+                
+                listartitulos(filtradot)
+            }
+            else if(ftitulo==false && fidolos==true){
+                listaridolos(filtradoi)
+            }
+            else if(ftitulo==true && ftitulo==true){
+                listartitulos(filtradot)
+                listaridolos(filtradoi)
+            }
+            else{
+                alert("Precisa de pelo menos um filtro para ter resultados")
+            }
+
+            
+            
         }
 </script>
