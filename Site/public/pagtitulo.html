@@ -27,7 +27,7 @@
     </div>
     <div class="adicionarcomentario">
         <input type="text" id="add_comentario" placeholder="Adicione um comentário...">
-        <img src="image/icon/enviar.png" alt="">
+        <img src="image/icon/enviar.png" alt="" onclick="enviarcomentário()">
     </div>    
     <br><br>
     <div class="comentarios">
@@ -87,6 +87,7 @@
 
 <script>
     var idtitulo = sessionStorage.dadostitulo
+    var id = sessionStorage.getItem("ID_USUARIO")
 
     function pegar_dados(){
         fetch(`titulos/pegar_dados/${idtitulo}`,{
@@ -138,5 +139,34 @@
 
     function Voltarmenu(){
         window.location="decadas.html"
+    }
+
+    function enviarcomentário(){
+        var comentario = add_comentario.value
+        if(comentario==""){
+            alert("Erro é necessário comentar algo")
+        }
+        else if(id==undefined){
+            alert("Usuário não cadastrado")
+        }
+        else{
+            fetch(`titulos/enviarcomentario`,{
+                method:"POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body : JSON.stringify({
+                    idUsuarioServer: id,
+                    comentarioServer: comentario,
+                    idtituloServer: idtitulo,
+                })
+            })
+            .then(resposta=>{
+                add_comentario.value=``
+            })
+            .catch(erro=>{
+                console.log(erro)
+            })
+        }
     }
 </script>

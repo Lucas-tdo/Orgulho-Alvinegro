@@ -191,11 +191,16 @@ insert into titulo_dos_idolos values
 create table comentario(
 idcomentario int auto_increment,
 idusuario int,
+comentario varchar(255),
 ididolo int,
 idtitulo int,
+data datetime default current_timestamp,
 primary key(idcomentario,idusuario),
 foreign key (idusuario) references usuario (idusuario),
 foreign key (ididolo) references idolo(ididolo),
 foreign key (idtitulo) references titulo(idtitulo)
 );
+
+select * from comentario;
+
 

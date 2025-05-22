@@ -11,4 +11,8 @@ router.get("/dados_idolos/:idTitulos",function(req,res){
     titulosController.dados_idolos(req,res)
 })
 
+router.post("/enviarcomentario",function(req,res){
+    titulosController.enviarcomentario(req,res)
+})
+
 module.exports = router;

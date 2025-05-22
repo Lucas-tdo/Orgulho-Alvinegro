@@ -16,7 +16,15 @@ function dados_titulos(id){
     return database.executar(instrucaoSql);
 }
 
+function enviarcomentario(idusuario,comentario,ididolo){
+    var instrucaoSql = `
+    insert into comentario value
+    (default,${idusuario},'${comentario}','${ididolo}',null,default);
+    `
+    return database.executar(instrucaoSql);
+}
 module.exports = {
     pegar_dados,
-    dados_titulos
+    dados_titulos,
+    enviarcomentario
 }

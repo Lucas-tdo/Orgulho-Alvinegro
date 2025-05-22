@@ -27,7 +27,7 @@
     </div>
     <div class="adicionarcomentario">
         <input type="text" id="add_comentario" placeholder="Adicione um comentário...">
-        <img src="image/icon/enviar.png" alt="">
+        <img src="image/icon/enviar.png" alt="" onclick="enviarcomentário()">
     </div>    
     <br><br>
     <div class="comentarios">
@@ -87,6 +87,8 @@
 
 <script>
     var ididolo = sessionStorage.dadosidolo
+    var id = sessionStorage.getItem("ID_USUARIO")
+
     function pegar_dados(){
         fetch(`idolos/pegar_dados/${ididolo}`,{
             method:"GET",
@@ -134,5 +136,34 @@
     }
     function Voltarmenu(){
         window.location="decadas.html"
+    }
+
+    function enviarcomentário(){
+        var comentario = add_comentario.value
+        if(comentario==""){
+            alert("Erro é necessário comentar algo")
+        }
+        else if(id==undefined){
+            alert("Usuário não cadastrado")
+        }
+        else{
+            fetch(`idolos/enviarcomentario`,{
+                method:"POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body : JSON.stringify({
+                    idUsuarioServer: id,
+                    comentarioServer: comentario,
+                    idIdoloServer: ididolo,
+                })
+            })
+            .then(resposta=>{
+                add_comentario.value=``
+            })
+            .catch(erro=>{
+                console.log(erro)
+            })
+        }
     }
 </script>

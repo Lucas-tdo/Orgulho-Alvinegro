@@ -37,7 +37,32 @@ function dados_titulos(req,res){
     }
 }
 
+function enviarcomentario(req,res){
+    var idusuario= req.body.idUsuarioServer
+    var comentario = req.body.comentarioServer
+    var ididolo = req.body.idIdoloServer 
+    if (idusuario == undefined) {
+        res.status(400).send("Seu usuário está está undefined!");
+    } else if (comentario == undefined) {
+        res.status(400).send("Seu comentário está undefined!");
+    } else if (ididolo == undefined) {
+        res.status(400).send("O ídolo está undefined!");
+    }
+    else{
+        idolosModel.enviarcomentario(idusuario,comentario,ididolo)
+        .then(resposta=>{
+            console.log("Comentário na pagína idolos adicionada")
+            res.json(resposta)
+        })
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).send(erro.sqlMessage)
+        })
+    }
+}
+
 module.exports = {
     pegar_dados,
-    dados_titulos
+    dados_titulos,
+    enviarcomentario
 }
