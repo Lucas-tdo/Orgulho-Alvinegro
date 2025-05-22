@@ -155,6 +155,7 @@
                         <h1>1900-1910</h1>
                     </div>
                     <div class="decada" id="decada1900"></div>
+                    
                 </div>
         </div>
     </div>
@@ -226,7 +227,7 @@
         for(resp of resposta){
             if(resp.ano>=ano && resp.ano<=ate){
                 var decada = document.querySelector(`#decada${ano}`)
-                decada.innerHTML+=`<div class="idolo_jogador">
+                decada.innerHTML+=`<div class="idolo_jogador" onclick="Enviar_titulo(${resp.idtitulo})">
                             <img src="${resp.imagem}" alt="">
                             <p>${resp.nome}-${resp.ano}</p>
                         </div>`
@@ -242,7 +243,7 @@
                     else{
                         if(resp.ano>=ano && resp.ano<=ate){
                             var decada = document.querySelector(`#decada${ano}`)
-                            decada.innerHTML+=`<div class="idolo_jogador">
+                            decada.innerHTML+=`<div class="idolo_jogador" onclick="Enviar_titulo(${resp.idtitulo})">
                                 <img src="${resp.imagem}" alt="">
                                 <p>${resp.nome}-${resp.ano}</p>
                             </div>`
@@ -272,7 +273,7 @@
         for(resp of resposta){
             if(resp.chegada>=ano && resp.chegada<=ate){
                 var decada = document.querySelector(`#decada${ano}`)
-                decada.innerHTML+=`<div class="idolo_jogador">
+                decada.innerHTML+=`<div class="idolo_jogador" onclick="Enviar_idolo(${resp.ididolo})">
                             <img src="${resp.imagem}" alt="">
                             <p>${resp.nome}<br>(${resp.chegada}-${resp.saida})</p>
                         </div>`
@@ -288,7 +289,7 @@
                     else{
                         if(resp.chegada>=ano && resp.chegada<=ate){
                             var decada = document.querySelector(`#decada${ano}`)
-                            decada.innerHTML+=`<div class="idolo_jogador">
+                            decada.innerHTML+=`<div class="idolo_jogador" onclick="Enviar_idolo(${resp.ididolo})">
                             <img src="${resp.imagem}" alt="">
                             <p>${resp.nome}<br>(${resp.chegada}-${resp.saida})</p>
                             </div>`
@@ -376,9 +377,16 @@
             }
             else{
                 alert("Precisa de pelo menos um filtro para ter resultados")
-            }
+            }   
+        }
 
-            
-            
+        function Enviar_titulo(dados){
+            sessionStorage.dadostitulo=dados
+            window.location="pagtitulo.html"
+        }
+
+        function Enviar_idolo(dados){
+            sessionStorage.dadosidolo=dados
+            window.location="pagidolo.html"
         }
 </script>
