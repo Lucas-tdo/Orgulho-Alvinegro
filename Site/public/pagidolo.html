@@ -30,8 +30,12 @@
         <img src="image/icon/enviar.png" alt="" onclick="enviarcomentário()">
     </div>    
     <br><br>
-    <div class="comentarios">
+
+    <div class="comentariostitulo">
         <h1>Comentários:</h1>
+    </div>
+
+    <div class="comentarios" id="comentarios">
         <div class="comentario">
             <div class="foto_perfil">
                 <img src="image/icon/perfil.png" alt="">
@@ -44,42 +48,6 @@
                 <div class="texto"></div>
             </div>
         </div>
-        <div class="comentario">
-            <div class="foto_perfil">
-                <img src="image/icon/perfil.png" alt="">
-            </div>
-            <div class="dados">
-                <div class="dados_perfil">
-                    <h3>Lucas Sousa</h3>
-                    <h4>2025-05-20</h4>
-                </div>
-                <div class="texto"></div>
-            </div>
-        </div>
-        <div class="comentario">
-            <div class="foto_perfil">
-                <img src="image/icon/perfil.png" alt="">
-            </div>
-            <div class="dados">
-                <div class="dados_perfil">
-                    <h3>Lucas Sousa</h3>
-                    <h4>2025-05-20</h4>
-                </div>
-                <div class="texto"></div>
-            </div>
-        </div>
-        <div class="comentario">
-            <div class="foto_perfil">
-                <img src="image/icon/perfil.png" alt="">
-            </div>
-            <div class="dados">
-                <div class="dados_perfil">
-                    <h3>Lucas Sousa</h3>
-                    <h4>2025-05-20</h4>
-                </div>
-                <div class="texto"></div>
-            </div>
-        </div>  
     </div>
 </div>
 </body>
@@ -128,6 +96,7 @@
                 else{
                     titulos.style.display="none"
                 }
+                pegarcomentarios()
             })
         })
         .catch(erro=>{
@@ -160,10 +129,46 @@
             })
             .then(resposta=>{
                 add_comentario.value=``
+                pegarcomentarios()
             })
             .catch(erro=>{
                 console.log(erro)
             })
         }
+    }
+
+    function pegarcomentarios(){
+        comentarios.innerHTML=``
+        fetch(`idolos/pegarcomentarios/${ididolo}`,{
+            method:"GET",
+                headers: {
+                "Content-Type": "application/json",
+                }
+        })
+        .then(resposta=>{resposta.json().then(resposta=>{
+                if(resposta.length>0){
+                    for(resp of resposta){
+                        comentarios.innerHTML+=`<div class="comentario">
+                <div class="foto_perfil">
+                    <img src="image/icon/perfil.png" alt="">
+                </div>
+                <div class="dados">
+                    <div class="dados_perfil">
+                        <h3>${resp.nome}</h3>
+                        <h4>${resp.ano}-${resp.mes}-${resp.dia}</h4>
+                    </div>
+                    <div class="texto">${resp.comentario}</div>
+                </div>
+            </div>`
+                    }
+                }
+                else{
+                    comentarios.innerHTML=`<br><br><h3>Seja o primeiro a comentar!<h3><br><br>`
+                }
+            })
+        })
+        .catch(erro=>{
+            console.log(erro)
+        })
     }
 </script>

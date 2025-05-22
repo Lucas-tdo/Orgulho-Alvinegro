@@ -200,7 +200,9 @@ foreign key (idusuario) references usuario (idusuario),
 foreign key (ididolo) references idolo(ididolo),
 foreign key (idtitulo) references titulo(idtitulo)
 );
-
 select * from comentario;
 
+select comentario,year(data) as ano,month(data) as mes,day(data) as dia,u.nome from comentario c join usuario u on
+        u.idusuario=c.idusuario where c.idtitulo=2 order by data desc;
+select date(data) from comentario;
 

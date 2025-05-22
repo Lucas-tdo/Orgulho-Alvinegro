@@ -61,8 +61,27 @@ function enviarcomentario(req,res){
     }
 }
 
+function pegarcomentarios(req,res){
+    var id = req.params.idTitulos;
+    if(id==undefined){
+        res.status(400).send("Seu id está undefined")
+    }
+    else{
+        titulosModel.pegarcomentarios(id)
+        .then(resposta=>{
+            console.log("Pegando comentários")
+            res.json(resposta)
+        })
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).send(erro.sqlMessage)
+        })
+    }
+}
+
 module.exports = {
     pegar_dados,
     dados_idolos,
-    enviarcomentario
+    enviarcomentario,
+    pegarcomentarios
 }

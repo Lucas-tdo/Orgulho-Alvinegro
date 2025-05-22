@@ -23,8 +23,18 @@ function enviarcomentario(idusuario,comentario,ididolo){
     `
     return database.executar(instrucaoSql);
 }
+
+    function pegarcomentarios(ididolo){
+        var instrucaoSql = `
+        select comentario,year(data) as ano,month(data) as mes,day(data) as dia,u.nome from comentario c join usuario u on
+        u.idusuario=c.idusuario where c.ididolo=${ididolo} order by data desc;
+        `
+    return database.executar(instrucaoSql);
+    }
+
 module.exports = {
     pegar_dados,
     dados_titulos,
-    enviarcomentario
+    enviarcomentario,
+    pegarcomentarios
 }

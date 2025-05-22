@@ -15,4 +15,8 @@ router.post("/enviarcomentario",function(req,res){
     titulosController.enviarcomentario(req,res)
 })
 
+router.get("/pegarcomentarios/:idTitulos",function(req,res){
+    titulosController.pegarcomentarios(req,res)
+})
+
 module.exports = router;

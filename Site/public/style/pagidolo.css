@@ -159,7 +159,8 @@
     width: 90%;
     flex-direction: column;
 }
-.comentarios h1{
+.comentariostitulo{
+    width: 90%;
     text-align: start;
 }
 
