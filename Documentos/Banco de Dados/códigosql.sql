@@ -27,7 +27,7 @@ preco decimal(5,2),
 marca varchar(25),
 ano year
 );
--- Reebook,Kappa,Topper,Puma,Finta
+
 insert into camisa values
 (default,'1° Camisa','image/camisas/camisa2024-1.png','219.90','Reebook','2024'),
 (default,'2° Camisa','image/camisas/camisa2024-2.png','219.90','Reebook','2024'),
@@ -71,10 +71,6 @@ insert into camisa values
 (default,'2° Camisa','image/camisas/camisa1962-2.png','169.90','','1962'),-- não sei preço
 (default,'3° Camisa','image/camisas/camisa1962-3.png','169.90','','1962');-- não sei preço
 
-
-
-
-
 create table favoritas(
 idusuario int,
 idcamisa int,
@@ -83,10 +79,6 @@ foreign key(idusuario) references usuario (idusuario),
 foreign key(idcamisa) references camisa(idcamisa)
 );
 
-
-
-drop table idolo;
-
 create table titulo(
 idtitulo int primary key auto_increment,
 nome varchar(45),
@@ -94,7 +86,6 @@ imagem varchar(255),
 descricao varchar(255),
 ano year
 );
-
 
 insert into titulo values
 (default, "Campeonato Brasileiro", "image/titulos/campeonatobrasileiro24.png", "desc", "2024"),
@@ -124,6 +115,9 @@ insert into titulo values
 (default, "Campeonato Carioca", "image/titulos/campeonatocarioca.png", "desc", "1910"),
 (default, "Campeonato Carioca", "image/titulos/campeonatocarioca.png", "desc", "1907");
 
+
+
+
 create table idolo(
 ididolo int primary key auto_increment,
 nome varchar(45),
@@ -132,12 +126,6 @@ descricao varchar(255),
 chegada year,
 saida year
 );
-
-select i.nome,t.nome,t.ano from titulo_dos_idolos ti
-join idolo i on
-i.ididolo=ti.ididolo
-join titulo t on
-t.idtitulo=ti.idtitulo;
 
 insert into idolo values
 (default, 'Marlon Freitas', 'image/jogadores/marlonfreitas.png', 'desc', '2023', '2025'),
@@ -163,8 +151,6 @@ foreign key (ididolo) references idolo(ididolo),
 foreign key (idtitulo) references titulo(idtitulo)
 );
 
-select * from idolo;
-select * from titulo;
 insert into titulo_dos_idolos values
 (1, 1),  
 (1, 2),  
@@ -202,5 +188,14 @@ insert into titulo_dos_idolos values
 (14, 17),
 (14, 18);
 
-select * from idolo;
+create table comentario(
+idcomentario int auto_increment,
+idusuario int,
+ididolo int,
+idtitulo int,
+primary key(idcomentario,idusuario),
+foreign key (idusuario) references usuario (idusuario),
+foreign key (ididolo) references idolo(ididolo),
+foreign key (idtitulo) references titulo(idtitulo)
+);
 
