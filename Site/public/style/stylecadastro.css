@@ -9,6 +9,7 @@
     height: 100vh;
     flex-direction: row;
 }
+
 .foto{
     height: 100%;
     width: 50%;
@@ -89,3 +90,15 @@
     text-decoration: none;
     font-weight: bold;
 }
+
+
+/* .imagem{
+    display: flex;
+    position: fixed;
+    z-index: 3;
+    width: 30%;
+    height: 30vh;
+    background-color: aqua;
+    top: 30%;
+    left: 35%;
+} */

@@ -5,7 +5,6 @@ drop database orgulho_alvinegro;
 create table usuario (
 idusuario int primary key auto_increment,
 Nome varchar(45),
-Telefone char(11),
 email varchar(255),
 senha varchar(45)
 );
