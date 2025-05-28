@@ -10,6 +10,10 @@
     flex-direction: row;
 }
 
+.vazio{
+    display: none;
+}
+
 .foto{
     height: 100%;
     width: 50%;
@@ -75,7 +79,7 @@
     font-weight: 700;
 }
 
-.formulario button{
+button{
     border: solid black 2px;
     background-color: #D4AF37;
     border-radius: 8px;
@@ -83,6 +87,7 @@
     height: 10%;
     font-size: 20px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .formulario a{
@@ -103,14 +108,93 @@ label{
     align-items: center;
     font-size: 13px;
     font-weight: 700;
-    
+}
+
+
+
+
+
+
+.mensagem{
+    position: absolute;
+    background-color: #d9d9d9;
+    width: 200px;
+    height: 100px;
+    top: 2%;
+    right: 1%;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.mensagem img{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+}
+
+.mensagem p{
+    font-size: 15px;
+    font-weight: 400    ;
+}
+
+.imagem button{
+    width: 150px;
+    height: 50px;
+}
+
+.imagem{
+    display: flex;
+    position:absolute;
+    z-index: 3;
+    background-color: #d9d9d9;
+    width: 500px;
+    height: 600px;
+    top: 9%;
+    left: 33%;
+    border: black 4px solid;
+    border-radius: 5px;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    justify-content: space-between;
+}
+
+.imagem img{
+    width: 300px;
+    height: 300px;
+    margin: 20px;
 }
 
 
 
 
 #input_arquivo{
-    display: none;
+    margin: 20px;   
 }
 
 
+
+#input_arquivo::file-selector-button{
+    background-color: black;
+    color: white;
+    font-size: 700;
+    width: 150px;
+    height: 30px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+}
+
+ 
+#semimagem{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-size: 15px;
+    width: auto;
+    cursor: pointer;
+}

@@ -8,8 +8,8 @@
 </head>
 <body>
     <div class="container" >
-        <div class="foto"></div>
-        <div class="cadastro">
+        <div class="foto" id="foto"></div>
+        <div class="cadastro" id="cadastro">
             <div class="formulario">
                 <h1>Cadastro:</h1>
                 <div class="input">
@@ -24,21 +24,26 @@
                     <input type="text" id="input_senha" placeholder="Senha:" required>
                     <img src="image/icon/estrela.png" alt="">
                 </div>
-                <div class="input">
-                    <label id="file_titulo" for="input_arquivo">Adicione sua foto de perfil:</label>
-                    <img src="image/icon/camera.png" alt="">
-                </div>
-                <input type="file" id="input_arquivo" onchange="trocar()" required>
-                  
+
+
                 
                 <button onclick="Validar()">Cadastre-se</button>
                 <p>Tem uma conta?<a href="login.html"> Conecte-se </a></p>
             </div>
+        </div>
 
-            
-            
-  
-            
+        <div class="vazio" id="mensagem">
+          <img src="image/icon/negado.png" id="imagem_mensagem" alt="">
+          <p id="mensagem_texto"></p>
+        </div>
+
+        <div class="vazio" id="imagem">
+          <h2>Sua imagem de perfil no momento é essa:</h2>
+            <img src="image/icon/perfil.png" alt="">
+          <h3>Deseja adicionar imagem?</h3>
+            <input type="file" id="input_arquivo" onchange="trocar()" required>
+            <button onclick="direcionar()">Enviar</button>
+            <button onclick="direcionar()" id="semimagem">Não,obrigado</button>
         </div>
     </div>
     
@@ -47,11 +52,7 @@
 </html>
 <script>
 
-    function trocar(){
-      if(input_arquivo.value!=""){
-        file_titulo.innerHTML=`Imagem adicionada!`
-      }
-    }
+    
 
 
     function Validar(){
@@ -133,14 +134,16 @@
 
         }
 
+        
         if(mensagem==""){
             checaremail()
         }
         else{
-          alert(mensagem)
+          exibir_mensagem(mensagem,"block")
         }
     }
 
+    
 
     function checaremail(){
       var email = input_email.value
@@ -149,15 +152,10 @@
       })
       .then(resposta=>{resposta.json().then(resposta=>{
         if(resposta.length>0){
-          alert("Email já está em uso!")
+          exibir_mensagem("Email já está em uso!","block")
         }
         else{
-          if(input_arquivo.value==""){
-            cadastrar()
-          }
-          else{
-            cadastrar_foto()
-          }
+          mostrarfoto()
         }
         })
       })
@@ -165,7 +163,28 @@
         console.log(erro)
       })
     }
-  
+
+    function mostrarfoto(){
+      imagem.className=`imagem`
+      foto.style.filter=`blur(10px)`
+      cadastro.style.filter=`blur(10px)`
+      foto.style.filter+=`brightness(0.5)`
+      cadastro.style.filter+=`brightness(0.5)`
+
+    }
+
+
+    function direcionar(){
+      if(input_arquivo.value==""){
+            cadastrar()
+          }
+          else{
+            cadastrar_foto()
+          }
+    }
+
+
+
     function cadastrar_foto(){
       const form = new FormData()
       form.append('nome',input_nome.value)
@@ -178,7 +197,10 @@
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
-        window.location.href = '/login.html'
+        exibir_mensagem("Cadastro realizado","carregar")
+        setTimeout(() => {
+          window.location.href = '/login.html'
+        },2000);
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
@@ -204,11 +226,29 @@
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
-        window.location.href = '/login.html'
+       exibir_mensagem("Cadastro realizado","carregar")
+        setTimeout(() => {
+          window.location.href = '/login.html'
+        },2000);
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
         
       });
+    }
+
+
+    function exibir_mensagem(texto,imagem){
+        if(imagem=="block"){
+          imagem_mensagem.src=`image/icon/negado.png`
+        }
+        else{
+          imagem_mensagem.src=`image/gif/carregando.gif`
+        }
+        mensagem.className=`mensagem`
+        mensagem_texto.innerHTML=`${texto}`
+        setTimeout(()=>{
+          mensagem.className=`vazio`
+        },3000)
     }
 </script>
