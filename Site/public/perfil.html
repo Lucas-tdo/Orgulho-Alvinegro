@@ -34,7 +34,7 @@
         </nav>
         <div class="conta">
             <div class="card">
-                <img src="image/icon/imagem.png" alt="">
+                <img src="image/icon/imagem.png" id="foto_perfil" alt="">
                 <h1 id="nome_perfil"></h1>
                 <div class="acoes">
                     <div class="email">
@@ -49,11 +49,19 @@
 </html>
 <script>
     adicionardados()
-
     function adicionardados(){
         var nome = sessionStorage.getItem("NOME_USUARIO")
         var email = sessionStorage.getItem("EMAIL_USUARIO")
         nome_perfil.innerHTML=`Olá ${nome}`
         email_perfil.innerHTML=`${email}`
+        foto_perfil()
+    }
+
+    function foto_perfil(){
+        var foto = sessionStorage.IMAGEM
+        var imagem = document.querySelector("#foto_perfil")
+        imagem.src=foto
+        imagem.style.borderRadius="70px"
+        imagem.style.border="solid 5px black"
     }
 </script>

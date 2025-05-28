@@ -26,7 +26,7 @@
                 </span>      
             </div>
             <div class="logado" id="logado">
-                <a href=""><img src="image/icon/perfil.png" alt=""></a>
+                <a href=""><img src="image/icon/perfil.png" id="foto_perfil" alt=""></a>
             </div>
         </nav>
         <div class="main">
@@ -50,6 +50,13 @@
 </html>
 
 <script>
+    function foto_perfil(){
+        var foto = sessionStorage.IMAGEM
+        var imagem = document.querySelector("#foto_perfil")
+        imagem.src=foto
+        imagem.style.borderRadius="20px"
+    }
+
     function checarlogado(){
         var checar = sessionStorage.getItem("ID_USUARIO")
         
@@ -61,5 +68,6 @@
             entrar.className=`vazio`
             logado.className=`logado`
         }
+        foto_perfil()
     }
 </script>

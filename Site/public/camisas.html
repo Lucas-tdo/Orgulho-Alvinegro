@@ -26,7 +26,7 @@
                 </span>      
             </div>
             <div class="logado" id="logado">
-                <a href="perfil.html"><img src="image/icon/perfil.png" alt=""></a>
+                <a href="perfil.html"><img src="image/icon/perfil.png" id="foto_perfil" alt=""></a>
             </div>
         </nav>
         
@@ -78,7 +78,14 @@
     
     var idusuario = sessionStorage.getItem("ID_USUARIO")
     var camisa=  []
-    
+
+    function foto_perfil(){
+        var foto = sessionStorage.IMAGEM
+        var imagem = document.querySelector("#foto_perfil")
+        imagem.src=foto
+        imagem.style.borderRadius="20px"
+    }
+
     function checarlogado(){
         var checar = sessionStorage.getItem("ID_USUARIO")
         
@@ -90,6 +97,7 @@
             entrar.className=`vazio`
             logado.className=`logado`
         }
+        foto_perfil()
         adicionarimagens()
         top_favoritas()
     }
