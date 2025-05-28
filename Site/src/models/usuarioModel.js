@@ -8,15 +8,21 @@ function autenticar(email,senha){
 }
 
 function cadastrar(nome,email,senha,telefone){
-    console.log('cadastro realizado')
     var instrucaoSql = `
         INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
     `;
     return database.executar(instrucaoSql);
 }
 
+function checaremail(email){
+    var instrucaoSql = `
+        select * from usuario where email='${email}';
+    `;
+    return database.executar(instrucaoSql);
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    checaremail
 
 };

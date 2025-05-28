@@ -69,10 +69,27 @@ function autenticar(req,res){
     }
 }
 
-
+function checaremail(req,res){
+    var email = req.params.email
+    if(email==undefined){
+        res.status(400).send('Seu email está undefined!')
+    }
+    else{
+        usuarioModel.checaremail(email)
+        .then(resposta=>{
+            console.log("Vendo se o email já está cadastrado")
+            res.json(resposta)
+        })
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).json(erro.sqlMessage)
+        })
+    }
+}
 
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    checaremail
 }

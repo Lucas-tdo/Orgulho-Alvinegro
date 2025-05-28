@@ -24,11 +24,16 @@
                     <input type="text" id="input_senha" placeholder="Senha:" required>
                     <img src="image/icon/estrela.png" alt="">
                 </div>
+            
+                    <input type="file" id="input_arquivo" onchange="trocar()" required>
+                    <label id="Labelarquivo" for="input_arquivo"><p id="file_titulo"><h2>Adicione sua foto de perfil:</h2>Nenhum arquivo escolhido</p></label>
                 
                 <button onclick="Validar()">Cadastre-se</button>
                 <p>Tem uma conta?<a href="login.html"> Conecte-se </a></p>
             </div>
-            <!-- <div class="imagem"></div> -->
+
+            
+            
   
             
         </div>
@@ -38,6 +43,13 @@
 </body>
 </html>
 <script>
+
+    function trocar(){
+      var arquivo = input_arquivo.value
+      if(input_arquivo.value!=""){
+        file_titulo.innerHTML=arquivo
+      }
+    }
 
 
     function Validar(){
@@ -69,6 +81,7 @@
               var senha_maiuscula=false
               var senha_numeros=false
               var senha_minuscula=false
+              
               for(i=0;i<especiais.length;i++){
                 if(senha.includes(especiais[i])){
                   senha_especial=true
@@ -111,27 +124,50 @@
                   mensagem="A senha precisa de pelo menos um número"
                 }
               }
-              else{
-                if(mensagem=""){
-                  checaremail()
-                }
-                else{
-                  
-                }
-              }
             }
             
             
           }
 
         }
+
+        if(mensagem==""){
+            checaremail()
+        }
+        else{
+          alert(mensagem)
+        }
     }
 
 
     function checaremail(){
-
+      var email = input_email.value
+      fetch(`/usuario/checaremail/${email}`,{
+        method:"GET"
+      })
+      .then(resposta=>{resposta.json().then(resposta=>{
+        if(resposta.length>0){
+          alert("Email já está em uso!")
+        }
+        else{
+          cadastrar()
+        }
+        })
+      })
+      .catch(erro=>{
+        console.log(erro)
+      })
     }
+    
+    function checarnickname(){
+
+      cadastrar()
+    }
+
     function cadastrar(){
+        var nome = input_nome.value
+        var email = input_email.value
+        var senha = input_senha.value
       fetch("/usuario/cadastrar", {
       method: "POST",
       headers: {
