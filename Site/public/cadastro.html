@@ -24,9 +24,12 @@
                     <input type="text" id="input_senha" placeholder="Senha:" required>
                     <img src="image/icon/estrela.png" alt="">
                 </div>
-            
-                    <input type="file" id="input_arquivo" onchange="trocar()" required>
-                    <label id="Labelarquivo" for="input_arquivo"><p id="file_titulo"><h2>Adicione sua foto de perfil:</h2>Nenhum arquivo escolhido</p></label>
+                <div class="input">
+                    <label id="file_titulo" for="input_arquivo">Adicione sua foto de perfil:</label>
+                    <img src="image/icon/camera.png" alt="">
+                </div>
+                <input type="file" id="input_arquivo" onchange="trocar()" required>
+                  
                 
                 <button onclick="Validar()">Cadastre-se</button>
                 <p>Tem uma conta?<a href="login.html"> Conecte-se </a></p>
@@ -45,9 +48,8 @@
 <script>
 
     function trocar(){
-      var arquivo = input_arquivo.value
       if(input_arquivo.value!=""){
-        file_titulo.innerHTML=arquivo
+        file_titulo.innerHTML=`Imagem adicionada!`
       }
     }
 
@@ -150,7 +152,12 @@
           alert("Email já está em uso!")
         }
         else{
-          cadastrar()
+          if(input_arquivo.value==""){
+            cadastrar()
+          }
+          else{
+            cadastrar_foto()
+          }
         }
         })
       })
@@ -158,11 +165,27 @@
         console.log(erro)
       })
     }
-    
-    function checarnickname(){
-
-      cadastrar()
+  
+    function cadastrar_foto(){
+      const form = new FormData()
+      form.append('nome',input_nome.value)
+      form.append('email',input_email.value) 
+      form.append('senha',input_senha.value)
+      form.append('foto',input_arquivo.files[0])
+      fetch("/usuario/cadastrar_foto", {
+      method: "POST",
+      body: form,
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+        window.location.href = '/login.html'
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        
+      });
     }
+
 
     function cadastrar(){
         var nome = input_nome.value

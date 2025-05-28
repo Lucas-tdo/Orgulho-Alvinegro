@@ -22,7 +22,7 @@ var decadaRouter= require("./src/routes/decada")
 var idoloRouter = require("./src/routes/idolos")
 var titulosRouter = require ("./src/routes/titulos")
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
