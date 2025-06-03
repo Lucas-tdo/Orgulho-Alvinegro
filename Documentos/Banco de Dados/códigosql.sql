@@ -128,20 +128,26 @@ saida year
 );
 
 insert into idolo values
-(default, 'Marlon Freitas', 'image/jogadores/marlonfreitas.png', 'desc', '2023', '2025'),
-(default, 'Luiz Henrique', 'image/jogadores/luizhenrique.png', 'desc', '2024', '2024'),
-(default, 'Jefferson', 'image/jogadores/jefferson.png', 'desc', '2009', '2018'),
-(default, 'Wagner', 'image/jogadores/wagner.png', 'desc', '1993', '2002'),
-(default, 'Túlio Maravilha', 'image/jogadores/tulio.png', 'desc', '1994', '1996'),
-(default, 'Maurício', 'image/jogadores/mauricio.png', 'desc', '1986', '1988'),
-(default, 'Paulo Cezar Caju', 'image/jogadores/paulocezarcaju.png', 'desc', '1967', '1972'),
-(default, 'Gerson', 'image/jogadores/gerson.png', 'desc', '1963', '1969'),
-(default, 'Jairzinho', 'image/jogadores/jairzinho.png', 'desc', '1963', '1974'),
-(default, 'Amarildo', 'image/jogadores/amarildo.png', 'desc', '1958', '1963'),
-(default, 'Didi', 'image/jogadores/didi.png', 'desc', '1956', '1959'),
-(default, 'Quarentinha', 'image/jogadores/quarentinha.png', 'desc', '1954', '1964'),
-(default, 'Garrincha', 'image/jogadores/garrincha.png', 'desc', '1953', '1965'),
-(default, 'Nilton Santos', 'image/jogadores/niltonsantos.png', 'desc', '1948', '1964');
+(default, 'Marlon Freitas', 'image/jogadores/marlonfreitas.png', 'O grande ídolo do time de 2024 Marlon. Símbolo de redenção pelo Glorioso em uma temporada histórica. Com seus passes incríveis marcou história e é um ídolo indiscutível', '2023', '2025'),
+(default, 'Luiz Henrique', 'image/jogadores/luizhenrique.png', 'A grande liderança técnica, o craque do time de 2024 campeão da Libertadores e do Campeonato Brasileiro. Luiz Henrique assumiu a histórica camisa 7 e entregou o que dela se espera: dribles, gols e títulos marcantes.', '2024', '2024'),
+(default, 'Jefferson', 'image/jogadores/jefferson.png', 'Em duas passagens pelo Botafogo, Jefferson defendeu a meta alvinegra em 459 partidas. Apenas Garrincha e Nilton Santos entraram mais vezes em campo com a Estrela Solitária ao peito. Símbolo de qualidade, segurança e sobretudo amor ao clube.', '2009', '2018'),
+(default, 'Wagner', 'image/jogadores/wagner.png', 'Os gols de Túlio Maravilha pavimentaram o caminho do título brasileiro de 1995, mas as defesas de Wagner foram as responsáveis por aquela conquista. A final contra o Santos, no Pacaembu, entregou uma das maiores atuações individuais de um goleiro na história do Brasileirão por mata-mata.', '1993', '2002'),
+(default, 'Túlio Maravilha', 'image/jogadores/tulio.png', 'A personalidade eternamente brincalhona de Túlio Maravilha um dos maiores artilheiros da história do futebol.O principal destaque do título de brasileiro de 1995, usando a gloriosa camisa 7 se tornando inesquecível na história do Botafogo', '1994', '1996'),
+(default, 'Maurício', 'image/jogadores/mauricio.png', 'Com a mítica camisa 7 às costas, fez o gol que acabou com o jejum de 21 anos sem títulos, no Campeonato Carioca de 1989, e iniciou uma nova era de conquistas para o Botafogo.', '1986', '1988'),
+(default, 'Paulo Cezar Caju', 'image/jogadores/paulocezarcaju.png', 'Revelado pelo Botafogo, foi um dos jogadores mais polêmicos e habilidosos de sua época. Foi campeão diversas vezes no clube marcando sua grande passagem.', '1967', '1972'),
+(default, 'Gerson', 'image/jogadores/gerson.png', 'O Canhotinha de Ouro é um dos melhores meio-campistas da história do Brasil. Campeão mundial em 1970. Autor de lançamentos espetaculares, e dono de categoria ímpar com a bola no pé ajudou o alvinegro a manter o alto nível de seu meio-campo após a saída de Didi.', '1963', '1969'),
+(default, 'Jairzinho', 'image/jogadores/jairzinho.png', 'Conhecido como Furacão, Jairzinho brilhou com a camisa do Botafogo e da Seleção Brasileira. Foi protagonista na conquista da Copa do Mundo de 1970.Ídolo incontestável, sua força, velocidade e poder de decisão marcaram época no futebol brasileiro e no Glorioso.', '1963', '1974'),
+(default, 'Amarildo', 'image/jogadores/amarildo.png', 'O "Possesso", como ficou conhecido, revelado pelo Botafogo, foi um atacante de técnica refinada e coragem impressionante, deixando seu nome na história do clube.', '1958', '1963'),
+(default, 'Didi', 'image/jogadores/didi.png', 'A "Santíssima Trindade" botafoguense, entoada nas músicas e citada por torcedores das mais diferentes gerações, começa com Didi. Um dos maiores meio-campistas de todos os tempos no futebol, foi o craque do título mundial do Brasil em 1958 e imortalizou uma técnica de batida na bola que ganhou o nome de Folha Seca.', '1956', '1959'),
+(default, 'Quarentinha', 'image/jogadores/quarentinha.png', 'Waldir Cardoso Lebrego é o maior artilheiro da história do Botafogo. Marcou 313 gols em 444 jogos e ninguém o conhecia pelo nome. Era identificado quando seu apelido era citado: Quarentinha. Uma figura exótica, que não via motivos para comemorações nos gols que fazia.', '1954', '1964'),
+(default, 'Garrincha', 'image/jogadores/garrincha.png', 'Um dos maiores jogadores de todos os tempos, protagonista em dois títulos mundiais pela seleção brasileira (1958 e especialmente em 1962), Garrincha é provavelmente o maior driblador da história do futebol. É o segundo jogador com mais partidas pelo clube (612 jogos) e o terceiro maior artilheiro botafoguense (261 gols).', '1953', '1965'),
+(default, 'Nilton Santos', 'image/jogadores/niltonsantos.png', 'Poucos jogadores podem ser considerados sinônimos de seus clubes. Nilton Santos é um deles. Craque, revolucionou a função do lateral-esquerdo. Por isso, é considerado o maior da história em sua posição.', '1948', '1964');
+
+
+
+
+
+
 
 create table titulo_dos_idolos(
 ididolo int,
