@@ -75,6 +75,11 @@
     margin-top: 20px;
 }
 
+.descricao p{
+    font-size: 20px;
+    font-weight: 500;
+}
+
 .idolos{
     display: flex;
     height: 30vh;
