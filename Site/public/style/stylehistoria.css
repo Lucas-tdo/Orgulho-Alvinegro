@@ -100,7 +100,7 @@ nav a {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 94vw;
+    height: auto;
     
 }
 
@@ -118,17 +118,77 @@ nav a {
 .historia{
     display: flex;
     width: 100%;
-    height: 50%;
+    height: auto;
 }
 
 .texto{
-    text-align: center ;
     width: 70%;
-    height: 100%;
+    height: auto;
+    padding-left: 30px;
+    font-size: 20px;
 }
 
 .imagem{
     display: flex;
     width: 30%;
-    height: 100%;    
+    height: 100%;
+    align-items: start;
+    justify-content: center;
+}
+
+.imagem img{
+    width: 250px;
+    height: 250px;
+
+}
+
+#remo{
+    width: auto;
+    height: auto;
+    margin-left: 50px;
+}
+
+#logo_atual{
+    margin-bottom: 40px;
+}
+
+.fotos_atuais{
+
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-around;
+}
+
+.fotos_atuais img{
+    width: 500px;
+    height: 300px;
+    border: solid black 4px;
+}
+
+#fotos_atuais_um{
+    margin-top: 70px;
+}
+
+.fotos_atuais .imagem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.781);
+    color: white;
+    width: 700px;
+    height: auto;
+    border: solid black 4px;
+
+}
+
+.fotos_atuais .imagem p{
+    margin-left: 10px;
+}
+
+.fotos_atuais .imagem:hover{
+    background-color: rgba(255, 255, 255, 0.781);
+    color: black;
+    
+    transition: 2s;
 }

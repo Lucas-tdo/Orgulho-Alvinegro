@@ -142,7 +142,11 @@
 
         function favoritar(id){
             var camisa = document.querySelector(`#camisa${id}`)
-            if(camisa.src.includes(`image/icon/estrelafavoritada.png`)){
+            if(idusuario==undefined){
+                alert("Sem conta")
+            }
+            else{
+                if(camisa.src.includes(`image/icon/estrelafavoritada.png`)){
                 camisa.src=`image/gif/carregando.gif`
                 fetch(`camisa/desfavoritar`,{
                     method : "DELETE",
@@ -187,6 +191,8 @@
                     console.log(erro)
                 })
             }
+        }
+            
         }
 
         function top_favoritas(){
