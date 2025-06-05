@@ -87,7 +87,7 @@
                 if(resposta.length>0){
                     for(resp of resposta){
                         titulos.style.display="flex"
-                        posicao_card.innerHTML+=`<div class="idolo_jogador">
+                        posicao_card.innerHTML+=`<div class="idolo_jogador" onclick="abrir_titulo(${resp.idtitulo})">
                     <img src="${resp.imagem}" alt="">
                     <p>${resp.nome}-<br>${resp.ano}</p>
                     </div>`
@@ -170,5 +170,10 @@
         .catch(erro=>{
             console.log(erro)
         })
+    }
+
+    function abrir_titulo(id_titulo){
+        sessionStorage.dadostitulo=id_titulo
+        window.location.href= `./pagtitulo.html`
     }
 </script>

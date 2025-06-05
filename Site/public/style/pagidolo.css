@@ -56,9 +56,10 @@
 }
 .imagem_jogador{
     width: 100%;
-    height: 100%;
-    background-size: 100% 100%;
-    background-repeat: none;
+    height: 70%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .descricao{
@@ -71,6 +72,11 @@
 .descricao h1{
     padding: 10px;
     margin-top: 20px;
+}
+
+.descricao p{
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .titulos{
@@ -112,12 +118,14 @@
     align-items: center;
     flex-direction: column;
     text-align: center;
+    cursor: pointer;
 }
 
 .idolo_jogador img{
-    width: 70px;
-    height: 90px;
-    margin-top: 10px;
+    width: 65px;
+    height: 75px;
+    margin-top: 5px;
+    box-sizing: border-box;
 }
 
 .idolo_jogador p{
@@ -181,11 +189,12 @@
     height: 100%;
 }
 
-.comentario .foto_perfil     img{
+.comentario .foto_perfil img{
     width: 50px;
     height: 50px;
     margin-top: 10px;
     margin-left: 30px;
+    border-radius: 25px;
 }
 
 .comentario .dados{
