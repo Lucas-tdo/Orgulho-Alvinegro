@@ -13,6 +13,7 @@
     height: 100vh;
     flex-direction: column;
     font-family: "Poppins", sans-serif;
+    overflow-x: hidden;
 }
 /* navbar */
 nav{
@@ -105,8 +106,8 @@ nav a {
 }
 
 .titulo{
-    display: flex;
     width: 100%;
+    margin-left: 10px;
 }
 
 .titulo h1{
@@ -119,6 +120,7 @@ nav a {
     display: flex;
     width: 100%;
     height: auto;
+    margin-left: 10px;
 }
 
 .texto{
@@ -127,6 +129,7 @@ nav a {
     padding-left: 30px;
     font-size: 20px;
 }
+
 
 .imagem{
     display: flex;
@@ -142,14 +145,44 @@ nav a {
 
 }
 
+
+#historia_remo{
+    height: 190px;
+}
 #remo{
+    display: flex;
     width: auto;
-    height: auto;
+    height: 120px;
     margin-left: 50px;
+    align-items: center;
 }
 
+#remo img{
+    width: 250px;
+    height: 250px;
+}
+
+#imagem_idolos{
+    display: flex;
+    align-items: center;
+}
+
+#imagem_idolos img{
+    width: 280px;
+    height: 280px;
+}
+
+#historia_anos_seguintes{
+    height: 50px;
+}
+
+
 #logo_atual{
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+}
+
+#anos_seguintes{
+    height: 150px;
 }
 
 .fotos_atuais{

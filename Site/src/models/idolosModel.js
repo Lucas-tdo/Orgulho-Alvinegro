@@ -26,7 +26,7 @@ function enviarcomentario(idusuario,comentario,ididolo){
 
     function pegarcomentarios(ididolo){
         var instrucaoSql = `
-        select comentario,year(data) as ano,month(data) as mes,day(data) as dia,u.nome from comentario c join usuario u on
+        select comentario,year(data) as ano,month(data) as mes,day(data) as dia,u.nome,u.imagem from comentario c join usuario u on
         u.idusuario=c.idusuario where c.ididolo=${ididolo} order by data desc;
         `
     return database.executar(instrucaoSql);

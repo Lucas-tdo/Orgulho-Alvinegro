@@ -9,7 +9,7 @@ function pegar_dados(id){
 
 function dados_idolos(id){
     var instrucaoSql = `
-        select i.nome,i.imagem,i.chegada,i.saida from titulo_dos_idolos ti
+        select i.idIdolo,i.nome,i.imagem,i.chegada,i.saida from titulo_dos_idolos ti
         join idolo i on
         i.ididolo = ti.ididolo where idtitulo=${id};
         `
@@ -26,7 +26,7 @@ function enviarcomentario(idusuario,comentario,idtitulo){
 
 function pegarcomentarios(idtitulo){
         var instrucaoSql = `
-        select comentario,year(data) as ano,month(data) as mes,day(data) as dia,u.nome from comentario c join usuario u on
+        select comentario,year(data) as ano,month(data) as mes,day(data) as dia,u.nome,u.imagem from comentario c join usuario u on
         u.idusuario=c.idusuario where c.idtitulo=${idtitulo} order by data desc;
         `
     return database.executar(instrucaoSql);

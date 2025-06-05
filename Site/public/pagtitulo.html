@@ -76,7 +76,7 @@
                 if(resposta.length>0){
                     for(resp of resposta){
                         idolos.style.display="flex"
-                        posicao_card.innerHTML+=`<div class="idolo_jogador">
+                        posicao_card.innerHTML+=`<div class="idolo_jogador"  onclick="abrir_jogador(${resp.idIdolo})">
                     <img src="${resp.imagem}" alt="">
                     <p>${resp.nome}<br>(${resp.chegada}-${resp.saida})</p>
                     </div>`
@@ -140,12 +140,12 @@
                     for(resp of resposta){
                         comentarios.innerHTML+=`<div class="comentario">
                         <div class="foto_perfil">
-                            <img src="image/icon/perfil.png" alt="">
+                            <img src="${resp.imagem}" alt="">
                         </div>
                         <div class="dados">
                             <div class="dados_perfil">
                                 <h3>${resp.nome}</h3>
-                                <h4>${resp.ano}-${resp.mes}-${resp.dia}</h4>
+                                <h4>${resp.ano}-${String(resp.mes).padStart(2,'0')}-${String(resp.dia).padStart(2,'0')}</h4>
                             </div>
                             <div class="texto">${resp.comentario}</div>
                         </div>
@@ -161,5 +161,9 @@
             console.log(erro)
         })
     }
-
+    
+    function abrir_jogador(id_jogador){
+        sessionStorage.dadosidolo=id_jogador
+        window.location.href= `./pagidolo.html`
+    }
 </script>

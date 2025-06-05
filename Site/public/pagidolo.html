@@ -150,12 +150,12 @@
                     for(resp of resposta){
                         comentarios.innerHTML+=`<div class="comentario">
                 <div class="foto_perfil">
-                    <img src="image/icon/perfil.png" alt="">
+                    <img src="${resp.imagem}" alt="">
                 </div>
                 <div class="dados">
                     <div class="dados_perfil">
                         <h3>${resp.nome}</h3>
-                        <h4>${resp.ano}-${resp.mes}-${resp.dia}</h4>
+                        <h4>${resp.ano}-${String(resp.mes).padStart(2,'0')}-${String(resp.dia).padStart(2,'0')}</h4>
                     </div>
                     <div class="texto">${resp.comentario}</div>
                 </div>
