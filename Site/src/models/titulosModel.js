@@ -19,7 +19,7 @@ function dados_idolos(id){
 function enviarcomentario(idusuario,comentario,idtitulo){
     var instrucaoSql = `
     insert into comentario value
-    (default,${idusuario},'${comentario}',null,${idtitulo},default);
+    (default,${idusuario},'${comentario}',null,${idtitulo},null,default);
     `
     return database.executar(instrucaoSql);
 }

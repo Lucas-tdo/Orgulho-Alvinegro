@@ -19,7 +19,7 @@ function dados_titulos(id){
 function enviarcomentario(idusuario,comentario,ididolo){
     var instrucaoSql = `
     insert into comentario value
-    (default,${idusuario},'${comentario}','${ididolo}',null,default);
+    (default,${idusuario},'${comentario}','${ididolo}',null,null,default);
     `
     return database.executar(instrucaoSql);
 }

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagtitulo</title>
+    <link rel="stylesheet" href="style/pagcamisa.css">
+</head>
+<body onload="pegar_dados()">
+    <div class="container">
+        <div class="perfil">
+            <div class="voltar"><img src="image/icon/voltarido.png" onclick="Voltarmenu()" alt=""></div>
+            <div class="imagem">
+                <div class="retrato">
+                    <h1 id="nome_titulo"></h1>
+                    <div class="imagem_titulo" id="imagem_titulo"></div>
+                </div>
+            </div>
+            <div class="descricao">
+                <div class="usuario">
+                    <h2>Enviado por:</h2>
+                    <img src="image/fotousuarios/2025-5-29_16_0_16.jpg" alt="">
+                    <p>JP</p>
+                </div>
+                <h3>Preço:</h3>
+                <h3>Marca:</h3>
+                <h3>Ano:</h3>
+            </div>
+        </div>
+    
+    <div class="adicionarcomentario">
+        <input type="text" id="add_comentario" placeholder="Adicione um comentário...">
+        <img src="image/icon/enviar.png" alt="" onclick="enviarcomentário()">
+    </div>    
+    <br><br>
+    <div class="comentariostitulo">
+        <h1>Comentários:</h1>
+    </div>
+    <div class="comentarios" id="comentarios">
+        
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+    var idcamisa = sessionStorage.idcamisa
+    var id = sessionStorage.getItem("ID_USUARIO")
+
+    // function pegar_dados(){
+    //     fetch(`titulos/pegar_dados/${idtitulo}`,{
+    //         method:"GET",
+    //         headers : {
+    //             "Content-Type": "application/json",
+    //         }
+    //     })
+    //     .then(resposta=>{resposta.json().then(resposta=>{
+    //         nome_titulo.innerHTML=`${resposta[0].nome}-${resposta[0].ano}`
+    //         imagem_titulo.style.backgroundImage=`url(../${resposta[0].imagem})`;
+    //         descricao.innerHTML=resposta[0].descricao
+    //         })
+    //     })
+    //     .catch(erro=>{
+    //         console.log(erro)
+    //     })
+    //     dados_idolos()
+    // }
+
+    function Voltarmenu(){
+        window.location="decadas.html"
+    }
+
+    function enviarcomentário(){
+        var comentario = add_comentario.value
+        if(comentario==""){
+            alert("Erro é necessário comentar algo")
+        }
+        else if(id==undefined){
+            alert("Usuário não cadastrado")
+        }
+        else{
+            fetch(`titulos/enviarcomentario`,{
+                method:"POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body : JSON.stringify({
+                    idUsuarioServer: id,
+                    comentarioServer: comentario,
+                    idtituloServer: idtitulo,
+                })
+            })
+            .then(resposta=>{
+                add_comentario.value=``
+                pegarcomentarios()
+            })
+            .catch(erro=>{
+                console.log(erro)
+            })
+        }
+    }
+
+    function pegarcomentarios(){
+        comentarios.innerHTML=``
+        fetch(`titulos/pegarcomentarios/${idtitulo}`,{
+            method:"GET",
+                headers: {
+                "Content-Type": "application/json",
+                }
+        })
+        .then(resposta=>{resposta.json().then(resposta=>{
+                if(resposta.length>0){
+                    for(resp of resposta){
+                        comentarios.innerHTML+=`<div class="comentario">
+                        <div class="foto_perfil">
+                            <img src="${resp.imagem}" alt="">
+                        </div>
+                        <div class="dados">
+                            <div class="dados_perfil">
+                                <h3>${resp.nome}</h3>
+                                <h4>${resp.ano}-${String(resp.mes).padStart(2,'0')}-${String(resp.dia).padStart(2,'0')}</h4>
+                            </div>
+                            <div class="texto">${resp.comentario}</div>
+                        </div>
+                        </div>`
+                    }
+                }
+                else{
+                    comentarios.innerHTML=`<br><br><h3>Seja o primeiro a comentar!<h3><br><br>`
+                }
+            })
+        })
+        .catch(erro=>{
+            console.log(erro)
+        })
+    }
+    
+</script>

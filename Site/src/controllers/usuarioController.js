@@ -82,7 +82,8 @@ function autenticar(req,res){
                             email: resultadoAutenticar[0].email,
                             nome: resultadoAutenticar[0].nome,
                             senha: resultadoAutenticar[0].senha,
-                            imagem:resultadoAutenticar[0].imagem
+                            imagem:resultadoAutenticar[0].imagem,
+                            nivel:resultadoAutenticar[0].nivel
                         })
                     }
                     else if(resultadoAutenticar.length==0){

@@ -246,7 +246,10 @@
         function filtrar(){
             var ano = Number(ano_input.value)
             var ate = Number(ate_input.value)
-            if(ano==0){
+            if(ate==0 && ano==0){
+                adicionarimagens()
+            }
+            else if(ano==0){
                 var filtrado = camisa.filter(cam=>cam.ano<=ate)
                 listando(filtrado)
             }
@@ -258,6 +261,7 @@
                 var filtrado = camisa.filter(cam=>cam.ano>=ano && cam.ano<=ate)
                 listando(filtrado)
             }
+            
 
             checarfavoritos()
     }

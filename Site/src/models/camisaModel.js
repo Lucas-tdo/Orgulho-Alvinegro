@@ -32,7 +32,7 @@ function top_favoritas(){
     var instrucaoSql = `
         select c.imagem,count(*) as ordem from camisa c join
         favoritas f on
-        f.idcamisa=c.idcamisa  group by f.idcamisa order by count(*) desc limit 10 ;
+        f.idcamisa=c.idcamisa  group by f.idcamisa,c.imagem order by count(*) desc limit 10 ;
     `
     return database.executar(instrucaoSql);
 }

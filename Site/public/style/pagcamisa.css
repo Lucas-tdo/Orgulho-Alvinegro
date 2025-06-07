@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Bebas+Neue&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+.vazio{
+    display: none;
+}
+.container{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    align-items: center;
+    justify-content: center;
+}
+.perfil{
+    display: flex;
+    width: 100%;
+    height: 60vh;
+    flex-direction: row;
+}
+
+.voltar{
+    display: flex;
+    width: 5%;
+    height: 20%;
+    align-items: center;
+    justify-content: center;
+}
+
+.voltar img{
+    cursor: pointer;
+    width: 40px;
+}
+
+.imagem{
+    display: flex;
+    height: 100%;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.retrato{
+    display: flex;
+    height: 80%;
+    width: 50%;
+    background-color: #D9D9D9;
+    border: solid #D4AF37 5px;
+    border-radius: 10px;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.imagem_titulo{
+    width: 100%;
+    height: 70%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.descricao{
+    display: flex;
+    height: 100%;
+    width: 40%;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+}
+
+.usuario{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+}
+
+.usuario img{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin: 20px;
+}
+
+
+
+
+
+.idolo_jogador{
+    display: flex;
+    height: 85%;
+    width: 10%;
+    border: solid black 1px;
+    border-radius: 10px;
+    margin-left:20px ;
+    flex-shrink: 0;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    cursor: pointer;
+}
+
+.idolo_jogador img{
+    width: 70px;
+    height: 90px;
+    margin-top: 10px;
+}
+
+.idolo_jogador p{
+    font-size: 12px;
+}
+
+.adicionarcomentario{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 7vh;
+    border-bottom: 3px solid black;
+    margin-top: 70px;
+
+}
+
+.adicionarcomentario input{
+    border: none;
+    width: 99%;
+    height: 97%;
+    outline: none;
+    font-size: 20px;
+}
+
+.adicionarcomentario input::placeholder{
+    font-size: 25px;
+    color: black;
+}
+
+.adicionarcomentario img{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.comentarios{
+    display: flex;
+    height: auto;
+    width: 90%;
+    flex-direction: column;
+}
+
+.comentariostitulo{
+    width: 90%;
+    text-align: start;
+}
+
+.comentario{
+    display: flex;
+    background-color: hwb(0 0% 100% / 0.88);
+    width: 90%;
+    height: 120px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    flex-direction: row;
+    color: white;
+}
+
+.comentario .foto_perfil{
+    width: 10%;
+    height: 100%;
+}
+
+.comentario .foto_perfil  img{
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 30px;
+    border-radius: 25px;
+}
+
+.comentario .dados{
+    display: flex;
+    width: 90%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.dados_perfil{
+    display: flex;
+    width: 100%;
+    height: 40%;
+    align-items: center;
+    flex-direction: row;
+}
+
+.dados_perfil h4{
+    margin-left: 20px;
+}
+
+.texto{
+    overflow-x: auto;
+    scrollbar-color: #D9D9D9  transparent;
+
+}
