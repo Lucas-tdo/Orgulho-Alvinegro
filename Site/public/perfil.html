@@ -9,10 +9,9 @@
 <body>
     <div class="container">
         <nav>
-            <div class="menu">     
+            <div class="menu" >     
                     <div href="" class="secao atual">
-                        <a href="favoritos.html">
-
+                        <a href="#">
                             <img src="image/icon/perfil_conta.png" alt="">
                             <h2>Perfil</h2>
                         </a>
@@ -24,12 +23,24 @@
                             <h2>Favoritos</h2>
                         </a>
                     </div>
-                
                     <div class="secao">
+                        <a href="solicitação.html">
+                            <img src="image/icon/solicitacao.png" alt="">
+                            <h2>Solicitação</h2>
+                        </a>
+                    </div>
+                    <div class="vazio" id="gerencia">
+                        <a href="gerencia.html">
+                            <img src="image/icon/administação.png" alt="">
+                            <h2>Gerencia</h2>
+                        </a>
+                    </div>
+                
+                    <div class="secao" >
                         <a href="index.html">
                             <img src="image/icon/voltar.png" alt="">
                         </a>
-                    </div>        
+                    </div>      
             </div>
         </nav>
         <div class="conta">
@@ -49,6 +60,7 @@
 </html>
 <script>
     adicionardados()
+    checar_usuario()
     function adicionardados(){
         var nome = sessionStorage.getItem("NOME_USUARIO")
         var email = sessionStorage.getItem("EMAIL_USUARIO")
@@ -63,5 +75,12 @@
         imagem.src=foto
         imagem.style.borderRadius="70px"
         imagem.style.border="solid 5px black"
+    }
+
+    function checar_usuario(){
+        let nivel = sessionStorage.nivel
+        if(nivel=="Administrador"){
+            gerencia.className=`secao`
+        }
     }
 </script>

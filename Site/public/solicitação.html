@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/stylesolicitacao.css">
+    <title>Solicitação</title>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="menu" >     
+                    <div href="" class="secao">
+                        <a href="perfil.html">
+
+                            <img src="image/icon/perfil_conta.png" alt="">
+                            <h2>Perfil</h2>
+                        </a>
+                    </div>
+
+                    <div class="secao">
+                        <a href="favoritos.html">
+                            <img src="image/icon/favoritos_conta.png" alt="">
+                            <h2>Favoritos</h2>
+                        </a>
+                    </div>
+                    <div class="secao atual">
+                        <a href="solicitação.html">
+                            <img src="image/icon/solicitacao.png" alt="">
+                            <h2>Solicitação</h2>
+                        </a>
+                    </div>
+                    <div class="vazio" id="gerencia">
+                        <a href="gerencia.html">
+                            <img src="image/icon/administação.png" alt="">
+                            <h2>Gerencia</h2>
+                        </a>
+                    </div>
+                
+                    <div class="secao" >
+                        <a href="index.html">
+                            <img src="image/icon/voltar.png" alt="">
+                        </a>
+                    </div>      
+            </div>
+        </nav>
+        <div class="solicitacao">
+            <div class="titulo">
+                <h1>Camisas solicitadas pelo Usuário:</h1>
+            </div>
+            <div class="lista" id="lista"></div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    var idusuario = sessionStorage.getItem("ID_USUARIO")
+
+    function checar_usuario(){
+        let nivel = sessionStorage.nivel
+        if(nivel=="Administrador"){
+            gerencia.className=`secao`
+        }
+    }
+
+    function adicionarimagens(){
+        fetch(`solicitacao/adicionarimagens/${idusuario}`,{
+            method:"GET",
+            headers :{
+                "Content-Type": "application/json",
+            }
+        })
+        .then(resposta=>{resposta.json().then(resposta=>{
+            lista.innerHTML=``
+            console.log(resposta)
+            for(resp of resposta){
+                let imagem = ``
+                if(resp.situacao=="analise"){
+                    imagem="image/icon/analise.png"
+                }
+                else if(resp.situacao=="aprovado"){
+                    imagem="image/icon/aprovada.png"
+                }
+                else if(resp.situacao=="recusada"){
+                    imagem="image/icon/recusada.png"
+                }
+                lista.innerHTML+=`
+                    <div class="card">
+                        <div class="cabecario_camisa">
+                            <div class="titulo_camisa">
+                                <h2>${resp.nome} ${resp.marca}<br>${resp.ano}</h2>
+                            </div>
+                        </div>
+                        <img src="./${resp.imagem}" alt="" onclick="">
+                        <div class="footer">
+                            <p>Preço:R$${resp.preco}</p>
+                            <div class="status">
+                                <p>Status:</p>
+                                <img src="./${imagem}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+            })
+        })
+        .catch(erro=>{
+            console.log(erro)
+        })
+    }
+
+    checar_usuario()
+    adicionarimagens()
+</script>

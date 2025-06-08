@@ -21,6 +21,7 @@ var favoritaRouter = require("./src/routes/favorita")
 var decadaRouter= require("./src/routes/decada")
 var idoloRouter = require("./src/routes/idolos")
 var titulosRouter = require ("./src/routes/titulos")
+var solicitacaoRouter = require("./src/routes/solicitacao")
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -35,6 +36,7 @@ app.use("/favorita",favoritaRouter)
 app.use("/decada",decadaRouter)
 app.use("/idolos",idoloRouter)
 app.use("/titulos",titulosRouter)
+app.use("/solicitacao",solicitacaoRouter)
 app.listen(PORTA_APP, function () {
     console.log(`
     ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######  
