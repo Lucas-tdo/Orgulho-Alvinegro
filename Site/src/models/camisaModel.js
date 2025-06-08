@@ -36,10 +36,41 @@ function top_favoritas(){
     `
     return database.executar(instrucaoSql);
 }
+
+function pegar_dados(id){
+    var instrucaoSql = `
+    select c.nome,c.imagem,c.preco,c.marca,c.ano,u.nome as nome_user,u.imagem as imagem_user from camisa c join usuario u on
+    c.idusuario = u.idusuario
+    where idcamisa=${id} ;
+    `
+    return database.executar(instrucaoSql);
+}
+
+function enviarcomentario(idusuario,comentario,idcamisa){
+    var instrucaoSql = `
+    insert into comentario value
+    (default,${idusuario},'${comentario}',null,null,${idcamisa},default);
+    `
+    return database.executar(instrucaoSql);
+}
+
+function pegarcomentarios(idcamisa){
+        var instrucaoSql = `
+        select comentario,year(data) as ano,month(data) as mes,day(data) as dia,u.nome,u.imagem from comentario c join usuario u on
+        u.idusuario=c.idusuario where c.idcamisa=${idcamisa} order by data desc;
+        `
+    return database.executar(instrucaoSql);
+    }
+
+
+
 module.exports = {
     adicionarimagens,
     favoritar,
     desfavoritar,
     checarfavoritos,
-    top_favoritas
+    top_favoritas,
+    pegar_dados,
+    pegarcomentarios,
+    enviarcomentario
 }

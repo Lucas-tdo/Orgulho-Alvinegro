@@ -88,10 +88,77 @@ function top_favoritas(req,res){
     })
 }
 
+// pagina específica
+
+
+function pegar_dados(req,res){
+    var id = req.params.idCamisa
+    if(id==undefined){
+        res.status(400).send("Seu id está undefined")
+    }
+    else{
+        camisaModel.pegar_dados(id)
+        .then(resposta=>{
+            console.log("Dados da camisa localizados")
+            res.json(resposta)
+        })
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).send(erro.sqlMessage)
+        })
+    }
+}
+
+function enviarcomentario(req,res){
+    var idusuario= req.body.idUsuarioServer
+    var comentario = req.body.comentarioServer
+    var idcamisa = req.body.idcamisaServer
+    if (idusuario == undefined) {
+        res.status(400).send("Seu usuário está está undefined!");
+    } else if (comentario == undefined) {
+        res.status(400).send("Seu comentário está undefined!");
+    } else if (idcamisa == undefined) {
+        res.status(400).send("A camisa está undefined!");
+    }
+    else{
+        camisaModel.enviarcomentario(idusuario,comentario,idcamisa)
+        .then(resposta=>{
+            console.log("Comentário na pagína titulos adicionada")
+            res.json(resposta)
+        })
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).send(erro.sqlMessage)
+        })
+    }
+}
+
+
+function pegarcomentarios(req,res){
+    var id = req.params.idCamisa
+    if(id==undefined){
+        res.status(400).send("Seu id está undefined")
+    }
+    else{
+        camisaModel.pegarcomentarios(id)
+        .then(resposta=>{
+            console.log("Pegando comentários")
+            res.json(resposta)
+        })
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).send(erro.sqlMessage)
+        })
+    }
+}
+
 module.exports = {
     adicionarimagens,
     favoritar,
     desfavoritar,
     checarfavoritos,
-    top_favoritas
+    top_favoritas,
+    pegar_dados,
+    pegarcomentarios,
+    enviarcomentario
 }

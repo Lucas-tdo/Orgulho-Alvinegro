@@ -22,4 +22,18 @@ router.get("/checarfavoritos/:idUsuario",function(req,res){
 router.get("/top_favoritas",function(req,res){
     camisaController.top_favoritas(req,res)
 })
+
+router.get("/pegar_dados/:idCamisa",function(req,res){
+    camisaController.pegar_dados(req,res)
+})
+
+router.post("/enviarcomentario",function(req,res){
+    camisaController.enviarcomentario(req,res)
+})
+
+router.get("/pegarcomentarios/:idCamisa",function(req,res){
+    camisaController.pegarcomentarios(req,res)
+})
+
+
 module.exports = router ;

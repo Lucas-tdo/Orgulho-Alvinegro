@@ -133,7 +133,7 @@
                                 </div>
                                     <img id="camisa${resp.idcamisa}" src="image/icon/estrela.png" onclick="favoritar(${resp.idcamisa})" alt="">
                             </div>
-                            <img src="${resp.imagem}" alt="">
+                            <img src="${resp.imagem}" alt="" onclick="Enviar_camisa(${resp.idcamisa})">
                             <p>Média de preço:R$${resp.preco}</p>
                         </div>`
                     }
@@ -264,6 +264,11 @@
             
 
             checarfavoritos()
+    }
+
+    function Enviar_camisa(dados){
+            sessionStorage.dadoscamisa=dados
+            window.location="pagcamisa.html"
     }
 
     

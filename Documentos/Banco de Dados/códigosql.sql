@@ -13,7 +13,7 @@ constraint chknivel check (nivel in ("Usuário","Administrador"))
 );
 
 insert into usuario values
-(1,'Lucas','lucas@gmail.com',' ','Administrador');
+(1,'Lucas','lucas@gmail.com','Urubu100@','','Administrador');
 
 create table quiz(
 idquiz int auto_increment,
@@ -213,18 +213,4 @@ foreign key (ididolo) references idolo(ididolo),
 foreign key (idtitulo) references titulo(idtitulo),
 foreign key (idcamisa) references camisa(idcamisa)
 );
-
-
-select * from comentario;
-
-select comentario,year(data) as ano,month(data) as mes,day(data) as dia,u.nome from comentario c join usuario u on
-        u.idusuario=c.idusuario where c.idtitulo=2 order by data desc;
-select date(data) from comentario;
-
-drop table comentario;
-
-select * from usuario;
-
-
- select * from usuario where email='lucas@gmail.com';
 

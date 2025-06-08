@@ -19,12 +19,12 @@
             <div class="descricao">
                 <div class="usuario">
                     <h2>Enviado por:</h2>
-                    <img src="image/fotousuarios/2025-5-29_16_0_16.jpg" alt="">
-                    <p>JP</p>
+                    <img id="imagem_user" src="" alt="">
+                    <p id="nome_user"></p>
                 </div>
-                <h3>Preço:</h3>
-                <h3>Marca:</h3>
-                <h3>Ano:</h3>
+                <h3 id="preco">Preço:</h3>
+                <h3 id="marca">Marca:</h3>
+                <h3 id="ano">Ano:</h3>
             </div>
         </div>
     
@@ -44,30 +44,34 @@
 </html>
 
 <script>
-    var idcamisa = sessionStorage.idcamisa
+    var idcamisa = sessionStorage.dadoscamisa
     var id = sessionStorage.getItem("ID_USUARIO")
 
-    // function pegar_dados(){
-    //     fetch(`titulos/pegar_dados/${idtitulo}`,{
-    //         method:"GET",
-    //         headers : {
-    //             "Content-Type": "application/json",
-    //         }
-    //     })
-    //     .then(resposta=>{resposta.json().then(resposta=>{
-    //         nome_titulo.innerHTML=`${resposta[0].nome}-${resposta[0].ano}`
-    //         imagem_titulo.style.backgroundImage=`url(../${resposta[0].imagem})`;
-    //         descricao.innerHTML=resposta[0].descricao
-    //         })
-    //     })
-    //     .catch(erro=>{
-    //         console.log(erro)
-    //     })
-    //     dados_idolos()
-    // }
+    function pegar_dados(){
+        fetch(`camisa/pegar_dados/${idcamisa}`,{
+            method:"GET",
+            headers : {
+                "Content-Type": "application/json",
+            }
+        })
+        .then(resposta=>{resposta.json().then(resposta=>{
+            nome_user.innerHTML=`${resposta[0].nome_user}`
+            imagem_user.src=`../${resposta[0].imagem_user}`
+            nome_titulo.innerHTML=`${resposta[0].nome}-${resposta[0].marca}`
+            imagem_titulo.style.backgroundImage=`url(../${resposta[0].imagem})`;
+            preco.innerHTML+=` ${resposta[0].preco}`
+            marca.innerHTML+=` ${resposta[0].marca}`
+            ano.innerHTML+=` ${resposta[0].ano}`
+            pegarcomentarios()
+            })
+        })
+        .catch(erro=>{
+            console.log(erro)
+        })
+    }
 
     function Voltarmenu(){
-        window.location="decadas.html"
+        window.location="camisas.html"
     }
 
     function enviarcomentário(){
@@ -79,7 +83,7 @@
             alert("Usuário não cadastrado")
         }
         else{
-            fetch(`titulos/enviarcomentario`,{
+            fetch(`camisa/enviarcomentario`,{
                 method:"POST",
                 headers: {
                 "Content-Type": "application/json",
@@ -87,7 +91,7 @@
                 body : JSON.stringify({
                     idUsuarioServer: id,
                     comentarioServer: comentario,
-                    idtituloServer: idtitulo,
+                    idcamisaServer: idcamisa,
                 })
             })
             .then(resposta=>{
@@ -102,7 +106,7 @@
 
     function pegarcomentarios(){
         comentarios.innerHTML=``
-        fetch(`titulos/pegarcomentarios/${idtitulo}`,{
+        fetch(`camisa/pegarcomentarios/${idcamisa}`,{
             method:"GET",
                 headers: {
                 "Content-Type": "application/json",
