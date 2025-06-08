@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 
+
+const upload = require("../configimagens/configCamisa")
 var camisaController = require("../controllers/camisaController")
 
 router.get("/adicionarimagens",function(req,res){
@@ -33,6 +35,10 @@ router.post("/enviarcomentario",function(req,res){
 
 router.get("/pegarcomentarios/:idCamisa",function(req,res){
     camisaController.pegarcomentarios(req,res)
+})
+
+router.post("/cadastrar_camisa",upload.single('imagem'),function (req,res){
+    camisaController.cadastrar_camisa(req,res)
 })
 
 

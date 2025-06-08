@@ -7,6 +7,47 @@
     <link rel="stylesheet" href="style/stylecamisas.css">
 </head>
 <body onload="checarlogado()">
+    <div class="vazio" id="adicionar_camisas">
+        <h2>Adicione os dados da sua solicitação:</h2>
+        <div class="input_camisa">
+            <h3>Tipo:</h3>
+        <select id="select_tipo">
+            <option selected >1° Camisa</option>
+            <option>2° Camisa</option>
+            <option>3° Camisa</option>
+            <option>4° Camisa</option>
+            <option>5° Camisa</option>
+            <option>Camisa de treino</option>
+        </select>
+        </div>
+        <div class="input_camisa">
+            <h3>Preço:</h3>
+            <input type="number" id="preco_camisa" placeholder="Ex:189.90"> 
+        </div>
+        <div class="input_camisa">
+            <h3>Marca:</h3>
+        <select id="select_marca">
+            <option>Reebook</option>
+            <option>Kappa</option>
+            <option>Topper</option>
+            <option>Puma</option>
+            <option>Finta</option>
+            <option>Nenhuma</option>
+        </select>
+        </div>
+        <div class="input_camisa">
+            <h3>Ano:</h3>
+            <input type="number"  id="ano_camisa" placeholder="Ex:2004">
+        </div>
+        <div class="input_camisa">
+            <h3>Imagem:</h3>
+            <input type="file" name="" id="imagem_camisa">
+        </div>
+        <div class="buttons">
+            <img onclick="fechar_solicitação()" src="image/icon/voltarido.png" alt="">
+            <button onclick="solicitar()" id="solicitar">Solicitar</button>
+        </div>
+    </div>
     <div class="container">
         <nav>
             <div class="logo">
@@ -58,6 +99,9 @@
                         </div>
                     </div>
                     <div class="coluna2">
+                        <button onclick="abrir_solicitação()">Solicitar camisa <img src="image/icon/adicionar.png" ></button>
+                    </div>
+                    <div class="coluna3">
                         <div class="linha"></div>
                         <button onclick="filtrar()"><img src="image/icon/lupa.png" alt=""></button>
                     </div>
@@ -125,17 +169,20 @@
             camisas.innerHTML=``
             var texto = ''  
                 for (resp of resposta) {
-                        texto+=`
-                        <div class="card">
-                            <div class="cabecario_camisa">
-                                <div class="titulo_camisa">
-                                    <h2>${resp.nome} ${resp.marca} <br>${resp.ano}  </h2>
+                        if(resp.situacao=="aprovado"){
+                            texto+=`
+                            <div class="card">
+                                <div class="cabecario_camisa">
+                                    <div class="titulo_camisa">
+                                        <h2>${resp.nome} ${resp.marca} <br>${resp.ano}  </h2>
+                                    </div>
+                                        <img id="camisa${resp.idcamisa}" src="image/icon/estrela.png" onclick="favoritar(${resp.idcamisa})" alt="">
                                 </div>
-                                    <img id="camisa${resp.idcamisa}" src="image/icon/estrela.png" onclick="favoritar(${resp.idcamisa})" alt="">
-                            </div>
-                            <img src="${resp.imagem}" alt="" onclick="Enviar_camisa(${resp.idcamisa})">
-                            <p>Média de preço:R$${resp.preco}</p>
-                        </div>`
+                                <img src="${resp.imagem}" alt="" onclick="Enviar_camisa(${resp.idcamisa})">
+                                <p>Média de preço:R$${resp.preco}</p>
+                            </div>`
+                        }
+                        
                     }
                 camisas.innerHTML+=texto
         }
@@ -271,7 +318,47 @@
             window.location="pagcamisa.html"
     }
 
-    
+    function abrir_solicitação(){
+        adicionar_camisas.className="adicionar_camisas"
+    }
 
+    function fechar_solicitação(){
+        adicionar_camisas.className="vazio"
+    }
         
+    function solicitar(){
+        
+        let tipo = select_tipo.value
+        let preco = preco_camisa.value
+        let marca = select_marca.value
+        let ano = ano_camisa.value
+        let imagem = imagem_camisa.value
+        if(preco=="" || ano=="" || imagem==""){
+            alert("Todos os campos devem estar preenchidos!")
+        }
+        else if(idusuario==undefined){
+            alert("Usuário não logado")
+        }
+        else{
+            const form = new FormData()
+            form.append('idusuario',idusuario)
+            form.append('tipo',tipo)
+            form.append('preco',preco)
+            form.append('marca',marca)
+            form.append('ano',ano)
+            form.append('imagem',imagem_camisa.files[0])
+            fetch("camisa/cadastrar_camisa",{
+                method:"POST",
+                body : form,
+            })
+            .then(resposta=>{
+                listando()
+                fechar_solicitação()
+            })
+            .catch(erro=>{
+                console.log(erro)
+            })
+        }
+    }
+
 </script>

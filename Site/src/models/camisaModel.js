@@ -2,7 +2,7 @@ var database = require("../database/config")
 
 function adicionarimagens(){
     var instrucaoSql = `
-    select * from camisa;
+    select * from camisa order by ano desc;
     `
     return database.executar(instrucaoSql);
 }
@@ -62,6 +62,13 @@ function pegarcomentarios(idcamisa){
     return database.executar(instrucaoSql);
     }
 
+function cadastrar_camisa(idusuario,tipo,preco,marca,ano,imagem){
+    var instrucaoSql = `
+        insert into camisa values
+        (default,${idusuario},'${tipo}','image/camisas/${imagem}','${preco}','${marca}','${ano}',default);
+        `
+    return database.executar(instrucaoSql);
+}
 
 
 module.exports = {
@@ -72,5 +79,6 @@ module.exports = {
     top_favoritas,
     pegar_dados,
     pegarcomentarios,
-    enviarcomentario
+    enviarcomentario,
+    cadastrar_camisa
 }

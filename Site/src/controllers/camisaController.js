@@ -152,6 +152,42 @@ function pegarcomentarios(req,res){
     }
 }
 
+function cadastrar_camisa(req,res){
+    var idusuario = req.body.idusuario 
+    var tipo  = req.body.tipo 
+    var preco = req.body.preco 
+    var marca  = req.body.marca 
+    var ano = req.body.ano 
+    var imagem  = req.file.filename 
+
+    if(idusuario == undefined){
+        res.status(400).send("Seu id de usuário está undefined!")
+    }
+    else if(tipo == undefined){
+        res.status(400).send("O tipo da sua camisa está undefined!")
+    }
+    else if(preco == undefined){
+        res.status(400).send("O preco da sua camisa está undefined!")
+    }
+    else if(marca == undefined){
+        res.status(400).send("A marca da sua camisa está undefined!")
+    }
+    else if(ano == undefined){
+        res.status(400).send("O ano da sua camisa está undefined!")
+    }
+    else{
+        camisaModel.cadastrar_camisa(idusuario,tipo,preco,marca,ano,imagem)
+        .then(resposta=>{
+            console.log("Camisa solicitada")
+            res.json(resposta)
+        })
+        .catch(erro=>{
+            console.log(erro)
+            res.status(500).send(erro.sqlMessage)
+        })
+    }
+}
+
 module.exports = {
     adicionarimagens,
     favoritar,
@@ -160,5 +196,6 @@ module.exports = {
     top_favoritas,
     pegar_dados,
     pegarcomentarios,
-    enviarcomentario
+    enviarcomentario,
+    cadastrar_camisa
 }
