@@ -250,3 +250,8 @@ nav img{
 .esquerda{
     border-right: white solid 3px;
 }
+
+.lista h1{
+    color: black;
+    text-align: center;
+}

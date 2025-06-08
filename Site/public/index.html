@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Home </title>   
+    <link rel="shortcut icon" href="image/logo/Símbolo Branco.png" type="image/x-icon">
     <link rel="stylesheet" href="style/styleindex.css">
+    <link rel="shortcut icon" href="image/logo/Símbolo Branco.png" type="image/x-icon">
 </head>
 <body onload="checarlogado()">
     <div class="container">
@@ -37,7 +39,7 @@
                 <h2>GLORIOSA TRADIÇÃO</h2>
             </div>
             <div class="cards">
-                <div class="card">
+                <div class="card" onclick="jogos()">
                     <div class="titulojogo">
                         <h1>Proximo jogo:</h1>
                     </div>
@@ -45,14 +47,14 @@
                     <div class="jogo">
                         <img src="image/icon/logo.png" alt="">
                         <img id="x" src="image/icon/x.png" alt="">
-                        <img src="image/icon/flamengo.png" alt="">
+                        <img src="image/icon/seatle.png" alt="">
                     </div>
                     <div class="horario">
-                        <p>Domingo,16:00</p>
+                        <p>Domingo,23:00</p>
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" onclick="noticias()"> 
                     <div class="titulonoticias">
                         <h1>Últimas notícias:</h1>
                     </div>
@@ -61,10 +63,10 @@
                         <img src="image/icon/ge.svg" alt="">
                     </div>
                     <div class="tituloge">
-                        <h1>Botafogo na libertadores:</h1>
+                        <h1>Botafogo contrata Arthur Cabral:</h1>
                     </div>
                     <div class="texto">
-                        <p>Botafogo enfrenta o Estudiantes pela libertadores nessa quarta feira, part...</p>
+                        <p>Arthur Cabral assina com o Botafogo e será reforço para a Copa do Mundo de Clubes</p>
                     </div>
                 </div>
 
@@ -97,5 +99,13 @@
             logado.className=`logado`
         }
         foto_perfil()
+    }
+
+    function jogos(){
+        window.location.href="https://ge.globo.com/futebol/times/botafogo/agenda-de-jogos-do-botafogo/#/proximos-jogosv"
+    }
+
+    function noticias(){
+        window.location.href="https://ge.globo.com/futebol/times/botafogo/"
     }
 </script>

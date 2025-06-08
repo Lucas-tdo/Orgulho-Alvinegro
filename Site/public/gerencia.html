@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/stylegerencia.css">
-    <title>Solicitação</title>
+    <title>Solicitação </title>   
+    <link rel="shortcut icon" href="image/logo/Símbolo Branco.png" type="image/x-icon">
 </head>
 <body>
     <div class="container">
@@ -33,7 +34,7 @@
                     <div class="secao atual" id="gerencia">
                         <a href="gerencia.html">
                             <img src="image/icon/administação.png" alt="">
-                            <h2>Gerencia</h2>
+                            <h2>Gerência</h2>
                         </a>
                     </div>
                 
@@ -102,7 +103,7 @@
                             <div class="footer">
                                 <p>Preço:R$${resp.preco}</p>
                                 <div class="status_aprovada">
-                                    <img src="./image/icon/lixeira.png" alt="">
+                                    <img src="./image/icon/lixeira.png" onclick="deletar(${resp.idcamisa},'aprovado')" alt="">
                                 </div>
                             </div>
                         </div>
@@ -111,31 +112,34 @@
                 }
                 else{
                     if(resposta.length==0){
-                        listagem.innerHTML=`<h1>Sem camisas em análise`
+                        listagem.innerHTML=`<h1>Sem camisas em análise</h1>`
                     }
-                    for(resp of resposta){
+                    else{
+                        for(resp of resposta){
                         listagem.innerHTML+=`
-                    <div class="card">
-                        <div class="cabecario_camisa">
-                            <div class="titulo_camisa">
-                                <h2>${resp.nome} ${resp.marca}-${resp.ano}</h2>
-                            </div>
-                        </div>
-                        <img src="./${resp.imagem}" alt="">
-                        <div class="footer">
-                            <p>Preço:R$${resp.preco}</p>
-                            <div class="status_situacao">
-                                <div class="button_situacao esquerda">
-                                    <img src="image/icon/aprovada_branca.png" alt="" onclick="aprovar(${resp.idcamisa})">
-                                </div>
-                                <div class="button_situacao">
-                                    <img src="image/icon/recusada.png" alt="">
+                        <div class="card">
+                            <div class="cabecario_camisa">
+                                <div class="titulo_camisa">
+                                    <h2>${resp.nome} ${resp.marca}-${resp.ano}</h2>
                                 </div>
                             </div>
+                            <img src="./${resp.imagem}" alt="">
+                            <div class="footer">
+                                <p>Preço:R$${resp.preco}</p>
+                                <div class="status_situacao">
+                                    <div class="button_situacao esquerda">
+                                        <img src="image/icon/aprovada_branca.png" alt="" onclick="aprovar(${resp.idcamisa})">
+                                    </div>
+                                    <div class="button_situacao">
+                                        <img src="image/icon/recusada.png" onclick="deletar(${resp.idcamisa},'analise')" alt="">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                         `
                     }
+                    }   
+                    
                 }
             })
         })
@@ -145,7 +149,41 @@
     }
     
     function aprovar(idcamisa){
-        
+        fetch(`gerencia/aprovar/${idcamisa}`,{
+            method:"PUT",
+            headers :{
+                "Content-Type": "application/json",
+            }
+        })
+        .then(resposta=>{resposta.json().then(resposta=>{
+            console.log(resposta)
+                abrir_analise()
+            })
+        })
+        .catch(erro=>{
+            console.log(erro)
+        })
+    }
+
+    function deletar(idcamisa,paginaatt){
+        fetch(`gerencia/deletar/${idcamisa}`,{
+            method:"DELETE",
+            headers :{
+                "Content-Type": "application/json",
+            }
+        })
+        .then(resposta=>{
+            console.log(resposta)
+            if(paginaatt=="aprovado"){
+                abrir_aprovados()
+            }
+            else{
+                abrir_analise()
+            }
+        })
+        .catch(erro=>{
+            console.log(erro)
+        })
     }
 
     abrir_aprovados()

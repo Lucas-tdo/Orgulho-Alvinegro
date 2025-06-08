@@ -18,6 +18,44 @@ function listar(req,res){
     }
 }
 
+function aprovar(req,res){
+    var  idcamisa = req.params.idcamisa
+    if( idcamisa==undefined){
+            res.status(400).send("Seu id está undefined")
+        }
+        else{
+            gerenciaModel.aprovar(idcamisa)
+            .then(resposta=>{
+                console.log(`${idcamisa} aprovada!`)
+                res.json(resposta)
+            })
+            .catch(erro=>{
+                console.log(erro)
+                res.status(500).send(erro.sqlMessage)
+            })
+    }
+}
+
+function deletar(req,res){
+    var  idcamisa = req.params.idcamisa
+    if( idcamisa==undefined){
+            res.status(400).send("Seu id está undefined")
+        }
+        else{
+            gerenciaModel.deletar(idcamisa)
+            .then(resposta=>{
+                console.log(`${idcamisa} deletada!`)
+                res.json(resposta)
+            })
+            .catch(erro=>{
+                console.log(erro)
+                res.status(500).send(erro.sqlMessage)
+            })
+    }
+}
+
 module.exports={
-    listar
+    listar,
+    aprovar,
+    deletar
 }

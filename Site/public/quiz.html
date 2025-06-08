@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
+    <title>Quiz </title>   
+    <link rel="shortcut icon" href="image/logo/Símbolo Branco.png" type="image/x-icon">
     <link rel="stylesheet" href="style/stylequiz.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -36,7 +37,7 @@
                 <h2>Orgulho Alvinegro</h2>
             </div>
             <div class="iniciar">
-                <a href="quiz.tentativa.html"><button>Iniciar</button></a>
+                <a onclick="iniciar()"><button>Iniciar</button></a>
             </div>
             <div class="kpi">
                 <div class="card">
@@ -219,6 +220,15 @@
             console.log(erro)
         })
         
+    }
+
+    function iniciar(){
+        if(id==undefined){
+            alert("O usuário precisa estar logado")
+        }
+        else{
+            window.location.href="/quiz.tentativa.html"
+        }
     }
 
     
