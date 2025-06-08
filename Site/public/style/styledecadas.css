@@ -219,6 +219,7 @@ nav a {
 .coluna3 img{
     width: 40px;
     height: 40px;
+    cursor: pointer;
 }
 .coluna3 button{
     border: none;

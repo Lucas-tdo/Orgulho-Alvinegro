@@ -9,7 +9,7 @@ function pegar_dados(id){
 
 function dados_idolos(id){
     var instrucaoSql = `
-        select i.idIdolo,i.nome,i.imagem,i.chegada,i.saida from titulo_dos_idolos ti
+        select i.ididolo,i.nome,i.imagem,i.chegada,i.saida from titulo_dos_idolos ti
         join idolo i on
         i.ididolo = ti.ididolo where idtitulo=${id};
         `

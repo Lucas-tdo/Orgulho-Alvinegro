@@ -13,7 +13,7 @@ constraint chknivel check (nivel in ("Usuário","Administrador"))
 );
 
 insert into usuario values
-(1,'Lucas','lucas@gmail.com','Urubu100@','image/fotousuarios/2025-5-30_15_49_5.jpg','Administrador');
+(1,'Lucas','lucas@gmail.com','Urubu100@','','Administrador');
 
 create table quiz(
 idquiz int auto_increment,
@@ -23,10 +23,6 @@ fkusuario int,
 primary key(idquiz,fkusuario),
 foreign key (fkusuario) references usuario (idusuario)
 );
-
-select c.nome,c.imagem,c.preco,c.marca,c.ano,u.nome as nome_user,u.imagem as imagem_user from camisa c join usuario u on
-c.idusuario = u.idusuario
- where idcamisa=1 ;
 
 create table camisa(
 idcamisa int auto_increment,
@@ -41,8 +37,7 @@ primary key(idcamisa,idusuario),
 foreign key (idusuario) references usuario (idusuario),
 constraint chksituacao check (situacao in ('analise','aprovado','recusada'))
 );
-select * from camisa order by ano desc;
-select * from camisa order by ;
+
 insert into camisa values
 (default,1,'1° Camisa','image/camisas/camisa2024-1.png','219.90','Reebook','2024','aprovado'),
 (default,1,'2° Camisa','image/camisas/camisa2024-2.png','219.90','Reebook','2024','aprovado'),
@@ -159,8 +154,6 @@ insert into idolo values
 (default, 'Nilton Santos', 'image/jogadores/niltonsantos.png', 'Poucos jogadores podem ser considerados sinônimos de seus clubes. Nilton Santos é um deles. Craque, revolucionou a função do lateral-esquerdo. Por isso, é considerado o maior da história em sua posição.', '1948', '1964');
 
 
-select distinct marca from camisa ;
-
 create table titulo_dos_idolos(
 ididolo int,
 idtitulo int,
@@ -221,4 +214,21 @@ foreign key (idtitulo) references titulo(idtitulo),
 foreign key (idcamisa) references camisa(idcamisa)
 );
 
-select * from comentario;			
+select c.imagem,count(*) as ordem from camisa c join
+        favoritas f on
+        f.idcamisa=c.idcamisa  group by f.idcamisa,c.imagem order by count(*) desc limit 10 ;
+
+
+select * from comentario;
+
+select comentario,year(data) as ano,month(data) as mes,day(data) as dia,u.nome from comentario c join usuario u on
+        u.idusuario=c.idusuario where c.idtitulo=2 order by data desc;
+select date(data) from comentario;
+
+drop table comentario;
+
+select * from usuario;
+
+
+ select * from usuario where email='lucas@gmail.com';
+
