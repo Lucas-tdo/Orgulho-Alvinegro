@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/stylegerencia.css">
+    <title>Solicitação</title>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="menu" >     
+                    <div href="" class="secao">
+                        <a href="perfil.html">
+
+                            <img src="image/icon/perfil_conta.png" alt="">
+                            <h2>Perfil</h2>
+                        </a>
+                    </div>
+
+                    <div class="secao">
+                        <a href="favoritos.html">
+                            <img src="image/icon/favoritos_conta.png" alt="">
+                            <h2>Favoritos</h2>
+                        </a>
+                    </div>
+                    <div class="secao">
+                        <a href="solicitação.html">
+                            <img src="image/icon/solicitacao.png" alt="">
+                            <h2>Solicitação</h2>
+                        </a>
+                    </div>
+                    <div class="secao atual" id="gerencia">
+                        <a href="gerencia.html">
+                            <img src="image/icon/administação.png" alt="">
+                            <h2>Gerencia</h2>
+                        </a>
+                    </div>
+                
+                    <div class="secao" >
+                        <a href="index.html">
+                            <img src="image/icon/voltar.png" alt="">
+                        </a>
+                    </div>      
+            </div>
+        </nav>
+        <div class="solicitacao">
+            <div class="titulo">
+                <h1>Gerenciamento de camisas do site:</h1>
+            </div>
+            <div class="selecao">
+                
+                    <button id="aprovado" class="atual_button" onclick="abrir_aprovados()">Aprovados</button>
+                
+                
+                    <button id="Analise" class="nao_selected" onclick="abrir_analise()">Análise</button>
+                
+            </div>
+            <div class="lista" id="listagem">
+                
+               
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    var idusuario = sessionStorage.getItem("ID_USUARIO")
+
+    function abrir_analise(){
+        Analise.className="atual_button"
+        aprovado.className="nao_selected"
+        listar("analise")
+    }
+
+    function abrir_aprovados(){
+        aprovado.className="atual_button"
+        Analise.className="nao_selected"
+        listar("aprovado")
+    }
+
+    function listar(tipo){
+        listagem.innerHTML=""
+        fetch(`gerencia/listar/${tipo}`,{
+            method:"GET",
+            headers :{
+                "Content-Type": "application/json",
+            }
+        })
+        .then(resposta=>{resposta.json().then(resposta=>{
+                if(tipo=="aprovado"){
+                    for(resp of resposta){
+                        listagem.innerHTML+=`
+                        <div class="card">
+                            <div class="cabecario_camisa">
+                                <div class="titulo_camisa">
+                                    <h2>${resp.nome} ${resp.marca}-${resp.ano}</h2>
+                                </div>
+                            </div>
+                            <img src="./${resp.imagem}" alt="">
+                            <div class="footer">
+                                <p>Preço:R$${resp.preco}</p>
+                                <div class="status_aprovada">
+                                    <img src="./image/icon/lixeira.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        `
+                    }
+                }
+                else{
+                    if(resposta.length==0){
+                        listagem.innerHTML=`<h1>Sem camisas em análise`
+                    }
+                    for(resp of resposta){
+                        listagem.innerHTML+=`
+                    <div class="card">
+                        <div class="cabecario_camisa">
+                            <div class="titulo_camisa">
+                                <h2>${resp.nome} ${resp.marca}-${resp.ano}</h2>
+                            </div>
+                        </div>
+                        <img src="./${resp.imagem}" alt="">
+                        <div class="footer">
+                            <p>Preço:R$${resp.preco}</p>
+                            <div class="status_situacao">
+                                <div class="button_situacao esquerda">
+                                    <img src="image/icon/aprovada_branca.png" alt="" onclick="aprovar(${resp.idcamisa})">
+                                </div>
+                                <div class="button_situacao">
+                                    <img src="image/icon/recusada.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        `
+                    }
+                }
+            })
+        })
+        .catch(erro=>{
+            console.log(erro)
+        })
+    }
+    
+    function aprovar(idcamisa){
+        
+    }
+
+    abrir_aprovados()
+</script>

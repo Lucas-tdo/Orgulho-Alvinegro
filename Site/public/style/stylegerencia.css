@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Bebas+Neue&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+.vazio{
+    display: none;
+}
+.container{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-direction: row;
+    font-family: "Poppins", sans-serif;
+}
+
+nav{
+    display: flex;
+    height: 100%;
+    width: 15%;
+    background-color: black;
+    
+}
+nav img{
+    width: 40px;
+    height: 40px;
+}
+
+.menu{
+    display: flex;
+    width: 100%;
+    height: 60%;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.secao{
+    display: flex;
+    width: 85%;
+    height: 15%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.secao h2{
+    font-weight: 400;
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.atual{
+    background-color: #262323;
+    border-radius: 10px;
+}
+
+.secao a{
+    display: flex;
+    text-decoration: none;
+    color: white;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+}
+
+/* main */
+.solicitacao{
+    display: flex;
+    height: 100%;
+    width: 85%;
+    background-color: #333333;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo{
+    display: flex;
+    height: 15%;
+    width: 90%;
+    align-items: center ;
+}
+
+.solicitacao h1{
+    color: white;
+    margin: 20px;
+}
+
+/* seleção */
+.selecao{
+    display: flex;
+    height: 6%;
+    width: 90%;
+    background-color: transparent;
+    border-radius: 10px;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    flex-shrink: 0;
+    justify-content: space-between;
+}
+
+
+.selecao button{
+    height: 100%;
+    width: 50%;
+    color: black;
+    cursor: pointer;
+    font-size: 20px;
+    border: black 3px solid;
+}
+
+#aprovado{
+    border-radius: 10px 0 0 10px;
+}
+#Analise{
+    border-radius: 0 10px 10px 0 ;
+}
+
+.atual_button{
+    background-color:#D4AF37 ;
+    color: black;
+}
+
+.nao_selected{
+    background-color:#55440a;
+}
+/* camisas */
+.lista{
+    display: flex;
+    background-color: aliceblue;
+    height: 70%;
+    width: 90%;
+    border-radius: 20px;
+    flex-direction: row;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    overflow-x: auto;
+}
+
+
+.card{
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    margin-left: 15px;
+    background-color: white;
+    height: 30%;
+    width: 15%;
+    border-radius: 5px;
+    flex-shrink: 0;
+    align-items: center;
+    border: black 2px solid;
+}
+
+.card img{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 45%;
+    height: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.card p{
+    font-size: 12px;
+    font-weight: 500;
+}
+.cabecario_camisa{
+    display: flex;
+    height: 20%;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.cabecario_camisa h2{
+    font-size: 10px;
+    text-align: center;
+    margin: 5px;
+}
+
+
+.cabecario_camisa img{
+    width: 100%;
+    height: 50%;
+    margin-top: 5px ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.footer{
+    display: flex;
+    width: 100%;
+    height: 28%;
+    flex-direction: column;
+    margin: 0;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.status_aprovada{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+}
+
+
+.status_aprovada img{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.status_situacao{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.status_situacao img{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.status_situacao .button_situacao{
+    display: flex;
+    height: 80%;
+    width: 50%;
+    background-color: black;
+    align-items: center;
+    justify-content: center;
+}
+
+.esquerda{
+    border-right: white solid 3px;
+}
