@@ -449,3 +449,27 @@ input::file-selector-button {
     cursor: pointer;
     margin-bottom: 25px;
 }
+
+.mensagem{
+    position: absolute;
+    background-color: #d9d9d9;
+    width: 200px;
+    height: 100px;
+    top: 2%;
+    right: 1%;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.mensagem img{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+}
+
+.mensagem p{
+    font-size: 15px;
+    font-weight: 400    ;
+}

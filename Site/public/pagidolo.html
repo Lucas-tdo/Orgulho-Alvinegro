@@ -50,6 +50,10 @@
             </div>
         </div>
     </div>
+    <div class="vazio" id="mensagem">
+          <img src="image/icon/negado.png" id="imagem_mensagem" alt="">
+          <p id="mensagem_texto"></p>
+    </div>
 </div>
 </body>
 </html>
@@ -111,10 +115,10 @@
     function enviarcomentário(){
         var comentario = add_comentario.value
         if(comentario==""){
-            alert("Erro é necessário comentar algo")
+            exibir_mensagem("É necessário comentar algo")
         }
         else if(id==undefined){
-            alert("Usuário não cadastrado")
+            exibir_mensagem("Usuário não cadastrado")
         }
         else{
             fetch(`idolos/enviarcomentario`,{
@@ -176,5 +180,14 @@
     function abrir_titulo(id_titulo){
         sessionStorage.dadostitulo=id_titulo
         window.location.href= `./pagtitulo.html`
+    }
+
+    function exibir_mensagem(texto){     
+        imagem_mensagem.src=`image/icon/exclamacao.png`
+        mensagem.className=`mensagem`
+        mensagem_texto.innerHTML=`${texto}`
+        setTimeout(()=>{
+        mensagem.className=`vazio`
+        },1500)
     }
 </script>

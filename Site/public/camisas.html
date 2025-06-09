@@ -115,6 +115,10 @@
             </div>
         </div>
     </div>
+    <div class="vazio" id="mensagem">
+          <img src="image/icon/negado.png" id="imagem_mensagem" alt="">
+          <p id="mensagem_texto"></p>
+    </div>
     
 </body>
 </html>
@@ -191,7 +195,7 @@
         function favoritar(id){
             var camisa = document.querySelector(`#camisa${id}`)
             if(idusuario==undefined){
-                alert("Sem conta")
+                exibir_mensagem("O usuário precisa estar logado","exclamação")
             }
             else{
                 if(camisa.src.includes(`image/icon/estrelafavoritada.png`)){
@@ -335,10 +339,10 @@
         let ano = ano_camisa.value
         let imagem = imagem_camisa.value
         if(preco=="" || ano=="" || imagem==""){
-            alert("Todos os campos devem estar preenchidos!")
+            exibir_mensagem("Todos os campos devem estar preenchidos!","exclamação")
         }
         else if(idusuario==undefined){
-            alert("Usuário não logado")
+            exibir_mensagem("Usuário não logado","exclamação")
         }
         else{
             const form = new FormData()
@@ -355,11 +359,26 @@
             .then(resposta=>{
                 fechar_solicitação()
                 listando(camisa)
+                exibir_mensagem("Camisa solicitada","Aprovada")
             })
             .catch(erro=>{
                 console.log(erro)
             })
         }
+    }
+
+    function exibir_mensagem(texto,imagem){     
+        if(imagem=="exclamação"){
+            imagem_mensagem.src=`image/icon/exclamacao.png`
+        }
+        else{
+            imagem_mensagem.src="image/icon/aprovada.png"
+        }
+        mensagem.className=`mensagem`
+        mensagem_texto.innerHTML=`${texto}`
+        setTimeout(()=>{
+          mensagem.className=`vazio`
+        },1500)
     }
 
 </script>

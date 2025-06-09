@@ -160,6 +160,10 @@
                 </div>
         </div>
     </div>
+    <div class="vazio" id="mensagem">
+          <img src="image/icon/negado.png" id="imagem_mensagem" alt="">
+          <p id="mensagem_texto"></p>
+    </div>
 </body>
 </html>
 
@@ -382,7 +386,9 @@
                 listaridolos(filtradoi)
             }
             else{
-                alert("Precisa de pelo menos um filtro para ter resultados")
+                exibir_mensagem("Precisa de pelo menos um filtro para ter resultados")
+                listartitulos(filtradot)
+                listaridolos(filtradoi)
             }   
         }
 
@@ -394,5 +400,14 @@
         function Enviar_idolo(dados){
             sessionStorage.dadosidolo=dados
             window.location="pagidolo.html"
+        }
+
+        function exibir_mensagem(texto){     
+            imagem_mensagem.src=`image/icon/exclamacao.png`
+            mensagem.className=`mensagem`
+            mensagem_texto.innerHTML=`${texto}`
+            setTimeout(()=>{
+            mensagem.className=`vazio`
+            },1500)
         }
 </script>

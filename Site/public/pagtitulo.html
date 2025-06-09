@@ -37,6 +37,11 @@
     <div class="comentarios" id="comentarios">
         
     </div>
+
+    <div class="vazio" id="mensagem">
+          <img src="image/icon/negado.png" id="imagem_mensagem" alt="">
+          <p id="mensagem_texto"></p>
+    </div>
 </div>
 </body>
 </html>
@@ -77,7 +82,7 @@
                 if(resposta.length>0){
                     for(resp of resposta){
                         idolos.style.display="flex"
-                        posicao_card.innerHTML+=`<div class="idolo_jogador"  onclick="abrir_jogador(${resp.idIdolo})">
+                        posicao_card.innerHTML+=`<div class="idolo_jogador"  onclick="abrir_jogador(${resp.ididolo})">
                     <img src="${resp.imagem}" alt="">
                     <p>${resp.nome}<br>(${resp.chegada}-${resp.saida})</p>
                     </div>`
@@ -101,10 +106,10 @@
     function enviarcomentário(){
         var comentario = add_comentario.value
         if(comentario==""){
-            alert("Erro é necessário comentar algo")
+            exibir_mensagem("É necessário comentar algo")
         }
         else if(id==undefined){
-            alert("Usuário não cadastrado")
+            exibir_mensagem("Usuário não cadastrado")
         }
         else{
             fetch(`titulos/enviarcomentario`,{
@@ -166,5 +171,14 @@
     function abrir_jogador(id_jogador){
         sessionStorage.dadosidolo=id_jogador
         window.location.href= `./pagidolo.html`
+    }
+
+    function exibir_mensagem(texto){     
+            imagem_mensagem.src=`image/icon/exclamacao.png`
+            mensagem.className=`mensagem`
+            mensagem_texto.innerHTML=`${texto}`
+            setTimeout(()=>{
+            mensagem.className=`vazio`
+            },1500)
     }
 </script>
