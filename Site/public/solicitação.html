@@ -47,7 +47,7 @@
         </nav>
         <div class="solicitacao">
             <div class="titulo">
-                <h1>Camisas solicitadas pelo Usuário:</h1>
+                <h1>Camisas solicitadas:</h1>
             </div>
             <div class="lista" id="lista"></div>
         </div>
@@ -75,35 +75,41 @@
         .then(resposta=>{resposta.json().then(resposta=>{
             lista.innerHTML=``
             console.log(resposta)
-            for(resp of resposta){
-                let imagem = ``
-                if(resp.situacao=="analise"){
-                    imagem="image/icon/analise.png"
-                }
-                else if(resp.situacao=="aprovado"){
-                    imagem="image/icon/aprovada.png"
-                }
-                else if(resp.situacao=="recusada"){
-                    imagem="image/icon/recusada.png"
-                }
-                lista.innerHTML+=`
-                    <div class="card">
-                        <div class="cabecario_camisa">
-                            <div class="titulo_camisa">
-                                <h2>${resp.nome} ${resp.marca}<br>${resp.ano}</h2>
-                            </div>
-                        </div>
-                        <img src="./${resp.imagem}" alt="" onclick="">
-                        <div class="footer">
-                            <p>Preço:R$${resp.preco}</p>
-                            <div class="status">
-                                <p>Status:</p>
-                                <img src="./${imagem}" alt="">
-                            </div>
-                        </div>
-                    </div>
-                `
+            if(resposta.length==0){
+                lista.innerHTML="<h1>Sem camisas em análise</h1>"
             }
+            else{
+                for(resp of resposta){
+                    let imagem = ``
+                    if(resp.situacao=="analise"){
+                        imagem="image/icon/analise.png"
+                    }
+                    else if(resp.situacao=="aprovado"){
+                        imagem="image/icon/aprovada.png"
+                    }
+                    else if(resp.situacao=="recusada"){
+                        imagem="image/icon/recusada.png"
+                    }
+                    lista.innerHTML+=`
+                        <div class="card">
+                            <div class="cabecario_camisa">
+                                <div class="titulo_camisa">
+                                    <h2>${resp.nome} ${resp.marca}<br>${resp.ano}</h2>
+                                </div>
+                            </div>
+                            <img src="./${resp.imagem}" alt="" onclick="">
+                            <div class="footer">
+                                <p>Preço:R$${resp.preco}</p>
+                                <div class="status">
+                                    <p>Status:</p>
+                                    <img src="./${imagem}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            }
+            
             })
         })
         .catch(erro=>{

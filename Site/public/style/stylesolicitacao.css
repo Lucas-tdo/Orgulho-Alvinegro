@@ -103,6 +103,10 @@ nav img{
     overflow-x: auto;
 }
 
+.lista h1{
+    color: black;
+}
+
 /* camisas */
 .card{
     display: flex;
