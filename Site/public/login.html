@@ -136,9 +136,15 @@
                         sessionStorage.ID_USUARIO = json.id;
                         sessionStorage.IMAGEM = json.imagem;
                         sessionStorage.nivel = json.nivel
+                        exibir_mensagem("Usuário logado!",'aprovado')
+                        setTimeout(() => {
                         window.location.href="index.html"
+                        }, 1500);
                     })
                     
+                }
+                else{
+                  exibir_mensagem("conta não localizada","alerta")
                 }
                 
             }).catch(function (erro){
@@ -154,6 +160,12 @@
     function exibir_mensagem(texto,imagem){
         if(imagem=="block"){
           imagem_mensagem.src=`image/icon/negado.png`
+        }
+        else if(imagem=="alerta"){
+            imagem_mensagem.src=`image/icon/exclamacao.png`
+        }
+        else if(imagem=="aprovado"){
+            imagem_mensagem.src="image/icon/aprovada.png"
         }
         else{
           imagem_mensagem.src=`image/gif/carregando.gif`
